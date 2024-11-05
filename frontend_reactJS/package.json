@@ -13,6 +13,7 @@
     "@aivangogh/ph-address": "^1.4.2",
     "@dctsph/psgc": "^1.1.0",
     "@dropdowns/psgc": "^1.0.1",
+    "@efdiaz/psgc": "^1.0.3",
     "axios": "^1.6.8",
     "chart.js": "^4.4.3",
     "lucide-react": "^0.424.0",
