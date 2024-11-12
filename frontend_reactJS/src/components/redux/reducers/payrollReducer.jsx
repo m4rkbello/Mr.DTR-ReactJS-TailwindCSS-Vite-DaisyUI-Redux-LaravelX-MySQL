@@ -27,16 +27,16 @@ const initialState = {
 
 //3 PARAMETERS NA IMPORTANTE SA REDUCER - STATE, InitialState, ACTION
 const payrollReducer = (state = initialState, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case FETCH_PAYROLLS_REQUEST:
         case ADD_PAYROLL_REQUEST:
         case UPDATE_PAYROLL_REQUEST:
         case DELETE_PAYROLL_REQUEST:
         case SEARCH_PAYROLL_REQUEST:
-            return  {
+            return {
                 ...state,
                 loading: true,
-                error: null  
+                error: null
             };
         case FETCH_PAYROLLS_SUCCESS:
             return {
@@ -59,13 +59,13 @@ const payrollReducer = (state = initialState, action) => {
                 loading: false,
                 error: null,
             };
-        case DELETE_PAYROLL_SUCCESS: 
+        case DELETE_PAYROLL_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 error: action.payload,
             };
-        case SEARCH_PAYROLL_SUCCESS: 
+        case SEARCH_PAYROLL_SUCCESS:
             return {
                 ...state,
                 loading: false,
@@ -82,10 +82,10 @@ const payrollReducer = (state = initialState, action) => {
                 loading: false,
                 error: action.payload
             };
-        default: 
+        default:
             return state;
 
-        }
+    }
 }
 
 export default payrollReducer;
