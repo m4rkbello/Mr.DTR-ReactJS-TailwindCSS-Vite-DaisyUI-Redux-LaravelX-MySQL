@@ -348,7 +348,7 @@ const EmployeeDashboard = (props) => {
                         </div>
                     </div>
 
-                    <div className="h-auto max-h-full w-full max-w-full glass mx-auto p-4 from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
+                    <div className="h-auto max-h-full w-full max-w-full glass mx-auto p-4  shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
                         <div className='glass shadow-slate-900/100'>
                             <div className="grid bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% grid-cols-3 items-center mt-10 mb-10 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
                                 <div>
