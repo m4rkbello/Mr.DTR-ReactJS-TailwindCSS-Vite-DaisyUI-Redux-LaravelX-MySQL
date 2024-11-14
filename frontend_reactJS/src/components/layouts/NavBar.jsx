@@ -11,7 +11,7 @@ const NavBar = ({ isAuthenticatedUser, destroyAuthentications }) => {
             <img src="https://i.ibb.co/7JHVynR/DTRMS-LOGO-removebg-preview.png" className="h-16 w-auto object-contain border-4 bg-white" alt="DTRMS-LOGO-removebg-preview" border="0" />
             <div className="flex-1 flex items-center">
                 {isAuthenticatedUser && isAuthenticatedUser.length > 0 && (
-                    <span className="text-xl ml-4 hidden md:block">
+                    <span className="text-xl ml-4 hidden md:block text-white">
                         Welcome, {isAuthenticatedUser[0].user_email}
                     </span>
                 )}
