@@ -277,92 +277,43 @@ class AuthController extends Controller
             // Validate incoming request data
             $data = $request->validate([
                 'employee_firstname' => 'required|string',
-                'employee_middlename' => 'nullable|string',
                 'employee_lastname' => 'required|string',
-                'employee_extensionname' => 'nullable|string',
-                'employee_username' => 'required|string|unique:employees,employee_username',
-                'employee_email' => 'required|string|email|unique:employees,employee_email',
-                'employee_password' => 'required|string|min:8',
-                'employee_contact_no' => 'required|string|max:11|unique:employees,employee_contact_no',
-                'employee_barangay' => 'nullable|string',
-                'employee_municipality' => 'nullable|string',
-                'employee_province' => 'nullable|string',
-                'employee_region' => 'nullable|string',
-                'employee_birthdate' => 'required|date',
-                'employee_civil_status_id' => 'required|integer',
-                'employee_position' => 'nullable|string',
-                'employee_role' => 'nullable|string',
-                'employee_department_id' => 'required|integer',
-                'employee_status_id' => 'required|integer',
-                'employee_image' => 'nullable|string',
-                'employee_qrcode' => 'nullable|string',
-                'employee_sss_no' => 'nullable|string|max:255',
-                'employee_pagibig_no' => 'nullable|string|max:255',
-                'employee_philhealth_no' => 'nullable|string|max:255',
-                'employee_tin_no' => 'nullable|string|max:255'
+                'employee_email' => 'required|email|unique:employees,email',
+                'employee_contact_no' => 'required|string',
+                'employee_password' => 'required|string|confirmed',  // This ensures 'password' and 'password_confirmation' match
+                'employee_barangay' => 'required|string',
+                'employee_municipality' => 'required|string',
+                'employee_province' => 'required|string',
+                'employee_region' => 'required|string',
             ]);
     
-            // Create a new employee
+            // Create a new employee in the database
             $employee = Employee::create([
-                'employee_firstname' => $data['employee_firstname'],
-                'employee_middlename' => $data['employee_middlename'] ?? null,
-                'employee_lastname' => $data['employee_lastname'],
-                'employee_extensionname' => $data['employee_extensionname'] ?? null,
-                'employee_username' => $data['employee_username'],
-                'employee_email' => $data['employee_email'],
-                'employee_password' => bcrypt($data['employee_password']),
-                'employee_contact_no' => $data['employee_contact_no'],
-                'employee_barangay' => $data['employee_barangay'] ?? null,
-                'employee_municipality' => $data['employee_municipality'] ?? null,
-                'employee_province' => $data['employee_province'] ?? null,
-                'employee_region' => $data['employee_region'] ?? null,
-                'employee_birthdate' => $data['employee_birthdate'],
-                'employee_civil_status_id' => $data['employee_civil_status_id'],
-                'employee_position' => $data['employee_position'] ?? null,
-                'employee_role' => $data['employee_role'] ?? null,
-                'employee_department_id' => $data['employee_department_id'],
-                'employee_status_id' => $data['employee_status_id'],
-                'employee_image' => $data['employee_image'] ?? null,
-                'employee_qrcode' => $data['employee_qrcode'] ?? null,
-                'employee_sss_no' => $data['employee_sss_no'] ?? null,
-                'employee_pagibig_no' => $data['employee_pagibig_no'] ?? null,
-                'employee_philhealth_no' => $data['employee_philhealth_no'] ?? null,
-                'employee_tin_no' => $data['employee_tin_no'] ?? null
+                'first_name' => $data['employee_firstname'],
+                'last_name' => $data['employee_lastname'],
+                'email' => $data['employee_email'],
+                'contact_no' => $data['employee_contact_no'],
+                'password' => bcrypt($data['employee_password']),  // Hash the password before saving
+                'barangay' => $data['employee_barangay'],
+                'municipality' => $data['employee_municipality'],
+                'province' => $data['employee_province'],
+                'region' => $data['employee_region'],
             ]);
     
-            // Generate an authentication token
-            $token = $employee->createToken('m4rkbello_to_be_fullstack')->plainTextToken;
-    
-            // Prepare success response
-            $response = [
-                'success' => true,
-                'employee' => $employee,
-                'token' => $token
-            ];
-    
-            Log::info("Employee Registration Successful", $response);
-            return response()->json($response, 201);
-    
-        } catch (\Illuminate\Validation\ValidationException $validationError) {
-            // Handle validation errors
-            Log::error('Validation error: ' . $validationError->getMessage());
+            // Respond with a success message
             return response()->json([
-                'success' => false,
-                'message' => 'Validation failed! ' . $validationError->getMessage(),
-                'status' => 422
-            ], 422);
+                'message' => 'Employee registered successfully',
+                'employee' => $employee
+            ], 201); // HTTP 201 Created
     
-        } catch (\Exception $error) {
-            // Log the error message for debugging
-            Log::error('Registration error: ' . $error->getMessage());
-    
+        } catch (\Exception $e) {
+            // Handle errors
             return response()->json([
-                'success' => false,
-                'message' => 'Employee registration failed! ' . $error->getMessage(),
-                'status' => 500
-            ], 500);
+                'message' => 'Registration failed: ' . $e->getMessage()
+            ], 500); // HTTP 500 Internal Server Error
         }
     }
+    
     
     public function loginEmployee(Request $request)
     {
