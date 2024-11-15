@@ -205,9 +205,9 @@ function App(props) {
           )}
         </div>
       </div>
-      <div className="drawer lg:drawer-open flex-1">
-        <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center px-0 py-0 md:px-8 md:py-8">
+  <div className="drawer lg:drawer-open flex-1">
+    <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+    <div className="drawer-content flex flex-col items-center justify-center px-0 py-0 md:px-8 md:py-8">
           {(localStorageHasToken?.length ?? 0) > 0 && (sessionStorageToken?.length ?? 0) !== 0 && (cookiesData?.length ?? 0) > 0 ?
             (
               <>
@@ -258,7 +258,7 @@ function App(props) {
           </>
         )}
       </div>
-      <Footer />
+      <Footer className="bg-gradient-to-r from-emerald-500 via-sky-500 to-violet-700 p-4 text-white text-center mt-auto" />
     </div>
   );
 }
