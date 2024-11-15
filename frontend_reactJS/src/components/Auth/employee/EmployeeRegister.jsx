@@ -152,10 +152,11 @@ const EmployeeRegister = ({ registerEmployee }) => {
   return (
     <div className="flex items-center justify-center min-h-screen glass">
       <ToastContainer />
-      <div className="container w-full lg:w-2/3 mx-auto p-6 md:p-10 shadow-md glass">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 glass">
         <form className="p-6 space-y-6 bg-transparent rounded-lg shadow-lg" onSubmit={handleRegisterUserRequestAndResponse}>
           <h2 className="text-2xl font-semibold text-center text-gray-700">Register Employee</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+          <div className="grid grid-cols-1 md:grid-cols-1 gap-2">
 
             {/* First Name Field */}
             <div className="form-control">
@@ -172,6 +173,20 @@ const EmployeeRegister = ({ registerEmployee }) => {
               />
             </div>
 
+            {/* Middle Name Field */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Middle Name</span>
+              </label>
+              <input
+                type="text"
+                name="employee_middlename"
+                className="input input-bordered w-full"
+                value={employee.employee_middlename}
+                onChange={handleChange}
+              />
+            </div>
+
             {/* Last Name Field */}
             <div className="form-control">
               <label className="label">
@@ -185,6 +200,70 @@ const EmployeeRegister = ({ registerEmployee }) => {
                 onChange={handleChange}
                 required
               />
+            </div>
+
+            {/* Extension Name Field */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Extension Name</span>
+              </label>
+              <input
+                type="text"
+                name="employee_extensionname"
+                className="input input-bordered w-full"
+                value={employee.employee_extensionname}
+                onChange={handleChange}
+              />
+            </div>
+
+            {/* Username Field */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Username</span>
+              </label>
+              <input
+                type="text"
+                name="employee_username"
+                className="input input-bordered w-full"
+                value={employee.employee_username}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            {/* Birthdate Field */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Birthdate</span>
+              </label>
+              <input
+                type="date"
+                name="employee_birthdate"
+                className="input input-bordered w-full"
+                value={employee.employee_birthdate}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            {/* Civil Status Dropdown */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Civil Status</span>
+              </label>
+              <select
+                name="employee_civil_status_id"
+                value={employee.employee_civil_status_id}
+                onChange={handleChange}
+                className="input input-bordered w-full"
+                required
+              >
+                <option value="">Select Civil Status</option>
+                <option value="1">Single</option>
+                <option value="2">Married</option>
+                <option value="3">Separated</option>
+                <option value="4">Widow</option>
+              </select>
             </div>
 
             {/* Email Field */}
@@ -385,7 +464,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               >
                 {isLoading ? 'Registering...' : 'Register'}
               </button>
-            </div>
+            </div>``
 
             {/* Error Message */}
             {error && (
