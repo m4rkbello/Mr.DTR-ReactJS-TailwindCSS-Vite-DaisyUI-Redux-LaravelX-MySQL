@@ -280,7 +280,7 @@ class AuthController extends Controller
                 'employee_middlename' => 'nullable|string',
                 'employee_lastname' => 'required|string',
                 'employee_extensionname' => 'nullable|string',
-                'employee_username' => 'nullable|string',
+                'employee_username' => 'nullable|string|unique:employees,employee_username',
                 'employee_email' => 'required|string|email|unique:employees,employee_email',
                 'employee_password' => 'required|string|min:8',
                 'employee_contact_no' => 'required|string|max:11|unique:employees,employee_contact_no',
@@ -342,6 +342,12 @@ class AuthController extends Controller
     
             Log::info("Employee Registration Successful", $response);
             return response()->json($response, 201);
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Employee registration success ' . $error->getMessage(),
+                'status' => 500
+            ], 500);
     
         } catch (\Illuminate\Validation\ValidationException $validationError) {
             // Handle validation errors
