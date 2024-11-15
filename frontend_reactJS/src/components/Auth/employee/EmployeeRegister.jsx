@@ -153,118 +153,118 @@ const EmployeeRegister = ({ registerEmployee }) => {
     <div className="flex items-center justify-center min-h-screen glass">
       <ToastContainer />
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 glass">
-        <form className="p-6 space-y-6 bg-transparent rounded-lg shadow-lg" onSubmit={handleRegisterUserRequestAndResponse}>
-          <h2 className="text-2xl font-semibold text-center text-gray-700">Register Employee</h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-1 gap-2">
+      <form className="p-6 space-y-6 bg-transparent rounded-lg shadow-lg" onSubmit={handleRegisterUserRequestAndResponse}>
+      <h2 className="text-2xl font-semibold text-center text-gray-700">Register Employee</h2>
+    
+      <div className="grid grid-cols-1 md:grid-cols-1 gap-2">
 
             {/* First Name Field */}
             <div className="form-control">
-              <label className="label">
-                <span className="label-text">First Name</span>
-              </label>
-              <input
-                type="text"
-                name="employee_firstname"
-                className="input input-bordered w-full"
-                value={employee.employee_firstname}
-                onChange={handleChange}
-                required
-              />
-            </div>
+            <label className="label">
+              <span className="label-text">First Name</span>
+            </label>
+            <input
+              type="text"
+              name="employee_firstname"
+              className="input input-bordered w-full glass"
+              value={employee.employee_firstname}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-            {/* Middle Name Field */}
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Middle Name</span>
-              </label>
-              <input
-                type="text"
-                name="employee_middlename"
-                className="input input-bordered w-full"
-                value={employee.employee_middlename}
-                onChange={handleChange}
-              />
-            </div>
+          {/* Middle Name Field */}
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Middle Name</span>
+            </label>
+            <input
+              type="text"
+              name="employee_middlename"
+              className="input input-bordered w-full glass"
+              value={employee.employee_middlename}
+              onChange={handleChange}
+            />
+          </div>
 
-            {/* Last Name Field */}
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Last Name</span>
-              </label>
-              <input
-                type="text"
-                name="employee_lastname"
-                className="input input-bordered w-full"
-                value={employee.employee_lastname}
-                onChange={handleChange}
-                required
-              />
-            </div>
+          {/* Last Name Field */}
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Last Name</span>
+            </label>
+            <input
+              type="text"
+              name="employee_lastname"
+              className="input input-bordered w-full glass"
+              value={employee.employee_lastname}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-            {/* Extension Name Field */}
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Extension Name</span>
-              </label>
-              <input
-                type="text"
-                name="employee_extensionname"
-                className="input input-bordered w-full"
-                value={employee.employee_extensionname}
-                onChange={handleChange}
-              />
-            </div>
+          {/* Extension Name Field */}
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Extension Name</span>
+            </label>
+            <input
+              type="text"
+              name="employee_extensionname"
+              className="input input-bordered w-full glass"
+              value={employee.employee_extensionname}
+              onChange={handleChange}
+            />
+          </div>
 
-            {/* Username Field */}
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Username</span>
-              </label>
-              <input
-                type="text"
-                name="employee_username"
-                className="input input-bordered w-full"
-                value={employee.employee_username}
-                onChange={handleChange}
-                required
-              />
-            </div>
+          {/* Username Field */}
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Username</span>
+            </label>
+            <input
+              type="text"
+              name="employee_username"
+              className="input input-bordered w-full glass"
+              value={employee.employee_username}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-            {/* Birthdate Field */}
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Birthdate</span>
-              </label>
-              <input
-                type="date"
-                name="employee_birthdate"
-                className="input input-bordered w-full"
-                value={employee.employee_birthdate}
-                onChange={handleChange}
-                required
-              />
-            </div>
+          {/* Birthdate Field */}
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Birthdate</span>
+            </label>
+            <input
+              type="date"
+              name="employee_birthdate"
+              className="input input-bordered w-full glass"
+              value={employee.employee_birthdate}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-            {/* Civil Status Dropdown */}
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Civil Status</span>
-              </label>
-              <select
-                name="employee_civil_status_id"
-                value={employee.employee_civil_status_id}
-                onChange={handleChange}
-                className="input input-bordered w-full"
-                required
-              >
-                <option value="">Select Civil Status</option>
-                <option value="1">Single</option>
-                <option value="2">Married</option>
-                <option value="3">Separated</option>
-                <option value="4">Widow</option>
-              </select>
-            </div>
+          {/* Civil Status Dropdown */}
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Civil Status</span>
+            </label>
+            <select
+              name="employee_civil_status_id"
+              value={employee.employee_civil_status_id}
+              onChange={handleChange}
+              className="input input-bordered w-full glass"
+              required
+            >
+              <option value="">Select Civil Status</option>
+              <option value="1">Single</option>
+              <option value="2">Married</option>
+              <option value="3">Separated</option>
+              <option value="4">Widow</option>
+            </select>
+          </div>
 
             {/* Email Field */}
             <div className="form-control">
@@ -274,7 +274,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <input
                 type="email"
                 name="employee_email"
-                className="input input-bordered w-full"
+                className="glass input input-bordered w-full"
                 value={employee.employee_email}
                 onChange={handleChange}
                 required
@@ -289,7 +289,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <input
                 type="text"
                 name="employee_contact_no"
-                className="input input-bordered w-full"
+                className="glass input input-bordered w-full"
                 value={employee.employee_contact_no}
                 onChange={handleChange}
                 required
@@ -304,7 +304,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <input
                 type="password"
                 name="employee_password"
-                className="input input-bordered w-full"
+                className="glass input input-bordered w-full"
                 value={employee.employee_password}
                 onChange={handleChange}
                 required
@@ -319,7 +319,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <input
                 type="password"
                 name="employee_confirm_password"
-                className="input input-bordered w-full"
+                className="glass input input-bordered w-full"
                 value={employee.employee_confirm_password}
                 onChange={handleChange}
                 required
@@ -334,7 +334,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <select
                 value={selectedRegion}
                 onChange={(e) => setSelectedRegion(e.target.value)}
-                className="input input-bordered w-full"
+                className="glass input input-bordered w-full"
               >
                 <option value="">Select Region</option>
                 {regionList.map((region) => (
@@ -353,7 +353,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <select
                 value={selectedProvince}
                 onChange={(e) => setSelectedProvince(e.target.value)}
-                className="input input-bordered w-full"
+                className="glass input input-bordered w-full"
               >
                 <option value="">Select Province</option>
                 {provinceList.map((province) => (
@@ -372,7 +372,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <select
                 value={selectedMunicipality}
                 onChange={(e) => setSelectedMunicipality(e.target.value)}
-                className="input input-bordered w-full"
+                className="glass input input-bordered w-full"
               >
                 <option value="">Select Municipality</option>
                 {municipalityList.map((municipality) => (
@@ -391,7 +391,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <select
                 value={selectedBarangay}
                 onChange={(e) => setSelectedBarangay(e.target.value)}
-                className="input input-bordered w-full"
+                className="glass input input-bordered w-full"
               >
                 <option value="">Select Barangay</option>
                 {barangayList.map((barangay) => (
@@ -410,7 +410,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <input
                 type="text"
                 name="employee_sss_no"
-                className="input input-bordered w-full"
+                className="glass input input-bordered w-full"
                 value={employee.employee_sss_no}
                 onChange={handleChange}
               />
@@ -423,7 +423,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <input
                 type="text"
                 name="employee_pagibig_no"
-                className="input input-bordered w-full"
+                className="glass input input-bordered w-full"
                 value={employee.employee_pagibig_no}
                 onChange={handleChange}
               />
@@ -436,7 +436,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <input
                 type="text"
                 name="employee_philhealth_no"
-                className="input input-bordered w-full"
+                className="glass input input-bordered w-full"
                 value={employee.employee_philhealth_no}
                 onChange={handleChange}
               />
@@ -449,22 +449,22 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <input
                 type="text"
                 name="employee_tin_no"
-                className="input input-bordered w-full"
+                className="glass input input-bordered w-full"
                 value={employee.employee_tin_no}
                 onChange={handleChange}
               />
             </div>
 
             {/* Submit Button */}
-            <div className="form-control">
+            <div className="form-control mt-6">
               <button
                 type="submit"
                 className="btn drop-shadow-lg bg-gradient-to-r from-white to-sky-500 hover:from-white hover:to-violet-800 text-black text-xl sm:text-2xl"
                 disabled={isLoading}
               >
-                {isLoading ? 'Registering...' : 'Register'}
+                {isLoading ? <span className="loading loading-spinner text-accent"></span> : 'Register'}
               </button>
-            </div>``
+            </div>
 
             {/* Error Message */}
             {error && (
@@ -474,6 +474,30 @@ const EmployeeRegister = ({ registerEmployee }) => {
             )}
           </div>
         </form>
+
+        <div className="carousel carousel-vertical rounded-box h-96">
+  <div className="carousel-item h-full">
+    <img src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp" />
+  </div>
+  <div className="carousel-item h-full">
+    <img src="https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp" />
+  </div>
+  <div className="carousel-item h-full">
+    <img src="https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp" />
+  </div>
+  <div className="carousel-item h-full">
+    <img src="https://img.daisyui.com/images/stock/photo-1494253109108-2e30c049369b.webp" />
+  </div>
+  <div className="carousel-item h-full">
+    <img src="https://img.daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.webp" />
+  </div>
+  <div className="carousel-item h-full">
+    <img src="https://img.daisyui.com/images/stock/photo-1559181567-c3190ca9959b.webp" />
+  </div>
+  <div className="carousel-item h-full">
+    <img src="https://img.daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.webp" />
+  </div>
+</div>
       </div>
     </div>
   );
