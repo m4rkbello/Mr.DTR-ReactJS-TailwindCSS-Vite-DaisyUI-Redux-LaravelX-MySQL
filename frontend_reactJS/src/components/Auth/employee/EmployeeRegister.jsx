@@ -153,118 +153,118 @@ const EmployeeRegister = ({ registerEmployee }) => {
     <div className="flex items-center justify-center min-h-screen glass">
       <ToastContainer />
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 glass">
-      <form className="p-6 space-y-6 bg-transparent rounded-lg shadow-lg" onSubmit={handleRegisterUserRequestAndResponse}>
-      <h2 className="text-2xl font-semibold text-center text-gray-700">Register Employee</h2>
-    
-      <div className="grid grid-cols-1 md:grid-cols-1 gap-2">
+        <form className="p-6 space-y-6 bg-transparent rounded-lg shadow-lg" onSubmit={handleRegisterUserRequestAndResponse}>
+          <h2 className="text-2xl font-semibold text-center text-gray-700">Register Employee</h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-1 gap-2">
 
             {/* First Name Field */}
             <div className="form-control">
-            <label className="label">
-              <span className="label-text">First Name</span>
-            </label>
-            <input
-              type="text"
-              name="employee_firstname"
-              className="input input-bordered w-full glass"
-              value={employee.employee_firstname}
-              onChange={handleChange}
-              required
-            />
-          </div>
+              <label className="label">
+                <span className="label-text">First Name</span>
+              </label>
+              <input
+                type="text"
+                name="employee_firstname"
+                className="input input-bordered w-full glass"
+                value={employee.employee_firstname}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-          {/* Middle Name Field */}
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Middle Name</span>
-            </label>
-            <input
-              type="text"
-              name="employee_middlename"
-              className="input input-bordered w-full glass"
-              value={employee.employee_middlename}
-              onChange={handleChange}
-            />
-          </div>
+            {/* Middle Name Field */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Middle Name</span>
+              </label>
+              <input
+                type="text"
+                name="employee_middlename"
+                className="input input-bordered w-full glass"
+                value={employee.employee_middlename}
+                onChange={handleChange}
+              />
+            </div>
 
-          {/* Last Name Field */}
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Last Name</span>
-            </label>
-            <input
-              type="text"
-              name="employee_lastname"
-              className="input input-bordered w-full glass"
-              value={employee.employee_lastname}
-              onChange={handleChange}
-              required
-            />
-          </div>
+            {/* Last Name Field */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Last Name</span>
+              </label>
+              <input
+                type="text"
+                name="employee_lastname"
+                className="input input-bordered w-full glass"
+                value={employee.employee_lastname}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-          {/* Extension Name Field */}
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Extension Name</span>
-            </label>
-            <input
-              type="text"
-              name="employee_extensionname"
-              className="input input-bordered w-full glass"
-              value={employee.employee_extensionname}
-              onChange={handleChange}
-            />
-          </div>
+            {/* Extension Name Field */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Extension Name</span>
+              </label>
+              <input
+                type="text"
+                name="employee_extensionname"
+                className="input input-bordered w-full glass"
+                value={employee.employee_extensionname}
+                onChange={handleChange}
+              />
+            </div>
 
-          {/* Username Field */}
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Username</span>
-            </label>
-            <input
-              type="text"
-              name="employee_username"
-              className="input input-bordered w-full glass"
-              value={employee.employee_username}
-              onChange={handleChange}
-              required
-            />
-          </div>
+            {/* Username Field */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Username</span>
+              </label>
+              <input
+                type="text"
+                name="employee_username"
+                className="input input-bordered w-full glass"
+                value={employee.employee_username}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-          {/* Birthdate Field */}
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Birthdate</span>
-            </label>
-            <input
-              type="date"
-              name="employee_birthdate"
-              className="input input-bordered w-full glass"
-              value={employee.employee_birthdate}
-              onChange={handleChange}
-              required
-            />
-          </div>
+            {/* Birthdate Field */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Birthdate</span>
+              </label>
+              <input
+                type="date"
+                name="employee_birthdate"
+                className="input input-bordered w-full glass"
+                value={employee.employee_birthdate}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-          {/* Civil Status Dropdown */}
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Civil Status</span>
-            </label>
-            <select
-              name="employee_civil_status_id"
-              value={employee.employee_civil_status_id}
-              onChange={handleChange}
-              className="input input-bordered w-full glass"
-              required
-            >
-              <option value="">Select Civil Status</option>
-              <option value="1">Single</option>
-              <option value="2">Married</option>
-              <option value="3">Separated</option>
-              <option value="4">Widow</option>
-            </select>
-          </div>
+            {/* Civil Status Dropdown */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Civil Status</span>
+              </label>
+              <select
+                name="employee_civil_status_id"
+                value={employee.employee_civil_status_id}
+                onChange={handleChange}
+                className="input input-bordered w-full glass"
+                required
+              >
+                <option value="">Select Civil Status</option>
+                <option value="1">Single</option>
+                <option value="2">Married</option>
+                <option value="3">Separated</option>
+                <option value="4">Widow</option>
+              </select>
+            </div>
 
             {/* Email Field */}
             <div className="form-control">
@@ -476,28 +476,28 @@ const EmployeeRegister = ({ registerEmployee }) => {
         </form>
 
         <div className="carousel carousel-vertical rounded-box h-96">
-  <div className="carousel-item h-full">
-    <img src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp" />
-  </div>
-  <div className="carousel-item h-full">
-    <img src="https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp" />
-  </div>
-  <div className="carousel-item h-full">
-    <img src="https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp" />
-  </div>
-  <div className="carousel-item h-full">
-    <img src="https://img.daisyui.com/images/stock/photo-1494253109108-2e30c049369b.webp" />
-  </div>
-  <div className="carousel-item h-full">
-    <img src="https://img.daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.webp" />
-  </div>
-  <div className="carousel-item h-full">
-    <img src="https://img.daisyui.com/images/stock/photo-1559181567-c3190ca9959b.webp" />
-  </div>
-  <div className="carousel-item h-full">
-    <img src="https://img.daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.webp" />
-  </div>
-</div>
+          <div className="carousel-item h-full">
+            <img src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp" />
+          </div>
+          <div className="carousel-item h-full">
+            <img src="https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp" />
+          </div>
+          <div className="carousel-item h-full">
+            <img src="https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp" />
+          </div>
+          <div className="carousel-item h-full">
+            <img src="https://img.daisyui.com/images/stock/photo-1494253109108-2e30c049369b.webp" />
+          </div>
+          <div className="carousel-item h-full">
+            <img src="https://img.daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.webp" />
+          </div>
+          <div className="carousel-item h-full">
+            <img src="https://img.daisyui.com/images/stock/photo-1559181567-c3190ca9959b.webp" />
+          </div>
+          <div className="carousel-item h-full">
+            <img src="https://img.daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.webp" />
+          </div>
+        </div>
       </div>
     </div>
   );
