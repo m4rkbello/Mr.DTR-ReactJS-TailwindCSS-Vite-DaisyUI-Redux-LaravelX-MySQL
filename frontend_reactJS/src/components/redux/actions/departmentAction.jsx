@@ -6,27 +6,27 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-import { 
-FETCH_DEPARTMENTS_REQUEST,
-FETCH_DEPARTMENTS_SUCCESS,
-FETCH_DEPARTMENTS_FAILURE,
-ADD_DEPARTMENT_FAILURE,
-ADD_DEPARTMENT_REQUEST,
-ADD_DEPARTMENT_SUCCESS,
-DEACTIVATE_DEPARTMENT_FAILURE,
-DEACTIVATE_DEPARTMENT_REQUEST,
-DEACTIVATE_DEPARTMENT_SUCCESS,
-DELETE_DEPARTMENT_FAILURE,
-DELETE_DEPARTMENT_REQUEST,
-DELETE_DEPARTMENT_SUCCESS,
-UPDATE_DEPARTMENT_FAILURE,
-UPDATE_DEPARTMENT_REQUEST,
-UPDATE_DEPARTMENT_SUCCESS,
-SEARCH_DEPARTMENT_REQUEST,
-SEARCH_DEPARTMENT_SUCCESS,
-SEARCH_DEPARTMENT_FAILURE
+import {
+    FETCH_DEPARTMENTS_REQUEST,
+    FETCH_DEPARTMENTS_SUCCESS,
+    FETCH_DEPARTMENTS_FAILURE,
+    ADD_DEPARTMENT_FAILURE,
+    ADD_DEPARTMENT_REQUEST,
+    ADD_DEPARTMENT_SUCCESS,
+    DEACTIVATE_DEPARTMENT_FAILURE,
+    DEACTIVATE_DEPARTMENT_REQUEST,
+    DEACTIVATE_DEPARTMENT_SUCCESS,
+    DELETE_DEPARTMENT_FAILURE,
+    DELETE_DEPARTMENT_REQUEST,
+    DELETE_DEPARTMENT_SUCCESS,
+    UPDATE_DEPARTMENT_FAILURE,
+    UPDATE_DEPARTMENT_REQUEST,
+    UPDATE_DEPARTMENT_SUCCESS,
+    SEARCH_DEPARTMENT_REQUEST,
+    SEARCH_DEPARTMENT_SUCCESS,
+    SEARCH_DEPARTMENT_FAILURE
 }
-from '../types/departmentTypes.jsx';
+    from '../types/departmentTypes.jsx';
 
 
 //MAG-FETCH UG DATA SA DEPARTMENTS
@@ -34,13 +34,13 @@ export const fetchDepartments = () => async (dispatch, getState) => {
     const { departmentData } = getState(); // Access current state
 
     // Check if data was fetched within the last 60 seconds (1 minute)
-    const oneMinute = 60000; 
+    const oneMinute = 60000;
     const currentTime = Date.now();
     const lastFetched = departmentData?.lastFetched;
 
     console.log("Current time:", currentTime);
     console.log("Last fetched:", lastFetched);
-  
+
     // If the data was fetched within the last 1 minute, don't re-fetch
     if (lastFetched && currentTime - lastFetched < oneMinute) {
         console.log("Data fetched recently. Not refetching.");
@@ -87,7 +87,7 @@ export const addDepartment = departmentData => async dispatch => {
                     fontSize: '15px'
                 }
             });
-        } else if(statusCode == 401){
+        } else if (statusCode == 401) {
             toast.error('An error occurred while adding the department! 🥺⚠️👽', {
                 position: 'top-right',
                 autoClose: 5000,
@@ -102,7 +102,7 @@ export const addDepartment = departmentData => async dispatch => {
                     fontSize: '15px'
                 }
             });
-        }else {
+        } else {
             toast.error('An error occurred while adding the department! 🥺⚠️👽', {
                 position: 'top-right',
                 autoClose: 5000,
@@ -118,7 +118,7 @@ export const addDepartment = departmentData => async dispatch => {
                 }
             });
         }
-        
+
         dispatch({
             type: ADD_DEPARTMENT_SUCCESS,
             payload: addDepartmentRequestAndResponse,
@@ -133,7 +133,7 @@ export const addDepartment = departmentData => async dispatch => {
 
 //MAG UPDATE UG EMPLOYEE GAMIT ID
 export const updateDepartment = (deptartmentId, updateDepartmentData) => async dispatch => {
-   
+
     try {
         dispatch({ type: UPDATE_DEPARTMENT_REQUEST });
         // Perform async operation, e.g., send updated data to an API
@@ -172,7 +172,7 @@ export const updateDepartment = (deptartmentId, updateDepartmentData) => async d
                     fontSize: '15px'
                 }
             });
-            
+
             // setTimeout(() => {
             //     window.location.reload();
             //     updateEmployeeNavigator("http://localhost:5173/employee/dashboard"); // Use navigate here
@@ -206,7 +206,7 @@ export const updateDepartment = (deptartmentId, updateDepartmentData) => async d
 
             setTimeout(() => {
                 window.location.reload();
-              }, 3000)
+            }, 3000)
 
         } else {
             // Handle other types of errors
@@ -222,9 +222,9 @@ export const updateDepartment = (deptartmentId, updateDepartmentData) => async d
 export const deactivateDepartment = departmentId => async dispatch => {
     try {
         dispatch({ type: DEACTIVATE_DEPARTMENT_REQUEST });
-    
-       const deactivateDepartmentRequestAndResponse = await MarkBelloApi.put(`/api/departments/deactivate/${departmentId}`);
-       console.log("DATA RESPONSE SA  REDUX DISPATCH deactivateDepartment", deactivateDepartmentRequestAndResponse);
+
+        const deactivateDepartmentRequestAndResponse = await MarkBelloApi.put(`/api/departments/deactivate/${departmentId}`);
+        console.log("DATA RESPONSE SA  REDUX DISPATCH deactivateDepartment", deactivateDepartmentRequestAndResponse);
 
         if (deactivateDepartmentRequestAndResponse.data.success == true) {
 
@@ -244,22 +244,22 @@ export const deactivateDepartment = departmentId => async dispatch => {
             });
         } else {
             // Handle the case where the update is successful
-                 // Handle the case where the response is empty
-                 toast.error('Department has unsuccessfully deactivated! 🥺⚠️👽', {
-                    position: 'top-right',
-                    autoClose: 10000,
-                    hideProgressBar: false,
-                    closeOnClick: false,
-                    pauseOnHover: false,
-                    draggable: false,
-                    progress: undefined,
-                    style: {
-                        background: 'black',
-                        color: 'red',
-                        fontSize: '17px'
-                    }
-                });
-            
+            // Handle the case where the response is empty
+            toast.error('Department has unsuccessfully deactivated! 🥺⚠️👽', {
+                position: 'top-right',
+                autoClose: 10000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+                style: {
+                    background: 'black',
+                    color: 'red',
+                    fontSize: '17px'
+                }
+            });
+
             // setTimeout(() => {
             //     window.location.reload();
             //     updateEmployeeNavigator("http://localhost:5173/employee/dashboard"); // Use navigate here
@@ -283,8 +283,8 @@ export const deactivateDepartment = departmentId => async dispatch => {
 export const deleteDepartment = departmentId => async dispatch => {
     try {
         dispatch({ type: DELETE_DEPARTMENT_REQUEST });
-    
-       const deleteDepartmentRequestAndResponse = await MarkBelloApi.delete(`/api/departments/deactivate/${departmentId}`);
+
+        const deleteDepartmentRequestAndResponse = await MarkBelloApi.delete(`/api/departments/deactivate/${departmentId}`);
 
         if (deleteDepartmentRequestAndResponse.success != true) {
             // Handle the case where the response is empty
@@ -318,7 +318,7 @@ export const deleteDepartment = departmentId => async dispatch => {
                     fontSize: '15px'
                 }
             });
-            
+
             // setTimeout(() => {
             //     window.location.reload();
             //     updateEmployeeNavigator("http://localhost:5173/employee/dashboard"); // Use navigate here
@@ -341,14 +341,14 @@ export const deleteDepartment = departmentId => async dispatch => {
 //MAGSEARCH O QUERY'G DATA SA DEPARTMENTS_TABLE
 export const searchDepartments = (query) => async dispatch => {
     dispatch({ type: SEARCH_DEPARTMENT_REQUEST });
-    try{
+    try {
         const searchDepartmentReqRes = await MarkBelloApi.post('/api/departments/search/', { data: query });
         console.log("DATA SA searchDepartments", searchDepartmentReqRes);
         dispatch({
             type: SEARCH_DEPARTMENT_SUCCESS,
             payload: searchDepartmentReqRes,
         });
-    }catch (error){
+    } catch (error) {
         dispatch({
             type: SEARCH_DEPARTMENT_FAILURE,
             payload: error
