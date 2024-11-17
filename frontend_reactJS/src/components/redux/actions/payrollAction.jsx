@@ -29,7 +29,7 @@ export const fetchPayrolls = () => async dispatch => {
         dispatch({ type: FETCH_PAYROLLS_REQUEST });
         // Perform async operation, e.g., fetch data from an API
         const payrolls = await MarkBelloApi.get('/api/payrolls/collections/all');
-    
+
         dispatch({
             type: FETCH_PAYROLLS_SUCCESS,
             payload: payrolls
@@ -47,17 +47,17 @@ export const fetchPayrolls = () => async dispatch => {
 
 //MAG ADD UG PAYROLL 
 export const addPayroll = AddPayrollData => async dispatch => {
-    try{
-        dispatch({type: ADD_PAYROLL_REQUEST});
+    try {
+        dispatch({ type: ADD_PAYROLL_REQUEST });
 
         const AddPayrollRequestResponse = await MarkBelloApi.post('/api/payrolls/add', AddPayrollData);
 
         dispatch({
-            type: ADD_PAYROLL_SUCCESS, 
+            type: ADD_PAYROLL_SUCCESS,
             payload: AddPayrollRequestResponse
         })
 
-    }catch (error){
+    } catch (error) {
         dispatch({
             type: ADD_PAYROLL_FAILURE,
             payload: error.message
@@ -67,7 +67,7 @@ export const addPayroll = AddPayrollData => async dispatch => {
 
 //MAG UPDATE UG RATES GAMIT ID
 export const updatePayroll = (payrollId, updatePayrollData) => async dispatch => {
-    try{
+    try {
         dispatch({ type: UPDATE_PAYROLL_REQUEST });
         //DATA VARIABLE NA NAGGUNIT UG RESPONSE UG REQUEST
         const updatePayrollRequestAndResponse = await MarkBelloApi.put(`/api/payrolls/update/${payrollId}`, updatePayrollData)
@@ -105,13 +105,13 @@ export const updatePayroll = (payrollId, updatePayrollData) => async dispatch =>
                 }
             });
 
-            dispatch({ 
+            dispatch({
                 type: UPDATE_PAYROLL_SUCCESS,
                 payload: updatePayrollRequestAndResponse
-            
+
             });
         }
-    }catch (error){
+    } catch (error) {
         if (error.response && error.response.status !== 200 || error.response && error.response.status !== 201) {
             // Handle the case where the server returns a 500 error
             toast.error('Something went wrong! 😛😛😛', {
@@ -131,7 +131,7 @@ export const updatePayroll = (payrollId, updatePayrollData) => async dispatch =>
 
             setTimeout(() => {
                 window.location.reload();
-              }, 3000)
+            }, 3000)
 
         } else {
             // Handle other types of errors
@@ -145,7 +145,7 @@ export const updatePayroll = (payrollId, updatePayrollData) => async dispatch =>
 
 //DEACTIVATE PAYROLL GAMIT ID
 export const deactivatePayroll = payrollId => async dispatch => {
-    try{
+    try {
         dispatch({
             type: DELETE_PAYROLL_REQUEST,
         });
@@ -190,8 +190,8 @@ export const deactivatePayroll = payrollId => async dispatch => {
                 payload: deactivatePayrollRequestAndResponse,
             });
         }
-            
-    }catch (error){
+
+    } catch (error) {
 
         dispatch({
             type: DELETE_PAYROLL_FAILURE,
