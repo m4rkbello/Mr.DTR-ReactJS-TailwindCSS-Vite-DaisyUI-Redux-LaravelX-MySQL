@@ -42,17 +42,17 @@ export const fetchRates = () => async dispatch => {
 
 //MAG ADD UG RATE
 export const addRate = AddRateData => async dispatch => {
-    try{
-        dispatch({type: ADD_RATE_REQUEST});
+    try {
+        dispatch({ type: ADD_RATE_REQUEST });
 
         const AddRateRequestResponse = await MarkBelloApi.post('/api/rates/add', AddRateData);
 
         dispatch({
-            type: ADD_RATE_SUCCESS, 
+            type: ADD_RATE_SUCCESS,
             payload: AddRateRequestResponse
         })
 
-    }catch (error){
+    } catch (error) {
         dispatch({
             type: ADD_RATE_FAILURE,
             payload: error.message
@@ -62,7 +62,7 @@ export const addRate = AddRateData => async dispatch => {
 
 //MAG UPDATE UG RATES GAMIT ID
 export const updateRate = (rateId, updateRateData) => async dispatch => {
-    try{
+    try {
         dispatch({ type: UPDATE_RATE_REQUEST });
         //DATA VARIABLE NA NAGGUNIT UG RESPONSE UG REQUEST
         const updateRateRequestAndResponse = await MarkBelloApi.put(`/api/rates/update/${rateId}`, updateRateData)
@@ -83,10 +83,10 @@ export const updateRate = (rateId, updateRateData) => async dispatch => {
                 }
             });
 
-            
+
             setTimeout(() => {
                 window.location.reload();
-              }, 3000);
+            }, 3000);
 
 
         } else {
@@ -105,17 +105,17 @@ export const updateRate = (rateId, updateRateData) => async dispatch => {
                 }
             });
 
-            dispatch({ 
+            dispatch({
                 type: UPDATE_RATE_SUCCESS,
                 payload: updateRateRequestAndResponse
-            
+
             });
 
             setTimeout(() => {
                 window.location.reload();
-              }, 3000);
+            }, 3000);
         }
-    }catch (error){
+    } catch (error) {
         if (error.response && error.response.status !== 200 || error.response && error.response.status !== 201) {
             // Handle the case where the server returns a 500 error
             toast.error('Something went wrong! 😛😛😛', {
@@ -196,7 +196,7 @@ export const deactivateRate = rateId => async dispatch => {
             });
 
         }
-            
+
     } catch (error) {
         dispatch({
             type: DELETE_RATE_FAILURE,
