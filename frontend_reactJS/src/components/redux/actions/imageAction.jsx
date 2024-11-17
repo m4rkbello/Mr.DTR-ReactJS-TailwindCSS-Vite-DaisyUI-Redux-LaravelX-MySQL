@@ -21,7 +21,7 @@ export const fetchImages = () => async (dispatch, getState) => {
   const { imageState } = getState(); // Access current state
 
   // Check if data was fetched within the last 60 seconds (1 minute)
-  const oneMinute = 60000; 
+  const oneMinute = 60000;
   const currentTime = Date.now();
   const lastFetched = imageState?.lastFetched;
 
@@ -30,8 +30,8 @@ export const fetchImages = () => async (dispatch, getState) => {
 
   // If the data was fetched within the last 1 minute, don't re-fetch
   if (lastFetched && currentTime - lastFetched < oneMinute) {
-      console.log("Data fetched recently. Not refetching.");
-      return;
+    console.log("Data fetched recently. Not refetching.");
+    return;
   }
 
   try {
