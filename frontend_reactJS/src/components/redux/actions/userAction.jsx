@@ -75,7 +75,7 @@ export const updateUser = (userId, updatedUserData) => async dispatch => {
         const updateUserDataReqAndRes = await MarkBelloApi.put(`/api/user/${userId}`, updatedUserData);
         console.log("DATA SA response SA LINE 76", updateUserDataReqAndRes);
 
-        if(updateUserDataReqAndRes.data.status === 200 && updateUserDataReqAndRes.data.success === true){
+        if (updateUserDataReqAndRes.data.status === 200 && updateUserDataReqAndRes.data.success === true) {
             toast.success('User has been updated successfully!🤭😇🤗', {
                 position: 'top-right',
                 autoClose: 5000,
@@ -90,7 +90,7 @@ export const updateUser = (userId, updatedUserData) => async dispatch => {
                     fontSize: '15px'
                 }
             });
-        }else{
+        } else {
             toast.success('User was not updated!🤭😇🤗', {
                 position: 'top-right',
                 autoClose: 5000,
@@ -144,9 +144,9 @@ export const registerUser = userData => async dispatch => {
         const registeredUser = await MarkBelloApi.post('/api/register', userData);
         console.log("DATA SA userData", userData);
 
-        
+
         document.getElementById('loading-infinity').classList.add('loading', 'loading-infinity', 'loading-lg');
-        
+
         toast.success('Registered successfully!🤭😇🤗', {
             position: 'top-right',
             autoClose: 5000,
@@ -161,19 +161,19 @@ export const registerUser = userData => async dispatch => {
                 fontSize: '15px'
             }
         });
-        
+
         dispatch({
             type: REGISTER_USER_SUCCESS,
             payload: registeredUser
         });
-        
+
     } catch (error) {
         const errorMessage = error.response?.data?.message || error.message; // Extract message from backend response
         dispatch({
             type: REGISTER_USER_FAILURE,
             payload: errorMessage
         });
-        
+
         toast.error(errorMessage, {
             position: 'top-right',
             autoClose: 5000,
@@ -217,7 +217,7 @@ export const loginUser = userData => async dispatch => {
 
         console.log("DATA RESPONSE SA LOGIN NAAY TOKEN", loggedInUser);
         console.log("DATA RESPONSE SA LOGIN", loggedInUserId)
-        
+
         dispatch({
             type: LOGIN_USER_SUCCESS,
             payload: loggedInUser
@@ -275,7 +275,7 @@ export const uploadAndUpdateImageUser = (formData, userId) => async (dispatch) =
 
         if (uploadAndUpdateImageReqRes.data.success === true) {
             //set ug timer para mo reload .5seconds
-    
+
             toast.success('Image upload successfully!🤭😇🤗', {
                 position: 'top-right',
                 autoClose: 10000,
@@ -312,7 +312,7 @@ export const uploadAndUpdateImageUser = (formData, userId) => async (dispatch) =
                 }
 
             });
-           
+
             // setTimeout(() => {
             //     window.location.reload();
             //     navigate("http://localhost:5173/admin/user/profile-details");
@@ -361,7 +361,7 @@ export const userChangePassword = (userId, changePasswordUserData) => async disp
                 }
             });
 
-        } 
+        }
 
         dispatch({
             type: CHANGE_PASSWORD_USER_SUCCESS,
