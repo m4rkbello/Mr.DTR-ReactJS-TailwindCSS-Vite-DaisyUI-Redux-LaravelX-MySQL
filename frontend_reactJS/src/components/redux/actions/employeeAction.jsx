@@ -65,7 +65,7 @@ export const addEmployee = AddEmployeeData => async dispatch => {
         });
 
     } catch (error) {
-        
+
         dispatch({
             type: ADD_EMPLOYEE_FAILURE,
             payload: error.message
@@ -152,9 +152,9 @@ export const updateEmployee = (employeeId, updateEmployeeData) => async (dispatc
 export const deactivateEmployee = employeeId => async dispatch => {
     try {
         dispatch({ type: DELETE_EMPLOYEE_REQUEST });
-    
-       const deactivateEmployeeReqAndRes = await MarkBelloApi.put(`/api/employee/deactivated/${employeeId}`);
-       console.log("DATA", deactivateEmployeeReqAndRes);
+
+        const deactivateEmployeeReqAndRes = await MarkBelloApi.put(`/api/employee/deactivated/${employeeId}`);
+        console.log("DATA", deactivateEmployeeReqAndRes);
 
         if (deactivateEmployeeReqAndRes.success != true) {
             // Handle the case where the response is empty
@@ -188,7 +188,7 @@ export const deactivateEmployee = employeeId => async dispatch => {
                     fontSize: '15px'
                 }
             });
-            
+
             // setTimeout(() => {
             //     window.location.reload();
             //     updateEmployeeNavigator("http://localhost:5173/employee/dashboard"); // Use navigate here
@@ -212,10 +212,10 @@ export const deactivateEmployee = employeeId => async dispatch => {
 export const uploadAndUpdateImageEmployee = (formData, employeeId) => async (dispatch) => {
     try {
         dispatch({ type: UPLOAD_AND_UPDATE_EMPLOYEE_REQUEST });
-        
+
         const uploadAndUpdateImageEmpReqRes = await MarkBelloApi.post(`/api/employee/image/${employeeId}`, formData, {
             headers: {
-                'Content-Type':'multipart/form-data',
+                'Content-Type': 'multipart/form-data',
             },
         });
 
@@ -223,7 +223,7 @@ export const uploadAndUpdateImageEmployee = (formData, employeeId) => async (dis
 
         if (uploadAndUpdateImageEmpReqRes.data.success === false) {
             // Display error toast if the upload was unsuccessful
-            toast.error(uploadAndUpdateImageEmpReqRes.data.message,'!🥺😱😣', {
+            toast.error(uploadAndUpdateImageEmpReqRes.data.message, '!🥺😱😣', {
                 position: 'top-right',
                 autoClose: 10000,
                 hideProgressBar: false,
@@ -263,7 +263,7 @@ export const uploadAndUpdateImageEmployee = (formData, employeeId) => async (dis
             // Reload or navigate after a successful upload, not needed if error occurs
 
         }
-    } catch(error) {
+    } catch (error) {
         dispatch({
             type: UPLOAD_AND_UPDATE_EMPLOYEE_FAILURE,
             payload: error.message,
@@ -280,7 +280,7 @@ export const registerEmployee = employeeData => async dispatch => {
         console.log("DATA SA userData", employeeData);
 
         document.getElementById('loading-infinity').classList.add('loading', 'loading-infinity', 'loading-lg');
-        
+
         toast.success('Registered successfully!🤭😇🤗', {
             position: 'top-right',
             autoClose: 5000,
@@ -295,19 +295,19 @@ export const registerEmployee = employeeData => async dispatch => {
                 fontSize: '15px'
             }
         });
-        
+
         dispatch({
             type: REGISTER_EMPLOYEE_SUCCESS,
             payload: registeredUser
         });
-        
+
     } catch (error) {
         const errorMessage = error.response?.data?.message || error.message; // Extract message from backend response
         dispatch({
             type: REGISTER_EMPLOYEE_FAILURE,
             payload: errorMessage
         });
-        
+
         toast.error(errorMessage, {
             position: 'top-right',
             autoClose: 5000,
@@ -352,7 +352,7 @@ export const loginEmployee = employeeData => async dispatch => {
 
         console.log("DATA RESPONSE SA LOGIN NAAY TOKEN", loggedInEmployee);
         console.log("DATA RESPONSE SA LOGIN", loggedInEmployeeId)
-        
+
         dispatch({
             type: LOGIN_EMPLOYEE_SUCCESS,
             payload: loggedInEmployee
