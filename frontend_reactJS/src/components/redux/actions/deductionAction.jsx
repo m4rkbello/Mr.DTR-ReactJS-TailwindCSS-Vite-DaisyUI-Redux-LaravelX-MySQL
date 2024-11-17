@@ -44,17 +44,17 @@ export const fetchDeductions = () => async dispatch => {
 
 //MAG ADD UG DEDUCTION
 export const addDeduction = AddDeductionData => async dispatch => {
-    try{
-        dispatch({type: ADD_DEDUCTION_REQUEST});
+    try {
+        dispatch({ type: ADD_DEDUCTION_REQUEST });
 
         const AddDeductionRequestResponseData = await MarkBelloApi.post('/api/deductions/add', AddDeductionData);
 
         dispatch({
-            type: ADD_DEDUCTION_SUCCESS, 
+            type: ADD_DEDUCTION_SUCCESS,
             payload: AddDeductionRequestResponseData
         })
 
-    }catch (error){
+    } catch (error) {
 
         dispatch({
             type: ADD_DEDUCTION_FAILURE,
@@ -66,7 +66,7 @@ export const addDeduction = AddDeductionData => async dispatch => {
 
 //MAG UPDATE UG DEDUCTION GAMIT ID
 export const updateDeduction = (deductionId, updateDeductionData) => async dispatch => {
-    try{
+    try {
         dispatch({ type: UPDATE_DEDUCTION_REQUEST });
         //DATA VARIABLE NA NAGGUNIT UG RESPONSE UG REQUEST
         const updateDeductionRequestAndResponseData = await MarkBelloApi.put(`/api/deductions/update/item/${deductionId}`, updateDeductionData)
@@ -104,13 +104,13 @@ export const updateDeduction = (deductionId, updateDeductionData) => async dispa
                 }
             });
 
-            dispatch({ 
+            dispatch({
                 type: UPDATE_DEDUCTION_SUCCESS,
                 payload: updateRateRequestAndResponse
-            
+
             });
         }
-    }catch (error){
+    } catch (error) {
         if (error.response && error.response.status !== 200 || error.response && error.response.status !== 201) {
             // Handle the case where the server returns a 500 error
             toast.error('Something went wrong on updating deduction! 😛😛😛', {
@@ -130,7 +130,7 @@ export const updateDeduction = (deductionId, updateDeductionData) => async dispa
 
             setTimeout(() => {
                 window.location.reload();
-              }, 3000)
+            }, 3000)
 
         } else {
             // Handle other types of errors
@@ -144,7 +144,7 @@ export const updateDeduction = (deductionId, updateDeductionData) => async dispa
 
 //MAGE DEACTIVATE GAMIT ID SA DEDUCTION
 export const deactivateDeduction = deductionId => async dispatch => {
-    try{
+    try {
         dispatch({
             type: DELETE_DEDUCTION_REQUEST,
         });
@@ -190,8 +190,8 @@ export const deactivateDeduction = deductionId => async dispatch => {
                 payload: deactivateDeductionRequestAndResponseData,
             });
         }
-            
-    }catch (error){
+
+    } catch (error) {
 
         dispatch({
             type: DELETE_DEDUCTION_FAILURE,
