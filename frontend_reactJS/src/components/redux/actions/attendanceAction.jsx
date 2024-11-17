@@ -28,13 +28,13 @@ export const fetchAttendances = () => async (dispatch, getState) => {
     const { attendancesData } = getState(); // Access current state
 
     // Check if data was fetched within the last 60 seconds (1 minute)
-    const oneMinute = 60000; 
+    const oneMinute = 60000;
     const currentTime = Date.now();
     const lastFetched = attendancesData?.lastFetched;
 
     // If the data was fetched within the last 1 minute, don't re-fetch
     if (lastFetched && currentTime - lastFetched < oneMinute) {
-      return;
+        return;
     }
 
     try {
@@ -44,7 +44,7 @@ export const fetchAttendances = () => async (dispatch, getState) => {
         const attendances = await MarkBelloApi.get('/api/attendances/collections/all');
 
         console.log("PARA SA attendances", attendances);
-        
+
         dispatch({
             type: FETCH_ATTENDANCES_SUCCESS,
             payload: attendances
