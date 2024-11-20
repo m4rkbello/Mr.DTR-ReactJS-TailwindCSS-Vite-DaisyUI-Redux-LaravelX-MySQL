@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 
-
 class AuthController extends Controller
 {
     /**
@@ -150,7 +149,6 @@ class AuthController extends Controller
         }
     }
     
-
     /**
      * Display the specified resource.
      */
@@ -246,7 +244,6 @@ class AuthController extends Controller
     {
         //
     }
-
 
     public function changePassword(Request $request, string $id)
     {
