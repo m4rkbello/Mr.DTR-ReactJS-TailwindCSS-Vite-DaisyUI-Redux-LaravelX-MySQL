@@ -84,7 +84,7 @@ const handleLoginRequestAndResponse = async (event) => {
         <div className="card shrink-0 w-full shadow-md bg-gradient-to-r from-emerald-500 via-sky-500 to-violet-700 border-t-8 border-b-8 border-white">
           <form className="card-body" onSubmit={handleLoginRequestAndResponse}>
             <div className="text-center">
-              <h1 className="text-4xl sm:text-5xl font-bold text-white pt-8 sm:pt-10 pb-2">CLIENT</h1>
+              <h1 className="text-4xl sm:text-5xl font-bold text-white pt-8 sm:pt-10 pb-2">DTRMS+</h1>
             </div>
             <div className="form-control">
               <label className="label">
