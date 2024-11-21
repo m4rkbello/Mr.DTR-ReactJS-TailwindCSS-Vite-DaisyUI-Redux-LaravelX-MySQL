@@ -152,16 +152,16 @@ const EmployeeRegister = ({ registerEmployee }) => {
   return (
     <div className="flex items-center justify-center min-h-screen glass">
       <ToastContainer />
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 glass">
-        <form className="p-6 space-y-6 bg-transparent rounded-lg shadow-lg" onSubmit={handleRegisterUserRequestAndResponse}>
-          <h2 className="text-2xl font-semibold text-center text-gray-700">Register Employee</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 bg-zinc-100 rounded-s-2xl">
+        <form className="p-6 space-y-6 bg-gradient-to-r from-emerald-500 via-sky-500 to-violet-700 border-t-8 border-b-8 border-white rounded-lg shadow-lg" onSubmit={handleRegisterUserRequestAndResponse}>
+          <h2 className="text-3xl font-semibold text-center text-white">Register</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-1 gap-2">
 
             {/* First Name Field */}
             <div className="form-control">
               <label className="label">
-                <span className="label-text">First Name</span>
+                <span className="label-text text-white text-lg sm:text-xl">First Name</span>
               </label>
               <input
                 type="text"
@@ -176,7 +176,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
             {/* Middle Name Field */}
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Middle Name</span>
+                <span className="label-text text-white text-lg sm:text-xl">Middle Name</span>
               </label>
               <input
                 type="text"
@@ -190,7 +190,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
             {/* Last Name Field */}
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Last Name</span>
+                <span className="label-text text-white text-lg sm:text-xl">Last Name</span>
               </label>
               <input
                 type="text"
@@ -205,7 +205,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
             {/* Extension Name Field */}
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Extension Name</span>
+                <span className="label-text text-white text-lg sm:text-xl">Extension Name</span>
               </label>
               <input
                 type="text"
@@ -219,7 +219,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
             {/* Username Field */}
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Username</span>
+                <span className="label-text text-white text-lg sm:text-xl">Username</span>
               </label>
               <input
                 type="text"
@@ -234,7 +234,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
             {/* Birthdate Field */}
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Birthdate</span>
+                <span className="label-text text-white text-lg sm:text-xl">Birthdate</span>
               </label>
               <input
                 type="date"
@@ -249,7 +249,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
             {/* Civil Status Dropdown */}
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Civil Status</span>
+                <span className="label-text text-white text-lg sm:text-xl">Civil Status</span>
               </label>
               <select
                 name="employee_civil_status_id"
@@ -269,7 +269,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
             {/* Email Field */}
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Email</span>
+                <span className="label-text text-white text-lg sm:text-xl">Email</span>
               </label>
               <input
                 type="email"
@@ -284,7 +284,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
             {/* Contact Number Field */}
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Contact Number</span>
+                <span className="label-text text-white text-lg sm:text-xl">Contact Number</span>
               </label>
               <input
                 type="text"
@@ -299,7 +299,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
             {/* Password Field */}
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Password</span>
+                <span className="label-text text-white text-lg sm:text-xl">Password</span>
               </label>
               <input
                 type="password"
@@ -314,7 +314,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
             {/* Confirm Password Field */}
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Confirm Password</span>
+                <span className="label-text text-white text-lg sm:text-xl">Confirm Password</span>
               </label>
               <input
                 type="password"
@@ -329,7 +329,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
             {/* Region Dropdown */}
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Region</span>
+                <span className="label-text text-white text-lg sm:text-xl">Region</span>
               </label>
               <select
                 value={selectedRegion}
@@ -348,7 +348,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
             {/* Province Dropdown */}
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Province</span>
+                <span className="label-text text-white text-lg sm:text-xl">Province</span>
               </label>
               <select
                 value={selectedProvince}
@@ -367,7 +367,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
             {/* Municipality Dropdown */}
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Municipality</span>
+                <span className="label-text text-white text-lg sm:text-xl">Municipality</span>
               </label>
               <select
                 value={selectedMunicipality}
@@ -386,7 +386,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
             {/* Barangay Dropdown */}
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Barangay</span>
+                <span className="label-text text-white text-lg sm:text-xl">Barangay</span>
               </label>
               <select
                 value={selectedBarangay}
@@ -405,7 +405,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
             {/* Other fields (SSS No, Pagibig No, PhilHealth No, TIN No) */}
             <div className="form-control">
               <label className="label">
-                <span className="label-text">SSS No.</span>
+                <span className="label-text text-white text-lg sm:text-xl">SSS No.</span>
               </label>
               <input
                 type="text"
@@ -418,7 +418,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
 
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Pagibig No.</span>
+                <span className="label-text text-white text-lg sm:text-xl">Pagibig No.</span>
               </label>
               <input
                 type="text"
@@ -431,7 +431,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
 
             <div className="form-control">
               <label className="label">
-                <span className="label-text">PhilHealth No.</span>
+                <span className="label-text text-white text-lg sm:text-xl">PhilHealth No.</span>
               </label>
               <input
                 type="text"
@@ -444,7 +444,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
 
             <div className="form-control">
               <label className="label">
-                <span className="label-text">TIN No.</span>
+                <span className="label-text text-white text-lg sm:text-xl">TIN No.</span>
               </label>
               <input
                 type="text"
@@ -475,19 +475,6 @@ const EmployeeRegister = ({ registerEmployee }) => {
           </div>
         </form>
 
-        <div className="carousel carousel-vertical rounded-box h-96">
-        <div className="bg-base-200 collapse">
-        <input type="checkbox" className="peer" />
-        <div
-          className="collapse-title bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
-          Click me to show/hide content
-        </div>
-        <div
-          className="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
-          <p>hello</p>
-        </div>
-      </div>
-        </div>
       </div>
     </div>
   );
