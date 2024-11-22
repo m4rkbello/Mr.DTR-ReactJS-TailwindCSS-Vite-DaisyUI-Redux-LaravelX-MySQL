@@ -154,7 +154,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
       <ToastContainer />
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 bg-zinc-100 rounded-s-2xl">
         <form className="p-6 space-y-6 bg-gradient-to-r from-emerald-500 via-sky-500 to-violet-700 border-t-8 border-b-8 border-white rounded-lg shadow-lg" onSubmit={handleRegisterUserRequestAndResponse}>
-          <h2 className="text-3xl font-semibold text-center text-white">Register</h2>
+          <h2 className="text-3xl font-semibold text-center text-white">Register Diha!</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-1 gap-2">
 
