@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
+use Endroid\QrCode\QrCode;
+use Endroid\QrCode\Writer\PngWriter;
 
 class AuthController extends Controller
 {
@@ -296,7 +298,7 @@ class AuthController extends Controller
                 'employee_sss_no' => 'nullable|string|max:255',
                 'employee_pagibig_no' => 'nullable|string|max:255',
                 'employee_philhealth_no' => 'nullable|string|max:255',
-                'employee_tin_no' => 'nullable|string|max:255'
+                'employee_tin_no' => 'nullable|string|max:255',
             ]);
     
             // Create a new employee
@@ -308,7 +310,7 @@ class AuthController extends Controller
                 'employee_username' => $data['employee_username'] ?? null,
                 'employee_email' => $data['employee_email'],
                 'employee_password' => bcrypt($data['employee_password']),
-                'employee_contact_no' => $data['employee_contact_no'] ?? null,
+                'employee_contact_no' => $data['employee_contact_no'],
                 'employee_barangay' => $data['employee_barangay'] ?? null,
                 'employee_municipality' => $data['employee_municipality'] ?? null,
                 'employee_province' => $data['employee_province'] ?? null,
@@ -320,31 +322,37 @@ class AuthController extends Controller
                 'employee_department_id' => $data['employee_department_id'] ?? null,
                 'employee_status_id' => $data['employee_status_id'] ?? 1,
                 'employee_image' => $data['employee_image'] ?? null,
-                'employee_qrcode' => $data['employee_qrcode'] ?? null,
                 'employee_sss_no' => $data['employee_sss_no'] ?? null,
                 'employee_pagibig_no' => $data['employee_pagibig_no'] ?? null,
                 'employee_philhealth_no' => $data['employee_philhealth_no'] ?? null,
-                'employee_tin_no' => $data['employee_tin_no'] ?? null
+                'employee_tin_no' => $data['employee_tin_no'] ?? null,
             ]);
     
-            // Generate an authentication token
-            $token = $employee->createToken('m4rkbello_to_be_fullstack')->plainTextToken;
+            // Generate QR code content (using employee email)
+            $qrCode = new QrCode($employee->employee_email);
+            $qrCode->setSize(400);
     
-            // Prepare success response
-            $response = [
-                'success' => true,
-                'employee' => $employee,
-                'token' => $token
-            ];
+            $writer = new PngWriter();
+            $qrCodeImage = $writer->write($qrCode);
     
-            Log::info("Employee Registration Successful", $response);
-            return response()->json($response, 201);
-
-            return response()->json([
-                'success' => false,
-                'message' => 'Employee registration success ' . $error->getMessage(),
-                'status' => 500
-            ], 500);
+            // Save QR code to disk
+            $qrCodePath = $this->saveQRCode($qrCodeImage, $employee->id);
+    
+            if ($qrCodePath === false) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Failed to save QR code',
+                ], 500);
+            }
+    
+            // Save QR code path to the employee record
+            $employee->employee_qrcode = asset('qrcodes/' . $employee->id . '.png');
+            $employee->save();
+    
+            // Serve QR code for download
+            return response()->download($qrCodePath, "employee_qrcode_{$employee->id}.png", [
+                'Content-Type' => 'image/png',
+            ]);
     
         } catch (\Illuminate\Validation\ValidationException $validationError) {
             // Handle validation errors
@@ -352,21 +360,52 @@ class AuthController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Validation failed! ' . $validationError->getMessage(),
-                'status' => 422
+                'status' => 422,
             ], 422);
-    
         } catch (\Exception $error) {
             // Log the error message for debugging
             Log::error('Registration error: ' . $error->getMessage());
-    
             return response()->json([
                 'success' => false,
                 'message' => 'Employee registration failed! ' . $error->getMessage(),
-                'status' => 500
+                'status' => 500,
             ], 500);
         }
     }
     
+    
+
+    private function saveQRCode($qrCodeImage, $userId)
+    {
+        $directory = public_path('qrcodes');
+        
+        if (!is_dir($directory)) {
+            if (!mkdir($directory, 0755, true)) {
+                Log::error("Failed to create directory: $directory");
+                return false;
+            }
+        }
+
+        $path = $directory . DIRECTORY_SEPARATOR . $userId . '.png';
+
+        // Ensure the directory is writable
+        if (!is_writable($directory)) {
+            Log::error("Directory $directory is not writable");
+            return false;
+        }
+
+        // Save QR code to file
+        try {
+            $qrCodeImage->saveToFile($path);
+        } catch (\Exception $e) {
+            Log::error("Failed to save QR code to: $path");
+            return false;
+        }
+
+        Log::info("QR code saved successfully to: $path");
+        return $path;
+    }
+
     public function loginEmployee(Request $request)
     {
         try {
