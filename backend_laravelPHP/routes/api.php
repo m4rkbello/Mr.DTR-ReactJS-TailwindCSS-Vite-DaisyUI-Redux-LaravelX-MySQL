@@ -32,12 +32,9 @@ Route::post('/login',[AuthController::class, 'login']);
 //EMPLOYEES
 Route::post('/authentication/employee/register',[AuthController::class, 'registerEmployee']);
 Route::post('/authentication/employee/login',[AuthController::class, 'loginEmployee']);
-
-
 Route::prefix('attendances')->group(function () {
-    Route::post('/qrcode/data',[AttendanceController::class, 'store']);
+Route::post('/qrcode/data',[AttendanceController::class, 'store']);
 });
-
 //WRAPPED BY LARAVEL-SANCTUM FOR SECURITY AUTHENTICATION PURPOSES
 Route::middleware('auth:sanctum')->group(function() {
     //ATTENDANCES-ENDPOINTS
@@ -102,8 +99,8 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::get('/employees', [EmployeeController::class, 'index']);
     Route::post('/employee-registration', [EmployeeController::class, 'store']);
     // UPLOAD PICTURE
-        Route::get('/images', [ImagesController::class, 'index']);
-        Route::post('/image', [ImagesController::class, 'store']);
+    Route::get('/images', [ImagesController::class, 'index']);
+    Route::post('/image', [ImagesController::class, 'store']);
 });
 
 
