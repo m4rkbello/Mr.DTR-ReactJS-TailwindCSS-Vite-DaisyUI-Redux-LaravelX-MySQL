@@ -301,6 +301,9 @@ class AuthController extends Controller
                 'employee_tin_no' => 'nullable|string|max:255',
             ]);
     
+            // Concatenate last name and first name
+            $fullname = $data['employee_lastname'] . ', ' . $data['employee_firstname'];
+    
             // Create a new employee
             $employee = Employee::create([
                 'employee_firstname' => $data['employee_firstname'],
@@ -326,44 +329,49 @@ class AuthController extends Controller
                 'employee_pagibig_no' => $data['employee_pagibig_no'] ?? null,
                 'employee_philhealth_no' => $data['employee_philhealth_no'] ?? null,
                 'employee_tin_no' => $data['employee_tin_no'] ?? null,
+           
             ]);
     
-            // Generate QR code content (using employee email)
-            $qrCode = new QrCode($employee->employee_email);
+            // Concatenate last name and first name
+            $fullname = $data['employee_lastname'] . ', ' . $data['employee_firstname'];
+
+            // Sanitize the fullname for use as a file name
+            $sanitizedFullname = preg_replace('/[^A-Za-z0-9_\-]/', '_', $fullname);
+
+            // Define file path for the QR code
+            $qrCodeDirectory = public_path('qrcodes');
+            if (!file_exists($qrCodeDirectory)) {
+                mkdir($qrCodeDirectory, 0777, true);
+            }
+            $qrCodePath = $qrCodeDirectory . '/' . $sanitizedFullname . '.png';
+
+            // Generate QR code content
+            $qrCode = new QrCode($fullname); // Use full name for QR code content
             $qrCode->setSize(400);
-    
+
             $writer = new PngWriter();
             $qrCodeImage = $writer->write($qrCode);
-    
-            // Save QR code to disk
-            $qrCodePath = $this->saveQRCode($qrCodeImage, $employee->id);
-    
-            if ($qrCodePath === false) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Failed to save QR code',
-                ], 500);
-            }
-    
-            // Save QR code path to the employee record
-            $employee->employee_qrcode = asset('qrcodes/' . $employee->id . '.png');
+
+            // Save QR code image to the disk
+            file_put_contents($qrCodePath, $qrCodeImage->getString());
+
+            // Save the QR code path to the database
+            $employee->employee_qrcode = asset('qrcodes/' . $sanitizedFullname . '.png');
             $employee->save();
+
     
-            // Serve QR code for download
-            return response()->download($qrCodePath, "employee_qrcode_{$employee->id}.png", [
+            // Serve the QR code as a downloadable file
+            return response()->download($qrCodePath, "employee_qrcode_{$fullname}.png", [
                 'Content-Type' => 'image/png',
             ]);
     
         } catch (\Illuminate\Validation\ValidationException $validationError) {
-            // Handle validation errors
-            Log::error('Validation error: ' . $validationError->getMessage());
             return response()->json([
                 'success' => false,
                 'message' => 'Validation failed! ' . $validationError->getMessage(),
                 'status' => 422,
             ], 422);
         } catch (\Exception $error) {
-            // Log the error message for debugging
             Log::error('Registration error: ' . $error->getMessage());
             return response()->json([
                 'success' => false,
@@ -374,37 +382,36 @@ class AuthController extends Controller
     }
     
     
-
-    private function saveQRCode($qrCodeImage, $userId)
-    {
-        $directory = public_path('qrcodes');
+    // private function saveQRCode($qrCodeImage, $userId)
+    // {
+    //     $directory = public_path('qrcodes');
         
-        if (!is_dir($directory)) {
-            if (!mkdir($directory, 0755, true)) {
-                Log::error("Failed to create directory: $directory");
-                return false;
-            }
-        }
+    //     if (!is_dir($directory)) {
+    //         if (!mkdir($directory, 0755, true)) {
+    //             Log::error("Failed to create directory: $directory");
+    //             return false;
+    //         }
+    //     }
 
-        $path = $directory . DIRECTORY_SEPARATOR . $userId . '.png';
+    //     $path = $directory . DIRECTORY_SEPARATOR . $userId . '.png';
 
-        // Ensure the directory is writable
-        if (!is_writable($directory)) {
-            Log::error("Directory $directory is not writable");
-            return false;
-        }
+    //     // Ensure the directory is writable
+    //     if (!is_writable($directory)) {
+    //         Log::error("Directory $directory is not writable");
+    //         return false;
+    //     }
 
-        // Save QR code to file
-        try {
-            $qrCodeImage->saveToFile($path);
-        } catch (\Exception $e) {
-            Log::error("Failed to save QR code to: $path");
-            return false;
-        }
+    //     // Save QR code to file
+    //     try {
+    //         $qrCodeImage->saveToFile($path);
+    //     } catch (\Exception $e) {
+    //         Log::error("Failed to save QR code to: $path");
+    //         return false;
+    //     }
 
-        Log::info("QR code saved successfully to: $path");
-        return $path;
-    }
+    //     Log::info("QR code saved successfully to: $path");
+    //     return $path;
+    // }
 
     public function loginEmployee(Request $request)
     {
