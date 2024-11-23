@@ -12,6 +12,7 @@ import {
   getAllProvinces,
   getMunicipalitiesByProvince,
   getBarangaysByMunicipality,
+ 
 } from "@aivangogh/ph-address";
 
 const EmployeeRegister = ({ registerEmployee }) => {
@@ -38,6 +39,9 @@ const EmployeeRegister = ({ registerEmployee }) => {
     employee_philhealth_no: '',
     employee_tin_no: '',
   });
+
+
+
 
   const [selectedRegion, setSelectedRegion] = useState('');
   const [selectedProvince, setSelectedProvince] = useState('');
@@ -153,7 +157,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
     <div className="flex items-center justify-center min-h-screen glass">
       <ToastContainer />
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 bg-zinc-100 rounded-s-2xl">
-        <form className="p-6 space-y-6 bg-gradient-to-r from-emerald-500 via-sky-500 to-violet-700 border-t-8 border-b-8 border-white rounded-lg shadow-lg" onSubmit={handleRegisterUserRequestAndResponse}>
+        <form className="p-6 space-y-6 bg-gradient-to-r from-emerald-500 via-sky-500 to-violet-700 border-t-8 border-b-8 border-black rounded-lg shadow-lg" onSubmit={handleRegisterUserRequestAndResponse}>
           <h2 className="text-3xl font-semibold text-center text-white">Register Diha!</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-1 gap-2">
@@ -166,7 +170,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <input
                 type="text"
                 name="employee_firstname"
-                className="input input-bordered w-full glass"
+                className="input input-bordered w-full glass text-white"
                 value={employee.employee_firstname}
                 onChange={handleChange}
                 required
