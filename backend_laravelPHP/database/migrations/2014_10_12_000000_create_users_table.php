@@ -21,9 +21,17 @@ return new class extends Migration
             $table->string('user_password');
             $table->integer('user_type_id')->nullable();
             $table->string('user_image')->nullable();
+            $table->unsignedBigInteger('access_type_id')->nullable(); 
             $table->rememberToken();
             $table->timestamps();
+
+            //FOREIGN KEY ANG USER NAAY ISA KA ACCESS_TYPE
+            $table->foreign('access_type_id')
+            ->references('id')
+            ->on('access_types');
         });
+
+
     }
 
     /**

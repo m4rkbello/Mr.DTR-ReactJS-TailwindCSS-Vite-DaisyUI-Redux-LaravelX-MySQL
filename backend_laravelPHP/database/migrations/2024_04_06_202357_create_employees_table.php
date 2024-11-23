@@ -8,6 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
+        // Create the 'employees' table
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->string('employee_firstname')->nullable();
@@ -34,23 +35,43 @@ return new class extends Migration
             $table->string('employee_tin_no', 255)->nullable();
             $table->unsignedBigInteger('employee_department_id')->nullable();
             $table->unsignedBigInteger('employee_civil_status_id')->nullable();
+            $table->unsignedBigInteger('access_type_id')->nullable(); 
             $table->rememberToken();
             $table->timestamps();
+
+            // Foreign key definition for 'access_type_id'
+            $table->foreign('access_type_id')
+                ->references('id')
+                ->on('access_types')
+                ->onDelete('set null');
         });
 
         // Add foreign key constraints after table creation
         Schema::table('employees', function (Blueprint $table) {
             if (Schema::hasTable('departments')) {
-                $table->foreign('employee_department_id')->references('id')->on('departments')->onDelete('set null');
+                $table->foreign('employee_department_id')
+                    ->references('id')
+                    ->on('departments')
+                    ->onDelete('set null');
             }
+
             if (Schema::hasTable('civilstatuses')) {
-                $table->foreign('employee_civil_status_id')->references('id')->on('civilstatuses')->onDelete('set null');
+                $table->foreign('employee_civil_status_id')
+                    ->references('id')
+                    ->on('civilstatuses')
+                    ->onDelete('set null');
             }
         });
     }
 
     public function down(): void
     {
+        // Drop the foreign key constraints and the 'employees' table
+        Schema::table('employees', function (Blueprint $table) {
+            $table->dropForeign(['employee_department_id']);
+            $table->dropForeign(['employee_civil_status_id']);
+        });
+
         Schema::dropIfExists('employees');
     }
 };

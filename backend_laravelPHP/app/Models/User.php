@@ -27,7 +27,8 @@ class User extends Authenticatable
         'user_contact_no',
         'user_password',
         'user_type_id',
-        'user_image'
+        'user_image',
+        'access_type_id'
     ];
 
     /**
@@ -56,6 +57,11 @@ class User extends Authenticatable
 
     public function opensourceintelligence(){
         return $this->hasMany(Opensourceintelligence::class, 'osint_user_id');
+    }
+
+    public function accessType()
+    {
+        return $this->belongsTo(AccessType::class, 'access_type_id');
     }
 
 

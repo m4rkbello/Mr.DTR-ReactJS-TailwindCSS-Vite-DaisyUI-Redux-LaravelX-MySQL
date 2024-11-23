@@ -37,6 +37,7 @@ class Employee extends Model
         'employee_status_id',
         'employee_civil_status_id',
         'employee_department_id',
+        'access_type_id'
     ];
 
     public function attendances(){
@@ -57,4 +58,8 @@ class Employee extends Model
         return $this->belongsTo(Civilstatus::class, 'employee_civil_status_id'); // Correct this line
     }
 
+    public function accessType()
+    {
+        return $this->belongsTo(AccessType::class, 'access_type_id');
+    }
 }

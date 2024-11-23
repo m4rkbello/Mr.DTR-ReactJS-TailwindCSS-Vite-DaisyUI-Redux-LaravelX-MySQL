@@ -185,7 +185,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <input
                 type="text"
                 name="employee_middlename"
-                className="input input-bordered w-full glass"
+                className="input input-bordered w-full glass text-white"
                 value={employee.employee_middlename}
                 onChange={handleChange}
               />
@@ -199,7 +199,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <input
                 type="text"
                 name="employee_lastname"
-                className="input input-bordered w-full glass"
+                className="input input-bordered w-full glass text-white"
                 value={employee.employee_lastname}
                 onChange={handleChange}
                 required
@@ -214,7 +214,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <input
                 type="text"
                 name="employee_extensionname"
-                className="input input-bordered w-full glass"
+                className="input input-bordered w-full glass text-white"
                 value={employee.employee_extensionname}
                 onChange={handleChange}
               />
@@ -228,7 +228,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <input
                 type="text"
                 name="employee_username"
-                className="input input-bordered w-full glass"
+                className="input input-bordered w-full glass text-white"
                 value={employee.employee_username}
                 onChange={handleChange}
                 required
@@ -243,7 +243,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <input
                 type="date"
                 name="employee_birthdate"
-                className="input input-bordered w-full glass"
+                className="input input-bordered w-full glass text-white"
                 value={employee.employee_birthdate}
                 onChange={handleChange}
                 required
@@ -259,7 +259,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
                 name="employee_civil_status_id"
                 value={employee.employee_civil_status_id}
                 onChange={handleChange}
-                className="input input-bordered w-full glass"
+                className="input input-bordered w-full glass text-violet-700"
                 required
               >
                 <option value="">Select Civil Status</option>
@@ -278,7 +278,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <input
                 type="email"
                 name="employee_email"
-                className="glass input input-bordered w-full"
+                className="glass input input-bordered w-full text-white"
                 value={employee.employee_email}
                 onChange={handleChange}
                 required
@@ -293,7 +293,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <input
                 type="text"
                 name="employee_contact_no"
-                className="glass input input-bordered w-full"
+                className="glass input input-bordered w-full text-white"
                 value={employee.employee_contact_no}
                 onChange={handleChange}
                 required
@@ -308,7 +308,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <input
                 type="password"
                 name="employee_password"
-                className="glass input input-bordered w-full"
+                className="glass input input-bordered w-full text-white"
                 value={employee.employee_password}
                 onChange={handleChange}
                 required
@@ -323,7 +323,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <input
                 type="password"
                 name="employee_confirm_password"
-                className="glass input input-bordered w-full"
+                className="glass input input-bordered w-full text-white"
                 value={employee.employee_confirm_password}
                 onChange={handleChange}
                 required
@@ -338,7 +338,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <select
                 value={selectedRegion}
                 onChange={(e) => setSelectedRegion(e.target.value)}
-                className="glass input input-bordered w-full"
+                className="glass input input-bordered w-full text-violet-700"
               >
                 <option value="">Select Region</option>
                 {regionList.map((region) => (
@@ -357,7 +357,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <select
                 value={selectedProvince}
                 onChange={(e) => setSelectedProvince(e.target.value)}
-                className="glass input input-bordered w-full"
+                className="glass input input-bordered w-full text-violet-700"
               >
                 <option value="">Select Province</option>
                 {provinceList.map((province) => (
@@ -376,7 +376,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <select
                 value={selectedMunicipality}
                 onChange={(e) => setSelectedMunicipality(e.target.value)}
-                className="glass input input-bordered w-full"
+                className="glass input input-bordered w-full text-violet-700"
               >
                 <option value="">Select Municipality</option>
                 {municipalityList.map((municipality) => (
@@ -395,7 +395,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <select
                 value={selectedBarangay}
                 onChange={(e) => setSelectedBarangay(e.target.value)}
-                className="glass input input-bordered w-full"
+                className="glass input input-bordered w-full text-violet-700"
               >
                 <option value="">Select Barangay</option>
                 {barangayList.map((barangay) => (
