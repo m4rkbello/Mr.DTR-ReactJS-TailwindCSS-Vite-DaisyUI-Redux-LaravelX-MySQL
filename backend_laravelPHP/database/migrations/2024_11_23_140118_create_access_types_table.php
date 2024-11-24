@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('access_types', function (Blueprint $table) {
-            $table->id();
+            $table->engine = 'InnoDB'; 
+            $table->id(); // This automatically creates an unsignedBigInteger
             $table->string('access_type_name')->nullable();
             $table->string('access_type_description')->nullable();
             $table->integer('access_type_status_id')->nullable();
