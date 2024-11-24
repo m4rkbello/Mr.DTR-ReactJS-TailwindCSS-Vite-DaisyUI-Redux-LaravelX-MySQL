@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
+            $table->engine = 'InnoDB';  // Ensure the table uses InnoDB
             $table->id();
             $table->string('user_firstname');
             $table->string('user_lastname');
@@ -21,17 +22,22 @@ return new class extends Migration
             $table->string('user_password');
             $table->integer('user_type_id')->nullable();
             $table->string('user_image')->nullable();
-            $table->unsignedBigInteger('access_type_id')->nullable(); 
+            $table->unsignedBigInteger('access_type_id')->nullable();  // Ensure it matches 'access_types.id'
+            $table->foreign('access_type_id')
+                  ->references('id')->on('access_types')
+                  ->onDelete('set null');
             $table->rememberToken();
             $table->timestamps();
-
-            //FOREIGN KEY ANG USER NAAY ISA KA ACCESS_TYPE
-            $table->foreign('access_type_id')
-            ->references('id')
-            ->on('access_types');
         });
 
-
+        Schema::table('users', function (Blueprint $table) {
+            if (Schema::hasTable('access_types')) {
+                $table->foreign('access_type_id')
+                      ->references('id')
+                      ->on('access_types')
+                      ->onDelete('set null');
+            }
+        });   
     }
 
     /**
@@ -39,6 +45,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['access_type_id']);
+        });
+
         Schema::dropIfExists('users');
     }
 };
