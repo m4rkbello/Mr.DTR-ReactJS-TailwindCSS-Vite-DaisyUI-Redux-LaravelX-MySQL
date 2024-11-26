@@ -16,8 +16,10 @@ return new class extends Migration
                 $table->decimal('overtime_rate_per_hour', 10, 2)->nullable();
                 $table->string('overtime_description', 255)->nullable();
                 $table->integer('overtime_status_id')->nullable();
-                $table->unsignedBigInteger('overtime_created_by')->nullable();
-                $table->unsignedBigInteger('overtime_updated_by')->nullable();
+                $table->unsignedBigInteger('created_by')->nullable();
+                $table->unsignedBigInteger('updated_by')->nullable();
+                $table->foreign('created_by')->references('id')->on('users'); 
+                $table->foreign('updated_by')->references('id')->on('users'); 
                 $table->timestamps();
             });
         }

@@ -18,9 +18,20 @@ return new class extends Migration
             $table->string('attendance_time_out')->nullable();
             $table->integer('attendance_status_id')->default(1);
             $table->rememberToken()->nullable();
-            $table->timestamps();
-            //FK
             $table->foreignId('attendance_employee_id')->constrained('employees');
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->foreign('created_by')
+                ->references('id')
+                ->on('users')
+                ->onDelete('set null');
+        
+            $table->foreign('updated_by')
+                ->references('id')
+                ->on('users')
+                ->onDelete('set null');
+            
+            $table->timestamps();
         });
     }
 

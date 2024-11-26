@@ -1,18 +1,14 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
 
 return new class extends Migration
 {
     public function up(): void
     {
-       
-        // Create the 'employees' table
         Schema::create('employees', function (Blueprint $table) {
-            $table->engine = 'InnoDB'; 
+            $table->engine = 'InnoDB';
             $table->id();
             $table->string('employee_firstname')->nullable();
             $table->string('employee_middlename')->nullable();
@@ -36,17 +32,25 @@ return new class extends Migration
             $table->string('employee_pagibig_no', 255)->nullable();
             $table->string('employee_philhealth_no', 255)->nullable();
             $table->string('employee_tin_no', 255)->nullable();
-            $table->foreign('access_type_id')
-            ->references('id')->on('access_types')
-            ->onDelete('set null');
+            $table->unsignedBigInteger('access_type_id')->nullable(); 
             $table->unsignedBigInteger('employee_department_id')->nullable();
             $table->unsignedBigInteger('employee_civil_status_id')->nullable();
             $table->rememberToken();
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->foreign('created_by')
+                ->references('id')
+                ->on('users')
+                ->onDelete('set null');
+    
+            $table->foreign('updated_by')
+                ->references('id')
+                ->on('users')
+                ->onDelete('set null');
+            
             $table->timestamps();
-
         });
 
-        // Add foreign key constraints after table creation
         Schema::table('employees', function (Blueprint $table) {
             if (Schema::hasTable('access_types')) {
                 $table->foreign('access_type_id')
@@ -69,12 +73,10 @@ return new class extends Migration
                     ->onDelete('set null');
             }
         });
-
     }
 
     public function down(): void
     {
-        // Drop the foreign key constraints and the 'employees' table
         Schema::table('employees', function (Blueprint $table) {
             $table->dropForeign(['access_type_id']);
             $table->dropForeign(['employee_department_id']);

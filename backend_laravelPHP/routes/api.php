@@ -84,6 +84,14 @@ Route::middleware('auth:sanctum')->group(function() {
         Route::put('/update/item/{id}', [OvertimeController::class, 'update']);
         Route::put('/deactivate/{id}', [OvertimeController::class, 'deactivate']);
     });
+    //ACCESS-TYPES ENDPOINTS
+    Route::prefix('access_types')->group(function () {
+        Route::get('/collections/all',[OvertimeController::class, 'index']);
+        Route::post('/search', [OvertimeController::class, 'search']);
+        Route::post('/add', [OvertimeController::class, 'store']);
+        Route::put('/update/item/{id}', [OvertimeController::class, 'update']);
+        Route::put('/deactivate/{id}', [OvertimeController::class, 'deactivate']);
+    });
     //AUTHENTICATIONS
     Route::get('/users',[AuthController::class, 'index']);
     Route::post('/update-image/{id}', [AuthController::class, 'updateImage']);

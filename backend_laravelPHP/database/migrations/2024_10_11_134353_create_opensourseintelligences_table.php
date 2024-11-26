@@ -13,14 +13,16 @@ return new class extends Migration
     {
         Schema::create('opensourseintelligences', function (Blueprint $table) {
             $table->id(); // Auto-incrementing primary key
-            $table->string('osint_public_ip', 45)->nullable(); // IP address (both IPv4 and IPv6)
-            $table->decimal('osint_latitude', 11, 8)->nullable(); // Latitude (precision: 11, scale: 8)
-            $table->decimal('osint_longitude', 11, 8)->nullable(); // Longitude (precision: 11, scale: 8)
+            $table->string('osint_public_ip', 45)->nullable();
+            $table->decimal('osint_latitude', 11, 8)->nullable();
+            $table->decimal('osint_longitude', 11, 8)->nullable();
             $table->foreignId('osint_employee_id')->nullable()->constrained('employees');
             $table->foreignId('osint_user_id')->nullable()->constrained('users');
             $table->integer('osint_status_id')->nullable();
-            $table->unsignedBigInteger('osint_created_by')->nullable();
-            $table->unsignedBigInteger('osint_updated_by')->nullable();
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->foreign('created_by')->references('id')->on('users'); 
+            $table->foreign('updated_by')->references('id')->on('users'); 
             $table->timestamps();
         });
     }
