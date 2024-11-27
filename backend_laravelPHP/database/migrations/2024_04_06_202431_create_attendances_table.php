@@ -25,12 +25,10 @@ return new class extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('set null');
-        
             $table->foreign('updated_by')
                 ->references('id')
                 ->on('users')
                 ->onDelete('set null');
-            
             $table->timestamps();
         });
     }
