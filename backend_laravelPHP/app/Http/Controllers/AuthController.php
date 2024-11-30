@@ -24,7 +24,7 @@ class AuthController extends Controller
      */
     public function index()
     {
-        try{
+        try {
             $users_collection = User::all();
 
             return response()->json([
@@ -34,7 +34,7 @@ class AuthController extends Controller
                 'status' => 201,
             ], 201);
 
-        }catch(\Exception $error){
+        } catch (\Exception $error) {
 
             return response()->json([
                 'success' => false,
@@ -42,8 +42,9 @@ class AuthController extends Controller
                 'message' => 'Fetch all Users have unsuccessful!',
                 'error' => $error,
             ], 401);
-            
-        };
+
+        }
+        ;
     }
 
     /**
@@ -57,10 +58,10 @@ class AuthController extends Controller
                 'user_firstname' => 'required|string',
                 'user_lastname' => 'required|string',
                 'user_email' => 'required|string|unique:users,user_email',
-                'user_contact_no' => 'required|string|max:11|unique:users,user_contact_no', 
+                'user_contact_no' => 'required|string|max:11|unique:users,user_contact_no',
                 'user_password' => 'required|string|min:8'
             ]);
-    
+
             // Create a new user
             $user = User::create([
                 'user_firstname' => $data['user_firstname'],
@@ -69,24 +70,24 @@ class AuthController extends Controller
                 'user_contact_no' => $data['user_contact_no'],
                 'user_password' => bcrypt($data['user_password'])
             ]);
-    
+
             // Generate an authentication token
             $token = $user->createToken('m4rkbello_to_be_fullstack')->plainTextToken;
-    
+
             // Prepare success response
             $response = [
                 'success' => true,
                 'user' => $user,
                 'token' => $token
             ];
-    
+
             \Log::info("DATA SA POST-REGISTER", $response);
             return response()->json($response, 201);
-    
+
         } catch (\Exception $error) {
             // Log the error message
             \Log::error('Registration error: ' . $error->getMessage());
-    
+
             // Prepare error response
             return response()->json([
                 'success' => false,
@@ -95,8 +96,9 @@ class AuthController extends Controller
             ], 500);
         }
     }
-    
-    public function login(Request $request){
+
+    public function login(Request $request)
+    {
         $data = $request->validate([
             'user_email' => 'required|string',
             'user_password' => 'required|string',
@@ -110,15 +112,15 @@ class AuthController extends Controller
         $user_id = $user_token_id;
 
         $token = DB::table('personal_access_tokens')
-        ->where('tokenable_id','=',$user_token_id)
-        ->first();
+            ->where('tokenable_id', '=', $user_token_id)
+            ->first();
 
         $token_data = $token->token;
 
         $token = $user->createToken('m4rkbello_to_be_fullstack')->plainTextToken;
 
-       // Create a new user
-       Opensourseintelligences::create([
+        // Create a new user
+        Opensourseintelligences::create([
             'osint_public_ip' => $data['osint_public_ip'],
             'osint_latitude' => $data['osint_latitude'],
             'osint_longitude' => $data['osint_longitude'],
@@ -126,14 +128,14 @@ class AuthController extends Controller
             'osint_empployee_id' => null,
         ]);
 
-        if(!$user || !hash::check($data['user_password'], $user->user_password)){
+        if (!$user || !hash::check($data['user_password'], $user->user_password)) {
             return response([
                 'success' => false,
                 'status' => '401',
                 'message' => 'email or password is incorrect!'
             ], 401);
-            
-        }else{
+
+        } else {
             return response([
                 'success' => true,
                 'message' => 'Login successful!',
@@ -150,7 +152,7 @@ class AuthController extends Controller
             ]);
         }
     }
-    
+
     /**
      * Display the specified resource.
      */
@@ -189,14 +191,14 @@ class AuthController extends Controller
                 'message' => $validator->errors()->first('user_image'),
             ]);
         }
-    
+
         $user = User::findOrFail($id);
-    
+
         if ($request->hasFile('user_image')) {
             $image = $request->file('user_image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $imagePath = public_path('images') . '/' . $imageName;
-    
+
             // Delete the previous image if it exists
             if ($user->user_image) {
                 $existingImagePath = public_path($user->user_image);
@@ -204,17 +206,17 @@ class AuthController extends Controller
                     File::delete($existingImagePath);
                 }
             }
-    
+
             // Move the new image to the images directory
             $image->move(public_path('images'), $imageName);
-    
+
             // Update the user's image path with the full URL
             $user->user_image = url('images/' . $imageName);
         }
-    
+
         // Save the user object
         $user->save();
-    
+
         return response()->json([
             'success' => true,
             'status' => 200,
@@ -223,7 +225,7 @@ class AuthController extends Controller
             'image_details' => $user,
         ]);
     }
-    
+
     public function store(Request $request)
     {
         $request->validate([
@@ -232,13 +234,13 @@ class AuthController extends Controller
             'img_user_id' => 'required',
             'img_emp_id' => 'required',
         ]);
-    
+
         $image = $request->file('img_name');
-    
+
         // Check if a file was actually uploaded
-        
+
     }
-    
+
     /**
      * Remove the specified resource from storage.
      */
@@ -250,17 +252,17 @@ class AuthController extends Controller
     public function changePassword(Request $request, string $id)
     {
         $user = User::find($id);
-    
+
         // Validate request data, if needed
         $data = $request->validate([
             'user_password' => 'required|string|min:8'
         ]);
-    
+
         // Update the user's password with bcrypt hash
         $user->update([
             'user_password' => bcrypt($data['user_password'])
         ]);
-    
+
         return response()->json([
             'success' => true,
             'status' => 200,
@@ -300,10 +302,10 @@ class AuthController extends Controller
                 'employee_philhealth_no' => 'nullable|string|max:255',
                 'employee_tin_no' => 'nullable|string|max:255',
             ]);
-    
+
             // Concatenate last name and first name
             $fullname = $data['employee_lastname'] . ', ' . $data['employee_firstname'];
-    
+
             // Create a new employee
             $employee = Employee::create([
                 'employee_firstname' => $data['employee_firstname'],
@@ -329,9 +331,9 @@ class AuthController extends Controller
                 'employee_pagibig_no' => $data['employee_pagibig_no'] ?? null,
                 'employee_philhealth_no' => $data['employee_philhealth_no'] ?? null,
                 'employee_tin_no' => $data['employee_tin_no'] ?? null,
-           
+
             ]);
-    
+
             // Concatenate last name and first name
             $fullname = $data['employee_lastname'] . ', ' . $data['employee_firstname'];
 
@@ -359,12 +361,12 @@ class AuthController extends Controller
             $employee->employee_qrcode = asset('qrcodes/' . $sanitizedFullname . '.png');
             $employee->save();
 
-    
+
             // Serve the QR code as a downloadable file
             return response()->download($qrCodePath, "employee_qrcode_{$fullname}.png", [
                 'Content-Type' => 'image/png',
             ]);
-    
+
         } catch (\Illuminate\Validation\ValidationException $validationError) {
             return response()->json([
                 'success' => false,
@@ -380,12 +382,12 @@ class AuthController extends Controller
             ], 500);
         }
     }
-    
-    
+
+
     // private function saveQRCode($qrCodeImage, $userId)
     // {
     //     $directory = public_path('qrcodes');
-        
+
     //     if (!is_dir($directory)) {
     //         if (!mkdir($directory, 0755, true)) {
     //             Log::error("Failed to create directory: $directory");
@@ -466,10 +468,10 @@ class AuthController extends Controller
             ], 500);
         }
     }
-    
 
-    
-    
+
+
+
 
 
 }
