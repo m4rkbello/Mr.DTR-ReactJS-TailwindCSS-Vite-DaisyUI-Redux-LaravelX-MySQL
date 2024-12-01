@@ -383,38 +383,6 @@ class AuthController extends Controller
         }
     }
 
-
-    // private function saveQRCode($qrCodeImage, $userId)
-    // {
-    //     $directory = public_path('qrcodes');
-
-    //     if (!is_dir($directory)) {
-    //         if (!mkdir($directory, 0755, true)) {
-    //             Log::error("Failed to create directory: $directory");
-    //             return false;
-    //         }
-    //     }
-
-    //     $path = $directory . DIRECTORY_SEPARATOR . $userId . '.png';
-
-    //     // Ensure the directory is writable
-    //     if (!is_writable($directory)) {
-    //         Log::error("Directory $directory is not writable");
-    //         return false;
-    //     }
-
-    //     // Save QR code to file
-    //     try {
-    //         $qrCodeImage->saveToFile($path);
-    //     } catch (\Exception $e) {
-    //         Log::error("Failed to save QR code to: $path");
-    //         return false;
-    //     }
-
-    //     Log::info("QR code saved successfully to: $path");
-    //     return $path;
-    // }
-
     public function loginEmployee(Request $request)
     {
         try {
