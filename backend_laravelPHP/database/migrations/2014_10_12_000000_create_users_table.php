@@ -20,20 +20,10 @@ return new class extends Migration
             $table->string('user_image')->nullable();
             $table->unsignedBigInteger('access_type_id')->nullable(); 
             $table->rememberToken();
-            $table->foreign('created_by')
-                ->references('id')
-                ->on('users')
-                ->onDelete('set null');
-        
-            $table->foreign('updated_by')
-                ->references('id')
-                ->on('users')
-                ->onDelete('set null');
-            
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();      
             $table->timestamps();
         });
-
-
 
         // Add foreign key constraint separately
         Schema::table('users', function (Blueprint $table) {
