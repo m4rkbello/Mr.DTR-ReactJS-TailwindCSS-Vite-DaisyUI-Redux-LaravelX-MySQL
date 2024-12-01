@@ -14,9 +14,7 @@ return new class extends Migration
             $table->string('department_description')->nullable();
             $table->integer('department_status_id')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
-            $table->unsignedBigInteger('updated_by')->nullable();
-            $table->foreign('created_by')->references('id')->on('users'); 
-            $table->foreign('updated_by')->references('id')->on('users'); 
+            $table->unsignedBigInteger('updated_by')->nullable();      
             $table->timestamps();
         });
     }
