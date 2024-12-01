@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('civil_status_title', 255)->nullable();
             $table->string('civil_status_description', 255)->nullable();
-            $table->integer('civil_status_status_id')->nullable();;
+            $table->integer('civil_status_status_id')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();      
             $table->timestamps();
