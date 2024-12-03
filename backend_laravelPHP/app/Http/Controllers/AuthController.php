@@ -68,7 +68,8 @@ class AuthController extends Controller
                 'user_lastname' => $data['user_lastname'],
                 'user_email' => $data['user_email'],
                 'user_contact_no' => $data['user_contact_no'],
-                'user_password' => bcrypt($data['user_password'])
+                'user_password' => bcrypt($data['user_password']),
+                'access_type_id' => 1,
             ]);
 
             // Generate an authentication token
@@ -145,7 +146,7 @@ class AuthController extends Controller
                     'user_contact_no' => $user->user_contact_no,
                 ],
             ]);
-            
+
         } catch (\Illuminate\Validation\ValidationException $e) {
             // Handle validation errors
             return response([
@@ -348,6 +349,8 @@ class AuthController extends Controller
 
             ]);
 
+            $employee_email_encrypted = $employee->employee_email;
+
             // Concatenate last name and first name
             $fullname = $data['employee_lastname'] . ', ' . $data['employee_firstname'];
 
@@ -362,7 +365,7 @@ class AuthController extends Controller
             $qrCodePath = $qrCodeDirectory . '/' . $sanitizedFullname . '.png';
 
             // Generate QR code content
-            $qrCode = new QrCode($fullname); // Use full name for QR code content
+            $qrCode = new QrCode($employee_email_encrypted); // Use full name for QR code content
             $qrCode->setSize(400);
 
             $writer = new PngWriter();
@@ -374,7 +377,6 @@ class AuthController extends Controller
             // Save the QR code path to the database
             $employee->employee_qrcode = asset('qrcodes/' . $sanitizedFullname . '.png');
             $employee->save();
-
 
             // Serve the QR code as a downloadable file
             return response()->download($qrCodePath, "employee_qrcode_{$fullname}.png", [

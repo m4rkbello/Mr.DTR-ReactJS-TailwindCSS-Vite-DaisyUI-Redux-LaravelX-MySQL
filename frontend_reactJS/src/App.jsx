@@ -125,11 +125,11 @@ function App(props) {
         ) : (
           <>
             <div className="flex-1 my-0 mx-0">
-            <img src="https://i.ibb.co/7JHVynR/DTRMS-LOGO-removebg-preview.png" 
-           className="h-20 w-auto object-contain" 
-            
-            alt="DTRMS-LOGO-removebg-preview" border="0" />
-             {/*** 
+              <img src="https://i.ibb.co/7JHVynR/DTRMS-LOGO-removebg-preview.png"
+                className="h-20 w-auto object-contain"
+
+                alt="DTRMS-LOGO-removebg-preview" border="0" />
+              {/*** 
              <span className="btn btn-ghost bg-white text-4xl text-zinc-400 border-b-4 border-black">DTRMS+</span>
               **/}
             </div>
@@ -143,7 +143,7 @@ function App(props) {
             (cookiesData?.length ?? 0) > 0 ? (
             <>
               <div className="dropdown dropdown-end">
-  
+
                 <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-gradient-to-r from-emerald-500 via-sky-500 to-violet-700 rounded-box w-52">
                   {/* Profile */}
                   <li>
@@ -186,12 +186,12 @@ function App(props) {
               {/* Show guest links if not authenticated */}
               <ul className="menu menu-horizontal drop-shadow-xl px-1 text-black bg-transparent border-b-4">
                 <li className="text-2xl">
-                  <Link to="/attendance/scan" style={{ color: 'white'}}>
+                  <Link to="/attendance/scan" style={{ color: 'white' }}>
                     <BsQrCodeScan />
                   </Link>
                 </li>
                 <li className="text-2xl">
-                  <Link to="/login" style={{  color: 'white' }}>
+                  <Link to="/login" style={{ color: 'white' }}>
                     <FaSignInAlt />
                   </Link>
                 </li>
@@ -205,9 +205,9 @@ function App(props) {
           )}
         </div>
       </div>
-  <div className="drawer lg:drawer-open flex-1">
-    <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-    <div className="drawer-content flex flex-col items-center justify-center px-0 py-0 md:px-8 md:py-8">
+      <div className="drawer lg:drawer-open flex-1">
+        <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+        <div className="drawer-content flex flex-col items-center justify-center px-0 py-0 md:px-8 md:py-8">
           {(cookiesData?.length ?? 0) > 0 ?
             (
               <>
