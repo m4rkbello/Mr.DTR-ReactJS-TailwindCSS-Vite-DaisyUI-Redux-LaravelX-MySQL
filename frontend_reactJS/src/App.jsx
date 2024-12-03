@@ -118,7 +118,7 @@ function App(props) {
   return (
     <div className="flex flex-col h-screen">
       <div className="navbar shadow-md bg-gradient-to-r from-emerald-500 via-sky-500 to-violet-700 border-r-4 border-black">
-        {(localStorageHasToken?.length ?? 0) > 0 && (sessionStorageToken?.length ?? 0) !== 0 && (cookiesData?.length ?? 0) > 0 ? (
+        {(cookiesData?.length ?? 0) > 0 ? (
           <>
             <NavBar isAuthenticatedUser={isAuthenticatedUser} destroyAuthentications={destroyAuthentications} />
           </>
@@ -208,7 +208,7 @@ function App(props) {
   <div className="drawer lg:drawer-open flex-1">
     <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
     <div className="drawer-content flex flex-col items-center justify-center px-0 py-0 md:px-8 md:py-8">
-          {(localStorageHasToken?.length ?? 0) > 0 && (sessionStorageToken?.length ?? 0) !== 0 && (cookiesData?.length ?? 0) > 0 ?
+          {(cookiesData?.length ?? 0) > 0 ?
             (
               <>
                 <Routes>
@@ -249,7 +249,7 @@ function App(props) {
             )}
         </div>
         {/*** NAAY 3 KA SECURITY VALIDATION GAMIT TOKEN SA SESSION STORAGE / LOCAL STORAGE  UG SESSION COOKIES */}
-        {(localStorageHasToken?.length ?? 0) > 0 && (sessionStorageToken?.length ?? 0) !== 0 && (cookiesData?.length ?? 0) > 0 ? (
+        {(cookiesData?.length ?? 0) > 0 ? (
           <>
             <SideBar isAuthenticatedUser={isAuthenticatedUser} />
           </>
