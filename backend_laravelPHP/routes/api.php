@@ -25,7 +25,7 @@ use App\Http\Controllers\OvertimeController;
 */
 
 //PUBLIC-ENDPOINTS
-//ADMINS
+//ADMIN AS USERS
 Route::post('/register',[AuthController::class, 'register']);
 Route::post('/login',[AuthController::class, 'login']);
 

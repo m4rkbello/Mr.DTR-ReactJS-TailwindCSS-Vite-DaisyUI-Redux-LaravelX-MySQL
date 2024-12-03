@@ -99,57 +99,71 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $data = $request->validate([
-            'user_email' => 'required|string',
-            'user_password' => 'required|string',
-            'osint_public_ip' => 'nullable|string', // Change to string if IP is passed as a string
-            'osint_latitude' => 'nullable|numeric', // Use numeric for latitude
-            'osint_longitude' => 'nullable|numeric', // Use numeric for longitude
-        ]);
-
-        $user = User::where('user_email', $data['user_email'])->first();
-        $user_token_id = $user->id;
-        $user_id = $user_token_id;
-
-        $token = DB::table('personal_access_tokens')
-            ->where('tokenable_id', '=', $user_token_id)
-            ->first();
-
-        $token_data = $token->token;
-
-        $token = $user->createToken('m4rkbello_to_be_fullstack')->plainTextToken;
-
-        // Create a new user
-        Opensourseintelligences::create([
-            'osint_public_ip' => $data['osint_public_ip'],
-            'osint_latitude' => $data['osint_latitude'],
-            'osint_longitude' => $data['osint_longitude'],
-            'osint_user_id' => $user_token_id,
-            'osint_empployee_id' => null,
-        ]);
-
-        if (!$user || !hash::check($data['user_password'], $user->user_password)) {
-            return response([
-                'success' => false,
-                'status' => '401',
-                'message' => 'email or password is incorrect!'
-            ], 401);
-
-        } else {
+        try {
+            $data = $request->validate([
+                'user_email' => 'required|string|email',
+                'user_password' => 'required|string',
+                'osint_public_ip' => 'nullable|string',
+                'osint_latitude' => 'nullable|numeric',
+                'osint_longitude' => 'nullable|numeric',
+            ]);
+    
+            // Find user by email
+            $user = User::where('user_email', $data['user_email'])->first();
+    
+            // Check if user exists and the password is correct
+            if (!$user || !Hash::check($data['user_password'], $user->user_password)) {
+                return response([
+                    'success' => false,
+                    'status' => 401,
+                    'message' => 'Email or password is incorrect!',
+                ], 401);
+            }
+    
+            // Create a personal access token
+            $token = $user->createToken('m4rkbello_to_be_fullstack')->plainTextToken;
+    
+            // Store OSINT data if provided
+            Opensourseintelligences::create([
+                'osint_public_ip' => $data['osint_public_ip'],
+                'osint_latitude' => $data['osint_latitude'],
+                'osint_longitude' => $data['osint_longitude'],
+                'osint_user_id' => $user->id,
+                'osint_empployee_id' => null,
+            ]);
+    
+            // Return response with token and user details
             return response([
                 'success' => true,
                 'message' => 'Login successful!',
-                'personal_access_tokens' => $token_data,
-                'user_id' => $user_id,
                 'token' => $token,
+                'user_id' => $user->id,
                 'user' => [
                     'user_firstname' => $user->user_firstname,
                     'user_lastname' => $user->user_lastname,
                     'user_email' => $user->user_email,
                     'user_contact_no' => $user->user_contact_no,
-                    'user_password' => $user->user_password
                 ],
             ]);
+            
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Handle validation errors
+            return response([
+                'success' => false,
+                'status' => 422,
+                'message' => 'Validation error!',
+                'errors' => $e->errors(),
+            ], 422);
+
+        } catch (\Exception $e) {
+            // Handle general exceptions
+            return response([
+                'success' => false,
+                'status' => 500,
+                'message' => 'An unexpected error occurred!',
+                'error' => $e->getMessage(),
+            ], 500);
+
         }
     }
 
