@@ -108,10 +108,10 @@ class AuthController extends Controller
                 'osint_latitude' => 'nullable|numeric',
                 'osint_longitude' => 'nullable|numeric',
             ]);
-    
+
             // Find user by email
             $user = User::where('user_email', $data['user_email'])->first();
-    
+
             // Check if user exists and the password is correct
             if (!$user || !Hash::check($data['user_password'], $user->user_password)) {
                 return response([
@@ -120,10 +120,10 @@ class AuthController extends Controller
                     'message' => 'Email or password is incorrect!',
                 ], 401);
             }
-    
+
             // Create a personal access token
             $token = $user->createToken('m4rkbello_to_be_fullstack')->plainTextToken;
-    
+
             // Store OSINT data if provided
             Opensourseintelligences::create([
                 'osint_public_ip' => $data['osint_public_ip'],
@@ -132,7 +132,7 @@ class AuthController extends Controller
                 'osint_user_id' => $user->id,
                 'osint_empployee_id' => null,
             ]);
-    
+
             // Return response with token and user details
             return response([
                 'success' => true,
@@ -452,10 +452,5 @@ class AuthController extends Controller
             ], 500);
         }
     }
-
-
-
-
-
 
 }
