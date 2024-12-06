@@ -41,31 +41,31 @@ const Login = ({ loginUser }) => {
     });
   };
 
-// Frontend React Component (Login.jsx)
-const handleLoginRequestAndResponse = async (event) => {
-  event.preventDefault();
-  setIsLoading(true);
-  try {
-    // Get location and IP data
-    const { latitude, longitude, publicIP } = await getLocationAndIP();
-    
-    // Prepare user data including OSINT information
-    const userData = {
-      user_email: localEmail,
-      user_password: localPassword,
-      osint_public_ip: publicIP,
-      osint_latitude: latitude,
-      osint_longitude: longitude,
-    };
+  // Frontend React Component (Login.jsx)
+  const handleLoginRequestAndResponse = async (event) => {
+    event.preventDefault();
+    setIsLoading(true);
+    try {
+      // Get location and IP data
+      const { latitude, longitude, publicIP } = await getLocationAndIP();
 
-    // Send login request
-    await loginUser(userData);
-    setIsLoading(false);
-  } catch (error) {
-    setIsLoading(false);
-    toast.error("Login failed. Please check your credentials.");
-  }
-};
+      // Prepare user data including OSINT information
+      const userData = {
+        user_email: localEmail,
+        user_password: localPassword,
+        osint_public_ip: publicIP,
+        osint_latitude: latitude,
+        osint_longitude: longitude,
+      };
+
+      // Send login request
+      await loginUser(userData);
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      toast.error("Login failed. Please check your credentials.");
+    }
+  };
 
 
   return (
