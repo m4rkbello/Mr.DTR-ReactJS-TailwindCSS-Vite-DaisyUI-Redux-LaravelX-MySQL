@@ -195,19 +195,17 @@ export const registerUser = userData => async dispatch => {
 
 export const loginUser = userData => async dispatch => {
     try {
-        setTimeout(() => {
-            dispatch({ type: LOGIN_USER_REQUEST });
-        }, 1000);
+        dispatch({ type: LOGIN_USER_REQUEST });
 
-        document.getElementById('loading-infinity').classList.add('loading', 'loading-infinity', 'loading-lg');
-
+        // API call to authenticate user
         const response = await MarkBelloApi.post('/api/login', userData);
         const loggedInUser = response.data.token;
         const loggedInUserId = response.data.user_id;
         const loggedInUserAccessTypId = response.data.user.access_type_id;
 
-        console.log("DATA SA loginUser", response);
+        console.log("Login successful:", response);
 
+        // Storing user data in storage
         localStorage.setItem('DTRMS_BY_M4RKBELLO', loggedInUser);
         sessionStorage.setItem('DTRMS_BY_M4RKBELLO', loggedInUser);
         document.cookie = `DTRMS_BY_M4RKBELLO=${loggedInUser}; expires=${new Date(Date.now() + 86400 * 1000).toUTCString()}; path=/`;
@@ -217,22 +215,16 @@ export const loginUser = userData => async dispatch => {
         document.cookie = `DTRMS_BY_M4RKBELLO_USER_ID=${loggedInUserId}; expires=${new Date(Date.now() + 86400 * 1000).toUTCString()}; path=/`;
         document.cookie = `DTRMS_BY_M4RKBELLO_USER_ACCESS_TYPE_ID=${loggedInUserAccessTypId}; expires=${new Date(Date.now() + 86400 * 1000).toUTCString()}; path=/`;
 
-        console.log("DATA RESPONSE SA LOGIN NAAY TOKEN", loggedInUser);
-        console.log("DATA RESPONSE SA LOGIN", loggedInUserId)
-
+        // Dispatch success action with user data
         dispatch({
             type: LOGIN_USER_SUCCESS,
             payload: loggedInUser
         });
 
+        // Show success toast
         toast.success('Login successfully!🤭🤗😎', {
             position: 'top-right',
-            autoClose: false,
-            hideProgressBar: false,
-            closeOnClick: false,
-            pauseOnHover: false,
-            draggable: false,
-            progress: undefined,
+            autoClose: 5000,  // Auto close after 5 seconds
             style: {
                 background: 'white',
                 color: 'green',
@@ -246,14 +238,10 @@ export const loginUser = userData => async dispatch => {
             payload: error.message
         });
 
+        // Show error toast
         toast.error('User or Password is incorrect! 🥺⚠️👽', {
             position: 'top-right',
-            autoClose: false,
-            hideProgressBar: false,
-            closeOnClick: false,
-            pauseOnHover: false,
-            draggable: false,
-            progress: undefined,
+            autoClose: 5000,
             style: {
                 background: 'black',
                 color: 'red',
@@ -263,6 +251,7 @@ export const loginUser = userData => async dispatch => {
         });
     }
 };
+
 
 export const uploadAndUpdateImageUser = (formData, userId) => async (dispatch) => {
     try {

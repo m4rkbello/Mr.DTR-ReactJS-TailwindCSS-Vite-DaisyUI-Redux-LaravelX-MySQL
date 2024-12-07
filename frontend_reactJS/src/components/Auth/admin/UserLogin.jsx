@@ -6,11 +6,14 @@ import { loginUser } from '../../redux/actions/userAction';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const UserLogin = ({ loginUser }) => {
   const [localEmail, setLocalEmail] = useState("");
   const [localPassword, setLocalPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate(); // Initialize navigate
 
   const getLocationAndIP = async () => {
     return new Promise((resolve, reject) => {
@@ -41,7 +44,6 @@ const UserLogin = ({ loginUser }) => {
     });
   };
 
-  // Frontend React Component (Login.jsx)
   const handleLoginRequestAndResponse = async (event) => {
     event.preventDefault();
     setIsLoading(true);
@@ -61,12 +63,17 @@ const UserLogin = ({ loginUser }) => {
       // Send login request
       await loginUser(userData);
       setIsLoading(false);
+
+      navigate('/dashboard');  // Navigate to the dashboard
+      window.location.reload();
+
+      // Redirect to dashboard without reloading the page
+
     } catch (error) {
       setIsLoading(false);
       toast.error("Login failed. Please check your credentials.");
     }
   };
-
 
   return (
     <div className="min-h-screen flex items-center justify-center drop-shadow-lg">
