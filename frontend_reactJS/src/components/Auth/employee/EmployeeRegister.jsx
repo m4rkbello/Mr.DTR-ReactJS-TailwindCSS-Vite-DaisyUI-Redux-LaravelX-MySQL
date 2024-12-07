@@ -151,13 +151,13 @@ const EmployeeRegister = ({ registerEmployee }) => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen glass">
+    <div className="flex items-center justify-center min-h-screen rounded-full drop-shadow-xl">
       <ToastContainer />
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 bg-zinc-100 rounded-s-2xl">
-        <form className="p-6 space-y-6 bg-gradient-to-r from-emerald-500 via-sky-500 to-violet-700 border-t-8 border-b-8 border-black rounded-lg shadow-lg" onSubmit={handleRegisterUserRequestAndResponse}>
-          <h2 className="text-3xl font-semibold text-center text-white">Register Diha!</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 glass drop-shadow-xl">
+        <form className="p-6 space-y-6 bg-gradient-to-r from-emerald-500 via-sky-500 to-violet-700 border-t-8 border-b-8 border-white rounded-lg shadow-lg" onSubmit={handleRegisterUserRequestAndResponse}>
+          <h2 className="text-3xl font-semibold text-center text-white">Employee Register</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-1 gap-2">
+          <div className="grid grid-cols-1 md:grid-cols-1 gap-2 drop-shadow-xl">
 
             {/* First Name Field */}
             <div className="form-control">
@@ -411,7 +411,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <input
                 type="text"
                 name="employee_sss_no"
-                className="glass input input-bordered w-full"
+                className="glass input input-bordered w-full text-white"
                 value={employee.employee_sss_no}
                 onChange={handleChange}
               />
@@ -424,7 +424,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <input
                 type="text"
                 name="employee_pagibig_no"
-                className="glass input input-bordered w-full"
+                className="glass input input-bordered w-full text-white"
                 value={employee.employee_pagibig_no}
                 onChange={handleChange}
               />
@@ -437,7 +437,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <input
                 type="text"
                 name="employee_philhealth_no"
-                className="glass input input-bordered w-full"
+                className="glass input input-bordered w-full text-white"
                 value={employee.employee_philhealth_no}
                 onChange={handleChange}
               />
@@ -450,7 +450,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               <input
                 type="text"
                 name="employee_tin_no"
-                className="glass input input-bordered w-full"
+                className="glass input input-bordered w-full text-white"
                 value={employee.employee_tin_no}
                 onChange={handleChange}
               />
@@ -466,13 +466,6 @@ const EmployeeRegister = ({ registerEmployee }) => {
                 {isLoading ? <span className="loading loading-spinner text-accent"></span> : 'Register'}
               </button>
             </div>
-
-            {/* Error Message */}
-            {error && (
-              <div className="form-control">
-                <p className="text-red-500 text-sm">{error}</p>
-              </div>
-            )}
           </div>
         </form> 
 
