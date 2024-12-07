@@ -50,7 +50,7 @@ class AuthController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function register(Request $request)
+    public function userRegister(Request $request)
     {
         try {
             // Validate incoming request data
@@ -98,7 +98,7 @@ class AuthController extends Controller
         }
     }
 
-    public function login(Request $request)
+    public function userLogin(Request $request)
     {
         try {
             $data = $request->validate([
@@ -130,7 +130,8 @@ class AuthController extends Controller
                 'osint_latitude' => $data['osint_latitude'],
                 'osint_longitude' => $data['osint_longitude'],
                 'osint_user_id' => $user->id,
-                'osint_empployee_id' => null,
+                'osint_status_id' => 1,
+                'created_by' => $user->id,
             ]);
 
             // Return response with token and user details
