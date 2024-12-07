@@ -40,9 +40,6 @@ const EmployeeRegister = ({ registerEmployee }) => {
     employee_tin_no: '',
   });
 
-
-
-
   const [selectedRegion, setSelectedRegion] = useState('');
   const [selectedProvince, setSelectedProvince] = useState('');
   const [selectedMunicipality, setSelectedMunicipality] = useState('');

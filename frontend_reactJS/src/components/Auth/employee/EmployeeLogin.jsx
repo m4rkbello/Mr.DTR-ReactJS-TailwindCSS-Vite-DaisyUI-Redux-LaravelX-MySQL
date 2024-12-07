@@ -9,8 +9,8 @@ import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 
 const EmployeeLogin = ({  loginEmployee }) => {
-  const [localEmail, setLocalEmail] = useState("");
-  const [localPassword, setLocalPassword] = useState("");
+  const [employeeEmail, setEmployeeEmail] = useState("");
+  const [employeePassword, setEmployeePassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -54,8 +54,8 @@ const handleLoginRequestAndResponse = async (event) => {
     
     // Prepare user data including OSINT information
     const userData = {
-      employee_email: localEmail,
-      employee_password: localPassword,
+      employee_email: employeeEmail,
+      employee_password: employeePassword,
       osint_public_ip: publicIP,
       osint_latitude: latitude,
       osint_longitude: longitude,
@@ -91,7 +91,7 @@ const handleLoginRequestAndResponse = async (event) => {
                 <span className="label-text text-lg sm:text-xl text-white">Email</span>
               </label>
               <label className="input input-bordered flex items-center gap-2 glass">
-                <input type="text" value={localEmail} onChange={(e) => setLocalEmail(e.target.value)} className="grow bg-white text-white placeholder-white drop-shadow-lg" placeholder="Email" />
+                <input type="text" value={employeeEmail} onChange={(e) => setEmployeeEmail(e.target.value)} className="grow bg-white text-white placeholder-white drop-shadow-lg" placeholder="Email" />
               </label>
             </div>
             <div className="form-control">
@@ -99,7 +99,7 @@ const handleLoginRequestAndResponse = async (event) => {
                 <span className="label-text text-lg sm:text-xl text-white">Password</span>
               </label>
               <label className="input input-bordered flex items-center gap-2 glass">
-                <input value={localPassword} onChange={(e) => setLocalPassword(e.target.value)} type="password" className="grow text-white placeholder-white drop-shadow-lg" placeholder="Password" />
+                <input value={employeePassword} onChange={(e) => setEmployeePassword(e.target.value)} type="password" className="grow text-white placeholder-white drop-shadow-lg" placeholder="Password" />
               </label>
               <label className="label">
                 <a href="#" className="label-text-alt link link-hover text-white text-sm sm:text-lg">Forgot password?</a>
