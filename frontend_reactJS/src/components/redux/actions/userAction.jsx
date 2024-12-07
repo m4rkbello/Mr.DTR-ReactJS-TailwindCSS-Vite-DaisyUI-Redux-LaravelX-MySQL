@@ -227,7 +227,7 @@ export const loginUser = userData => async dispatch => {
 
         toast.success('Login successfully!🤭🤗😎', {
             position: 'top-right',
-            autoClose: 5000,
+            autoClose: false,
             hideProgressBar: false,
             closeOnClick: false,
             pauseOnHover: false,
@@ -248,7 +248,7 @@ export const loginUser = userData => async dispatch => {
 
         toast.error('User or Password is incorrect! 🥺⚠️👽', {
             position: 'top-right',
-            autoClose: 5000,
+            autoClose: false,
             hideProgressBar: false,
             closeOnClick: false,
             pauseOnHover: false,
