@@ -474,7 +474,7 @@ const EmployeeRegister = ({ registerEmployee }) => {
               </div>
             )}
           </div>
-        </form>
+        </form> 
 
       </div>
     </div>
