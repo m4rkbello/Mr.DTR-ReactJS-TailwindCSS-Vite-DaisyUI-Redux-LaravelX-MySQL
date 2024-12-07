@@ -56,45 +56,78 @@ function App(props) {
   const [localStorageHasToken, setLocalStorageHasToken] = useState('');
   const [sessionStorageToken, setSessionStorageToken] = useState('');
   const [cookiesData, setCookiesData] = useState('');
+  const [accessTypeEmployee, setAccessTypeEmployee] = useState('');
+  const [accessTypeUser, setAccessTypeUser] = useState('');
 
   //E GAWAS!
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Retrieve cookies
+    const getCookieAccessTypeEmployeeValue = (DTRMS_BY_M4RKBELLO_EMPLOYEE_ACCESS_TYPE_ID) => {
+      const cookies = document.cookie.split('; ');
+      for (let i = 0; i < cookies.length; i++) {
+        const [key, value] = cookies[i].split('=');
+        if (key === DTRMS_BY_M4RKBELLO_EMPLOYEE_ACCESS_TYPE_ID) {
+          return value;
+        }
+      }
+      return null; // Return null if the cookie is not found
+    };
+
+    const getCookieAccessTypeUserValue = (DTRMS_BY_M4RKBELLO_USER_ACCESS_TYPE_ID) => {
+      const cookies = document.cookie.split('; ');
+      for (let i = 0; i < cookies.length; i++) {
+        const [key, value] = cookies[i].split('=');
+        if (key === DTRMS_BY_M4RKBELLO_USER_ACCESS_TYPE_ID) {
+          return value;
+        }
+      }
+      return null; // Return null if the cookie is not found
+    };
+
     //kuhaon ang data sa localStorage/Session Storage/Cookie 
     const localStorageHasUserId = localStorage.getItem('DTRMS_BY_M4RKBELLO_USER_ID');
     const sessionStorageHasUserId = sessionStorage.getItem('DTRMS_BY_M4RKBELLO_USER_ID');
     const localStorageHasTokenData = localStorage.getItem('DTRMS_BY_M4RKBELLO');
     const sessionStorageHasTokenData = sessionStorage.getItem('DTRMS_BY_M4RKBELLO');
     const cookiesData = document.cookie;
+    const cookiesAccessTypeEmployeeLayer = parseInt(getCookieAccessTypeEmployeeValue('DTRMS_BY_M4RKBELLO_EMPLOYEE_ACCESS_TYPE_ID'), 10);
+    console.log("DATA SA cookiesLayerAccessType",cookiesAccessTypeEmployeeLayer);
+
+    const cookiesAccessTypeUserLayer = parseInt(getCookieAccessTypeUserValue('DTRMS_BY_M4RKBELLO_USER_ACCESS_TYPE_ID'), 10);
+    console.log("DATA SA cookiesLayerAccessType",cookiesAccessTypeUserLayer);
 
     setLocalStorageHasUserId(localStorageHasUserId);
     setSessionStorageHasUserId(sessionStorageHasUserId);
     setLocalStorageHasToken(localStorageHasTokenData);
     setSessionStorageToken(sessionStorageHasTokenData);
     setCookiesData(cookiesData);
+    setAccessTypeEmployee(cookiesAccessTypeEmployeeLayer);
+    setAccessTypeUser(cookiesAccessTypeUserLayer)
 
     props.fetchUsers();
     props.fetchEmployees();
     props.fetchAttendances();
   }, []);
 
+  //LOGOUT
   const destroyAuthentications = () => {
     // Clear localStorage and sessionStorage
     localStorage.clear();
     sessionStorage.clear();
-
+  
     // Remove all cookies
     document.cookie.split(';').forEach((cookie) => {
       document.cookie = cookie
         .replace(/^ +/, '') // Remove spaces before the cookie
         .replace(/=.*/, `=;expires=${new Date(0).toUTCString()};path=/;`); // Set expiration to delete cookie
     });
-
-    // Navigate to login page after clearing authentication data
-    window.location.reload();
-    navigate('/')
+  
+    // Set the location to the login page and reload
+    window.location.href = '/login';
   };
+  
 
   // const usersCollection = props && props.users && props.users.data;
   const usersCollection = props?.users?.data; // Accessing users array from props
@@ -127,7 +160,6 @@ function App(props) {
             <div className="flex-1 my-0 mx-0">
               <img src="https://i.ibb.co/7JHVynR/DTRMS-LOGO-removebg-preview.png"
                 className="h-20 w-auto object-contain"
-
                 alt="DTRMS-LOGO-removebg-preview" border="0" />
               {/*** 
              <span className="btn btn-ghost bg-white text-4xl text-zinc-400 border-b-4 border-black">DTRMS+</span>
@@ -138,9 +170,7 @@ function App(props) {
 
         <div className="flex items-center space-x-4">
           {/* Show dropdown if authenticated */}
-          {(localStorageHasToken?.length ?? 0) > 0 &&
-            (sessionStorageToken?.length ?? 0) !== 0 &&
-            (cookiesData?.length ?? 0) > 0 ? (
+          {(cookiesData?.length ?? 0) > 0 ? (
             <>
               <div className="dropdown dropdown-end">
 
@@ -208,50 +238,74 @@ function App(props) {
       <div className="drawer lg:drawer-open flex-1">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center justify-center px-0 py-0 md:px-8 md:py-8">
-          {(cookiesData?.length ?? 0) > 0 ?
-            (
-              <>
-                <Routes>
-                  <Route path="/dashboard" element={<Dashboard />} />
-                  <Route path="/forgot-password" element={<ForgotPassword />} />
-                  <Route path="/admin/users" element={<UserDashboard />} />
-                  <Route path="/admin/user/profile-details/change-password/:userId" element={<UserChangePassword />} />
-                  <Route path="/admin/user/profile-details" element={<UserDetails />} />
-                  <Route path="/admin/payrolls" element={<Payroll />} />
-                  <Route path="/admin/payroll/edit/:payrollId" element={<EditPayroll />} />
-                  <Route path="/admin/rates" element={<Rate />} />
-                  <Route path="/admin/rate/edit/:rateId" element={<EditRates />} />
-                  <Route path="/admin/overtimes" element={<Overtime />} />
-                  <Route path="/admin/overtime/edit/:overtimeId" element={<EditOvertime />} />
-                  <Route path="/admin/deductions" element={<Deduction />} />
-                  <Route path="/admin/deduction/edit/:deductionId" element={<EditDeduction />} />
-                  <Route path="/admin/departments" element={<Departments />} />
-                  <Route path="/admin/department/edit/:departmentId" element={<EditDepartment />} />
-                  <Route path="/login" element={<EmployeeLogin />} />
-                  <Route path="/register" element={<EmployeeRegister />} />
-                  <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
-                  <Route path="/employee/details/:employeeId" element={<EmployeePersonalDetails />} />
-                  <Route path="/employee/archieve" element={<ArchiveEmployee />} />
-                  <Route path="/employee/attendance" element={<EmployeeAttendance />} />
-                  <Route path="/employee/attendance" element={<EmployeeAttendance />} />
-                  <Route path="/content" element={<Content />} />
-                </Routes>
-              </>
-            ) : (
-              <Routes>
-                <Route path="/admin/login" element={<Login />} />
-                <Route path="/admin/register" element={<Register />} />
-                <Route path="/attendance/scan" element={<EmployeeScanQRCode />} />
-                <Route path="/" element={<PageNotFound />} />
-                <Route path="/login" element={<EmployeeLogin />} />
-                <Route path="/register" element={<EmployeeRegister />} />
-              </Routes>
-            )}
+    
+        <div>
+  {cookiesData?.length > 0 ? (
+    // Check if accessTypeLayer is 2
+    accessTypeEmployee === 2 ? (
+      // Render only the Payroll route if accessTypeLayer is 2
+      <Routes>
+        <Route path="/admin/payrolls" element={<Payroll />} />
+        <Route path="/admin/deductions" element={<Deduction />} />
+        <Route path="/admin/overtimes" element={<Overtime />} />
+        <Route path="/admin/rates" element={<Rate />} />
+      </Routes>
+    ) : accessTypeUser === 1 ? (
+      // Render other routes if accessTypeLayer is 1
+      <Routes>
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/admin/users" element={<UserDashboard />} />
+        <Route path="/admin/user/profile-details/change-password/:userId" element={<UserChangePassword />} />
+        <Route path="/admin/user/profile-details" element={<UserDetails />} />
+        <Route path="/admin/payrolls" element={<Payroll />} />
+        <Route path="/admin/payroll/edit/:payrollId" element={<EditPayroll />} />
+        <Route path="/admin/rates" element={<Rate />} />
+        <Route path="/admin/rate/edit/:rateId" element={<EditRates />} />
+        <Route path="/admin/overtimes" element={<Overtime />} />
+        <Route path="/admin/overtime/edit/:overtimeId" element={<EditOvertime />} />
+        <Route path="/admin/deductions" element={<Deduction />} />
+        <Route path="/admin/deduction/edit/:deductionId" element={<EditDeduction />} />
+        <Route path="/admin/departments" element={<Departments />} />
+        <Route path="/admin/department/edit/:departmentId" element={<EditDepartment />} />6
+        <Route path="/login" element={<EmployeeLogin />} />
+        <Route path="/register" element={<EmployeeRegister />} />
+        <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
+        <Route path="/employee/details/:employeeId" element={<EmployeePersonalDetails />} />
+        <Route path="/employee/archieve" element={<ArchiveEmployee />} />
+        <Route path="/employee/attendance" element={<EmployeeAttendance />} />
+        <Route path="/content" element={<Content />} />
+      </Routes>
+    ) : (
+      // Render all other routes if accessTypeLayer is neither 1 nor 2
+      <Routes>
+        <Route path="/admin/login" element={<Login />} />
+        <Route path="/admin/register" element={<Register />} />
+        <Route path="/attendance/scan" element={<EmployeeScanQRCode />} />
+        <Route path="/" element={<PageNotFound />} />
+        <Route path="/login" element={<EmployeeLogin />} />
+        <Route path="/register" element={<EmployeeRegister />} />
+      </Routes>
+    )
+  ) : (
+    // Routes for when no cookies data is available
+    <Routes>
+      <Route path="/admin/login" element={<Login />} />
+      <Route path="/admin/register" element={<Register />} />
+      <Route path="/attendance/scan" element={<EmployeeScanQRCode />} />
+      <Route path="/" element={<PageNotFound />} />
+      <Route path="/login" element={<EmployeeLogin />} />
+      <Route path="/register" element={<EmployeeRegister />} />
+    </Routes>
+  )}
+</div>
+
+        
         </div>
         {/*** NAAY 3 KA SECURITY VALIDATION GAMIT TOKEN SA SESSION STORAGE / LOCAL STORAGE  UG SESSION COOKIES */}
         {(cookiesData?.length ?? 0) > 0 ? (
           <>
-            <SideBar isAuthenticatedUser={isAuthenticatedUser} />
+          <SideBar isAuthenticatedUser={cookiesData.length > 0} accessTypeUser={accessTypeUser} accessTypeEmployee={accessTypeEmployee} />
           </>
         ) : (
           <>
