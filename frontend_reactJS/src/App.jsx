@@ -18,8 +18,8 @@ import NavBar from './components/layouts/NavBar';
 import SideBar from './components/layouts/SideBar';
 import Footer from './components/layouts/Footer';
 //ADMIN-ROUTES
-import Login from './components/Auth/admin/Login';
-import Register from './components/Auth/admin/Register';
+import UserLogin from './components/Auth/admin/UserLogin';
+import UserRegister from './components/Auth/admin/UserRegister';
 import PageNotFound from './components/Auth/admin/404/PageNotFound';
 import UserDashboard from './components/Auth/admin/user/UserDashboard';
 import UserDetails from './components/Auth/admin/user/UserDetails';
@@ -279,8 +279,8 @@ function App(props) {
     ) : (
       // Render all other routes if accessTypeLayer is neither 1 nor 2
       <Routes>
-        <Route path="/admin/login" element={<Login />} />
-        <Route path="/admin/register" element={<Register />} />
+        <Route path="/admin/login" element={<UserLogin />} />
+        <Route path="/admin/register" element={<UserRegister />} />
         <Route path="/attendance/scan" element={<EmployeeScanQRCode />} />
         <Route path="/" element={<PageNotFound />} />
         <Route path="/login" element={<EmployeeLogin />} />
@@ -290,8 +290,8 @@ function App(props) {
   ) : (
     // Routes for when no cookies data is available
     <Routes>
-      <Route path="/admin/login" element={<Login />} />
-      <Route path="/admin/register" element={<Register />} />
+      <Route path="/admin/login" element={<UserLogin />} />
+      <Route path="/admin/register" element={<UserRegister />} />
       <Route path="/attendance/scan" element={<EmployeeScanQRCode />} />
       <Route path="/" element={<PageNotFound />} />
       <Route path="/login" element={<EmployeeLogin />} />
