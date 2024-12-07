@@ -69,7 +69,7 @@ class AuthController extends Controller
                 'user_email' => $data['user_email'],
                 'user_contact_no' => $data['user_contact_no'],
                 'user_password' => bcrypt($data['user_password']),
-                'access_type_id' => 1,
+                'access_type_id' => 1, //ADMIN
             ]);
 
             // Generate an authentication token
@@ -144,6 +144,7 @@ class AuthController extends Controller
                     'user_lastname' => $user->user_lastname,
                     'user_email' => $user->user_email,
                     'user_contact_no' => $user->user_contact_no,
+                    'access_type_id' => $user->access_type_id,
                 ],
             ]);
 
@@ -346,7 +347,7 @@ class AuthController extends Controller
                 'employee_pagibig_no' => $data['employee_pagibig_no'] ?? null,
                 'employee_philhealth_no' => $data['employee_philhealth_no'] ?? null,
                 'employee_tin_no' => $data['employee_tin_no'] ?? null,
-
+                'access_type_id' => 2,
             ]);
 
             $employee_email_encrypted = $employee->employee_email;
@@ -439,6 +440,7 @@ class AuthController extends Controller
                     'employee_lastname' => $employee->employee_lastname,
                     'employee_email' => $employee->employee_email,
                     'employee_contact_no' => $employee->employee_contact_no,
+                    'access_type_id' => $employee->access_type_id,
                 ]
             ]);
 
