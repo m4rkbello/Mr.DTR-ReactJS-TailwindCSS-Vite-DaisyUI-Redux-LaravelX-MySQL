@@ -271,7 +271,6 @@ export const uploadAndUpdateImageEmployee = (formData, employeeId) => async (dis
     }
 };
 
-
 //REGISTER EMPLOYEE DISPATCH-ACTIONS
 export const registerEmployee = employeeData => async dispatch => {
     try {
@@ -279,11 +278,10 @@ export const registerEmployee = employeeData => async dispatch => {
         const registeredUser = await MarkBelloApi.post('/api/authentication/employee/register', employeeData);
         console.log("DATA SA userData", employeeData);
 
-        document.getElementById('loading-infinity').classList.add('loading', 'loading-infinity', 'loading-lg');
-
         toast.success('Registered successfully!🤭😇🤗', {
             position: 'top-right',
-            autoClose: 5000,
+            // autoClose: 5000,
+            autoClose: false, 
             hideProgressBar: false,
             closeOnClick: false,
             pauseOnHover: false,
@@ -295,6 +293,9 @@ export const registerEmployee = employeeData => async dispatch => {
                 fontSize: '15px'
             }
         });
+
+        // Optional: Remove loading indicator
+        document.getElementById('loading-infinity')?.classList.remove('loading', 'loading-infinity', 'loading-lg');
 
         dispatch({
             type: REGISTER_EMPLOYEE_SUCCESS,
@@ -310,7 +311,8 @@ export const registerEmployee = employeeData => async dispatch => {
 
         toast.error(errorMessage, {
             position: 'top-right',
-            autoClose: 5000,
+            autoClose: false, 
+            // autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: false,
             pauseOnHover: false,
