@@ -339,6 +339,7 @@ export const loginEmployee = employeeData => async dispatch => {
         const response = await MarkBelloApi.post('/api/authentication/employee/login', employeeData);
         const loggedInEmployee = response.data.token;
         const loggedInEmployeeId = response.data.employee.id;
+        const loggedInEmployeeAccessTypId = response.data.employee.access_type_id;
 
         console.log("DATA SA loginUser", response);
 
@@ -349,6 +350,8 @@ export const loginEmployee = employeeData => async dispatch => {
         localStorage.setItem('DTRMS_BY_M4RKBELLO_USER_ID', loggedInEmployeeId);
         sessionStorage.setItem('DTRMS_BY_M4RKBELLO_USER_ID', loggedInEmployeeId);
         document.cookie = `DTRMS_BY_M4RKBELLO_USER_ID=${loggedInEmployeeId}; expires=${new Date(Date.now() + 86400 * 1000).toUTCString()}; path=/`;
+        document.cookie = `DTRMS_BY_M4RKBELLO_EMPLOYEE_ACCESS_TYPE_ID=${loggedInEmployeeAccessTypId}; expires=${new Date(Date.now() + 86400 * 1000).toUTCString()}; path=/`;
+
 
         console.log("DATA RESPONSE SA LOGIN NAAY TOKEN", loggedInEmployee);
         console.log("DATA RESPONSE SA LOGIN", loggedInEmployeeId)
