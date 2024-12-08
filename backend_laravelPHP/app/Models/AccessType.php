@@ -25,3 +25,6 @@ class AccessType extends Model
         return $this->hasMany(Employee::class, 'access_type_id');
     }
 }
+
+
+
