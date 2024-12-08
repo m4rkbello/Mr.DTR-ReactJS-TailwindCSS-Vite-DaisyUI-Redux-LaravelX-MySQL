@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use App\Models\User;
-use App\Models\Opensourseintelligences;
+use App\Models\OpenSourceIntelligence;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -125,7 +125,7 @@ class AuthController extends Controller
             $token = $user->createToken('m4rkbello_to_be_fullstack')->plainTextToken;
 
             // Store OSINT data if provided
-            Opensourseintelligences::create([
+            OpenSourceIntelligence::create([
                 'osint_public_ip' => $data['osint_public_ip'],
                 'osint_latitude' => $data['osint_latitude'],
                 'osint_longitude' => $data['osint_longitude'],
@@ -424,7 +424,7 @@ class AuthController extends Controller
 
             $token = $employee->createToken('m4rkbello_to_be_fullstack')->plainTextToken;
 
-            Opensourseintelligences::create([
+            OpenSourceIntelligence::create([
                 'osint_public_ip' => $data['osint_public_ip'],
                 'osint_latitude' => $data['osint_latitude'],
                 'osint_longitude' => $data['osint_longitude'],
