@@ -56,7 +56,7 @@ class User extends Authenticatable
     }
 
     public function opensourceintelligence(){
-        return $this->hasMany(Opensourceintelligence::class, 'osint_user_id');
+        return $this->hasMany(OpenSourceIntelligence::class, 'osint_user_id');
     }
 
     public function accessType()
