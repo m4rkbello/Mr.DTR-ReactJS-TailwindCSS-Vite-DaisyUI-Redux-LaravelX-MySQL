@@ -64,10 +64,12 @@ const handleLoginRequestAndResponse = async (event) => {
     // Send login request
     await loginEmployee(userData);
     setIsLoading(false);
-    setTimeout(() => {
-      window.location.reload();
-      navigate("/dashboard"); // Redirect to root path upon successful login
-    }, 5000); 
+
+      setTimeout(() => {
+        navigate('/dashboard');  // Navigate to the dashboard
+        window.location.reload();
+      }, 3000);
+
   } catch (error) {
     setIsLoading(false);
     toast.error("Login failed. Please check your credentials.");
