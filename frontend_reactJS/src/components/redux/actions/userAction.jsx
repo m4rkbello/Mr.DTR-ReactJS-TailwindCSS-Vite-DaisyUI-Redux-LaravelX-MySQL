@@ -192,7 +192,6 @@ export const registerUser = userData => async dispatch => {
     }
 };
 
-
 export const loginUser = userData => async dispatch => {
     try {
         dispatch({ type: LOGIN_USER_REQUEST });
@@ -222,9 +221,9 @@ export const loginUser = userData => async dispatch => {
         });
 
         // Show success toast
-        toast.success('Login successfully!🤭🤗😎', {
+        toast.success('User Login successfully!🤭🤗😎', {
             position: 'top-right',
-            autoClose: 5000,  // Auto close after 5 seconds
+            autoClose: false,  // Auto close after 5 seconds
             style: {
                 background: 'white',
                 color: 'green',
