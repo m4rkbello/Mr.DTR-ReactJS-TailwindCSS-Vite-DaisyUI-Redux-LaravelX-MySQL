@@ -56,10 +56,10 @@ return new class extends Migration
                     ->onDelete('set null');
             }
 
-            if (Schema::hasTable('civilstatuses')) {
+            if (Schema::hasTable('civil_statuses')) {
                 $table->foreign('employee_civil_status_id')
                     ->references('id')
-                    ->on('civilstatuses')
+                    ->on('civil_statuses')
                     ->onDelete('set null');
             }
         });

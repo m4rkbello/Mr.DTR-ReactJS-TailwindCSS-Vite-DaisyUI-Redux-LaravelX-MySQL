@@ -11,7 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('civilstatuses', function (Blueprint $table) {
+        Schema::create('civil_statuses', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
             $table->string('civil_status_title', 255)->nullable();
             $table->string('civil_status_description', 255)->nullable();
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('civilstatuses');
+        Schema::dropIfExists('civil_statuses');
     }
 };

@@ -10,6 +10,7 @@ class CreateRatesTable extends Migration
     {
         if (!Schema::hasTable('rates')) {
             Schema::create('rates', function (Blueprint $table) {
+                $table->engine = 'InnoDB';
                 $table->id();
                 $table->string('rate_name', 255)->nullable();
                 $table->decimal('rate_amount_per_day', 10, 2)->nullable();

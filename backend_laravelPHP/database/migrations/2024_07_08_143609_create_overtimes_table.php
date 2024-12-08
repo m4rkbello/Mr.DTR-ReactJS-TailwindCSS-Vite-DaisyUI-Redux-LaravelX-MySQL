@@ -10,6 +10,7 @@ return new class extends Migration
     {
         if (!Schema::hasTable('overtimes')) {
             Schema::create('overtimes', function (Blueprint $table) {
+                $table->engine = 'InnoDB';
                 $table->id();
                 $table->string('overtime_name', 255)->nullable();
                 $table->decimal('overtime_hour', 10, 2)->nullable();

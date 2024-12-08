@@ -55,7 +55,7 @@ class Employee extends Model
 
     public function civilstatus()
     {
-        return $this->belongsTo(Civilstatus::class, 'employee_civil_status_id'); // Correct this line
+        return $this->belongsTo(CivilStatus::class, 'employee_civil_status_id'); // Correct this line
     }
 
     public function accessType()

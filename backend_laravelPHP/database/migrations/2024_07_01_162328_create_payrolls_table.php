@@ -10,6 +10,7 @@ class CreatePayrollsTable extends Migration
     {
         if (!Schema::hasTable('payrolls')) {
             Schema::create('payrolls', function (Blueprint $table) {
+                $table->engine = 'InnoDB';
                 $table->id();
                 $table->string('payroll_details', 255);
                 $table->decimal('payroll_total_amount', 10, 2);
