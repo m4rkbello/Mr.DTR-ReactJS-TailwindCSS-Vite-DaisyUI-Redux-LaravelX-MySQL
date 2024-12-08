@@ -12,7 +12,6 @@ const UserLogin = ({ loginUser }) => {
   const [localEmail, setLocalEmail] = useState("");
   const [localPassword, setLocalPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
   const navigate = useNavigate(); // Initialize navigate
 
   const getLocationAndIP = async () => {
@@ -64,10 +63,11 @@ const UserLogin = ({ loginUser }) => {
       await loginUser(userData);
       setIsLoading(false);
 
-      navigate('/dashboard');  // Navigate to the dashboard
-      window.location.reload();
-
-      // Redirect to dashboard without reloading the page
+      // Redirect to dashboard after the toaster timeout
+      setTimeout(() => {
+        navigate('/dashboard');  // Navigate to the dashboard
+        window.location.reload();
+      }, 3000);
 
     } catch (error) {
       setIsLoading(false);
