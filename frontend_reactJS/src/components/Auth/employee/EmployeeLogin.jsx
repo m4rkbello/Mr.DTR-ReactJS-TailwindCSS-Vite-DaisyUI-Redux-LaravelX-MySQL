@@ -2,7 +2,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { connect } from 'react-redux';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { loginEmployee } from '../../redux/actions/employeeAction';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
@@ -13,7 +13,7 @@ const EmployeeLogin = ({  loginEmployee }) => {
   const [employeePassword, setEmployeePassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const getLocationAndIP = async () => {
     return new Promise((resolve, reject) => {
@@ -65,10 +65,14 @@ const handleLoginRequestAndResponse = async (event) => {
     await loginEmployee(userData);
     setIsLoading(false);
 
+    {/**
+      
       setTimeout(() => {
-        navigate('/dashboard');  // Navigate to the dashboard
+        navigate('/dashboard'); 
         window.location.reload();
       }, 3000);
+      */}
+
 
   } catch (error) {
     setIsLoading(false);
