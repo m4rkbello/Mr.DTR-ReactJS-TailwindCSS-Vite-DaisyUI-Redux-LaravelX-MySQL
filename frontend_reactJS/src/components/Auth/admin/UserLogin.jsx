@@ -6,13 +6,13 @@ import { loginUser } from '../../redux/actions/userAction';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
-// import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const UserLogin = ({ loginUser }) => {
   const [localEmail, setLocalEmail] = useState("");
   const [localPassword, setLocalPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  // const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate(); // Initialize navigate
 
   const getLocationAndIP = async () => {
     return new Promise((resolve, reject) => {
@@ -64,13 +64,10 @@ const UserLogin = ({ loginUser }) => {
       setIsLoading(false);
 
       // Redirect to dashboard after the toaster timeout
-      {/**
         setTimeout(() => {
-          navigate('/dashboard');  // Navigate to the dashboard
+          navigate('/dashboard');
           window.location.reload();
         }, 3000);
-        
-        */}
 
     } catch (error) {
       setIsLoading(false);
