@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('opensource_intelligences', function (Blueprint $table) {
+        Schema::create('open_source_intelligences', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id(); // Auto-incrementing primary key
             $table->string('osint_public_ip', 45)->nullable();
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('opensource_intelligences');
+        Schema::dropIfExists('open_source_intelligences');
     }
 };

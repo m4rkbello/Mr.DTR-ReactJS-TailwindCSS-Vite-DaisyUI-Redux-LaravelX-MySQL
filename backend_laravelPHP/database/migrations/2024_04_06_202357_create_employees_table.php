@@ -67,12 +67,21 @@ return new class extends Migration
 
     public function down(): void
     {
+        // Drop foreign keys before dropping the table
         Schema::table('employees', function (Blueprint $table) {
-            $table->dropForeign(['access_type_id']);
-            $table->dropForeign(['employee_department_id']);
-            $table->dropForeign(['employee_civil_status_id']);
+            if (Schema::hasColumn('employees', 'employee_department_id')) {
+                $table->dropForeign(['employee_department_id']);
+            }
+            if (Schema::hasColumn('employees', 'access_type_id')) {
+                $table->dropForeign(['access_type_id']);
+            }
+            if (Schema::hasColumn('employees', 'employee_civil_status_id')) {
+                $table->dropForeign(['employee_civil_status_id']);
+            }
         });
-
+    
+        // Now drop the employees table
         Schema::dropIfExists('employees');
     }
+    
 };
