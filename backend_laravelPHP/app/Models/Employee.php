@@ -50,12 +50,12 @@ class Employee extends Model
     }
 
     public function opensourceintelligence(){
-        return $this->hasMany(Opensourseintelligences::class, 'osint_employee_id');
+        return $this->hasMany(OpenSourceIntelligence::class, 'osint_employee_id');
     }
 
     public function civilstatus()
     {
-        return $this->belongsTo(CivilStatus::class, 'employee_civil_status_id'); // Correct this line
+        return $this->belongsTo(CivilStatuses::class, 'employee_civil_status_id'); // Correct this line
     }
 
     public function accessType()
