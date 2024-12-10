@@ -26,34 +26,9 @@ class ActivityLogs extends Model
         'activity',
         'table_name',
         'record_id',
-        'created_by_user_id',
-        'created_by_employee_id',
-        'updated_by_user_id',
-        'updated_by_employee_id',
     ];
 
     /**
      * Relationships.
      */
-
-    // Created by User
-    public function createdByUser()
-    {
-        return $this->belongsTo(User::class, 'created_by_user_id');
-    }
-    
-    public function createdByEmployee()
-    {
-        return $this->belongsTo(Employee::class, 'created_by_employee_id');
-    }
-    
-    public function updatedByUser()
-    {
-        return $this->belongsTo(User::class, 'updated_by_user_id');
-    }
-    
-    public function updatedByEmployee()
-    {
-        return $this->belongsTo(Employee::class, 'updated_by_employee_id');
-    }
 }
