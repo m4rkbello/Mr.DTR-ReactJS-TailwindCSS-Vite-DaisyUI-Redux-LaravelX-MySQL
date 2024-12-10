@@ -12,15 +12,14 @@ class AccessTypeObserver
      */
     public function created(AccessType $accessType): void
     {
-        //
-        // Create activity log when an employee is created
+        // 
         ActivityLogs::create([
             'title' => 'Access Type Created',
             'activity' => 'A new access type was created.',
             'table_name' => 'access_types',
             'record_id' => $accessType->id,
         ]);
-}
+    }
 
     /**
      * Handle the AccessType "updated" event.
