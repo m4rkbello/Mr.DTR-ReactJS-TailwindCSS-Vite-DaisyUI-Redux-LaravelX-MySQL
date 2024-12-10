@@ -14,7 +14,7 @@ class AttendanceObserver
     {
                 // 
                 ActivityLogs::create([
-                    'title' => 'Access Type Created',
+                    'title' => 'Attendance Created',
                     'activity' => 'A new attendance was created.',
                     'table_name' => 'attendances',
                     'record_id' => $attendance->id,
@@ -27,6 +27,12 @@ class AttendanceObserver
     public function updated(Attendance $attendance): void
     {
         //
+        ActivityLogs::create([
+            'title' => 'Attendance Created',
+            'activity' => 'Attendance was updated.',
+            'table_name' => 'attendances',
+            'record_id' => $attendance->id,
+        ]);
     }
 
     /**
@@ -35,6 +41,12 @@ class AttendanceObserver
     public function deleted(Attendance $attendance): void
     {
         //
+        ActivityLogs::create([
+            'title' => 'Attendance deleted!',
+            'activity' => 'Attendance was deleted.',
+            'table_name' => 'attendances',
+            'record_id' => $attendance->id,
+        ]);
     }
 
     /**
@@ -43,6 +55,12 @@ class AttendanceObserver
     public function restored(Attendance $attendance): void
     {
         //
+        ActivityLogs::create([
+            'title' => 'Attendance restored!',
+            'activity' => 'Attendance was restored.',
+            'table_name' => 'attendances',
+            'record_id' => $attendance->id,
+        ]);
     }
 
     /**
@@ -51,5 +69,11 @@ class AttendanceObserver
     public function forceDeleted(Attendance $attendance): void
     {
         //
+        ActivityLogs::create([
+            'title' => 'Attendance force deleted!',
+            'activity' => 'Attendance was force deleted.',
+            'table_name' => 'attendances',
+            'record_id' => $attendance->id,
+        ]);
     }
 }
