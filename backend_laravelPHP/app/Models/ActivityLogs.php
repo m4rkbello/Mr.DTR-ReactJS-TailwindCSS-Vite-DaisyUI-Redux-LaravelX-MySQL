@@ -22,7 +22,7 @@ class ActivityLogs extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'title',
+        'title',    
         'activity',
         'table_name',
         'record_id',
