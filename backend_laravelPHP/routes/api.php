@@ -36,11 +36,12 @@ Route::post('/authentication/employee/login',[AuthController::class, 'loginEmplo
 Route::prefix('attendances')->group(function () {
 Route::post('/qrcode/data',[AttendanceController::class, 'store']);
 });
+
+Route::prefix('monitoring')->group(function () {
+    Route::get('/activity-logs', [ActivityLogsController::class, 'index']);
+});
 //WRAPPED BY LARAVEL-SANCTUM FOR SECURITY AUTHENTICATION PURPOSES
 Route::middleware('auth:sanctum')->group(function() {
-    Route::prefix('monitoring')->group(function () {
-        Route::get('/activity-logs', [ActivityLogsController::class, 'index']);
-    });
     //ATTENDANCES-ENDPOINTS
     Route::prefix('attendances')->group(function () {
         Route::get('/collections/all',[AttendanceController::class, 'index']);

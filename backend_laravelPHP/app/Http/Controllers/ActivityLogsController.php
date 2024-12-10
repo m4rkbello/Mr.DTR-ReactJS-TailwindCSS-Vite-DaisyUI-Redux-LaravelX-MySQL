@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use app\Models\ActivityLogs;
+use App\Models\ActivityLogs;
 
 class ActivityLogsController extends Controller
 {
@@ -12,12 +12,12 @@ class ActivityLogsController extends Controller
      */
     public function index()
     {
-        // Fetch activity logs with relationships
-        return ActivityLogs::with(['createdByUser', 'createdByEmployee', 'updatedByUser', 'updatedByEmployee'])
-        ->orderBy('created_at', 'desc')
-        ->paginate(10);
+        $activityLogs = ActivityLogs::with(['createdByUser', 'createdByEmployee', 'updatedByUser', 'updatedByEmployee'])
+            ->orderBy('created_at', 'desc')
+            ->get(); // Use get() instead of paginate() for testing
+    
+        return response()->json($activityLogs);
     }
-
     /**
      * Store a newly created resource in storage.
      */

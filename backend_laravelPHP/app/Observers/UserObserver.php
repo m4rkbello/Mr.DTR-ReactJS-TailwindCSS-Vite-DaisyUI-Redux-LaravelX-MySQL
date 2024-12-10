@@ -21,6 +21,10 @@ class UserObserver
             'record_id' => $user->id,
             'created_by_user_id' => Auth::id(),  // Assumes that the logged-in user is the creator
         ]);
+
+        // Log the authenticated user's ID
+        \Log::info('Authenticated User ID: ' . Auth::id());
+
     }
 
     /**

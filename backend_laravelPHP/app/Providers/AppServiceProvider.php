@@ -4,10 +4,10 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-use App\Models\User;
 use App\Models\Employee;
-use App\Observers\UserObserver;
 use App\Observers\EmployeeObserver;
+use App\Models\User;
+use App\Observers\UserObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
         //
         Schema::defaultStringLength(191);
 
-        // Register Employee Observer
+        // Register User/Employee Observer
         User::observe(UserObserver::class);
         Employee::observe(EmployeeObserver::class);
     }

@@ -41,20 +41,17 @@ class ActivityLogs extends Model
     {
         return $this->belongsTo(User::class, 'created_by_user_id');
     }
-
-    // Created by Employee
+    
     public function createdByEmployee()
     {
         return $this->belongsTo(Employee::class, 'created_by_employee_id');
     }
-
-    // Updated by User
+    
     public function updatedByUser()
     {
         return $this->belongsTo(User::class, 'updated_by_user_id');
     }
-
-    // Updated by Employee
+    
     public function updatedByEmployee()
     {
         return $this->belongsTo(Employee::class, 'updated_by_employee_id');
