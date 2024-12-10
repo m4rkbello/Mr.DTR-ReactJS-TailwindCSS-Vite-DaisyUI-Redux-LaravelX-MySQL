@@ -19,8 +19,9 @@ class EmployeeObserver
             'activity' => 'A new employee account was created.',
             'table_name' => 'employees',
             'record_id' => $employee->id,
-            'created_by_user_id' => Auth::id(),  // Assumes that the logged-in user is the creator
+            'created_by_employee_id' => Auth::id() ?? null,  // Fallback to null
         ]);
+        
     }
 
     /**
@@ -34,7 +35,7 @@ class EmployeeObserver
             'activity' => 'Employee account details were updated.',
             'table_name' => 'employees',
             'record_id' => $employee->id,
-            'updated_by_user_id' => Auth::id(),  // Assumes that the logged-in user is the updater
+            'created_by_employee_id' => Auth::id(),  // Assumes that the logged-in user is the updater
         ]);
     }
 
@@ -49,7 +50,7 @@ class EmployeeObserver
             'activity' => 'An employee account was deleted.',
             'table_name' => 'employees',
             'record_id' => $employee->id,
-            'updated_by_user_id' => Auth::id(),  // Assumes that the logged-in user is the deleter
+            'created_by_employee_id' => Auth::id(),  // Assumes that the logged-in user is the deleter
         ]);
     }
 
@@ -64,7 +65,7 @@ class EmployeeObserver
             'activity' => 'An employee account was restored.',
             'table_name' => 'employees',
             'record_id' => $employee->id,
-            'updated_by_user_id' => Auth::id(),  // Assumes that the logged-in user is the restorer
+            'created_by_employee_id' => Auth::id(),  // Assumes that the logged-in user is the restorer
         ]);
     }
 
