@@ -1,8 +1,9 @@
 <?php
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 //ALL CONTROLLERS
+use App\http\Controllers\ActivityLogsController;
+use App\http\Controllers\AccessTypeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ImagesController;
@@ -37,6 +38,9 @@ Route::post('/qrcode/data',[AttendanceController::class, 'store']);
 });
 //WRAPPED BY LARAVEL-SANCTUM FOR SECURITY AUTHENTICATION PURPOSES
 Route::middleware('auth:sanctum')->group(function() {
+    Route::prefix('monitoring')->group(function () {
+        Route::get('/activity-logs', [ActivityLogsController::class, 'index']);
+    });
     //ATTENDANCES-ENDPOINTS
     Route::prefix('attendances')->group(function () {
         Route::get('/collections/all',[AttendanceController::class, 'index']);
