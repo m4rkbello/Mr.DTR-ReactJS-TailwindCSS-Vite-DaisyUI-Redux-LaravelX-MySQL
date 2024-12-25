@@ -13,7 +13,6 @@ class EmployeeObserver
      */
     public function created(Employee $employee): void
     {
-        // Create activity log when an employee is created
         ActivityLogs::create([
             'title' => 'Employee Created',
             'activity' => 'A new employee account was created.',
@@ -29,7 +28,6 @@ class EmployeeObserver
      */
     public function updated(Employee $employee): void
     {
-        // Create activity log when an employee is updated
         ActivityLogs::create([
             'title' => 'Employee Updated',
             'activity' => 'Employee account details were updated.',
@@ -44,7 +42,6 @@ class EmployeeObserver
      */
     public function deleted(Employee $employee): void
     {
-        // Create activity log when an employee is deleted
         ActivityLogs::create([
             'title' => 'Employee Deleted',
             'activity' => 'An employee account was deleted.',
