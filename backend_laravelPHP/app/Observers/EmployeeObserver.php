@@ -20,7 +20,6 @@ class EmployeeObserver
             'record_id' => $employee->id,
             'created_by_employee_id' => Auth::id() ?? null,  // Fallback to null
         ]);
-        
     }
 
     /**
@@ -77,7 +76,7 @@ class EmployeeObserver
             'activity' => 'An employee account was permanently deleted.',
             'table_name' => 'employees',
             'record_id' => $employee->id,
-            'updated_by_user_id' => Auth::id(),  // Assumes that the logged-in user is the force deleter
+            'updated_by_user_id' => Auth::id(),
         ]);
     }
 }
