@@ -12,6 +12,12 @@ class DepartmentObserver
     public function created(Department $department): void
     {
         //
+        Department::create([
+            'title' => 'Department was Created',
+            'activity' => 'Department was created.',
+            'table_name' => 'departments',
+            'record_id' => $department->id,
+        ]);
     }
 
     /**
@@ -20,6 +26,13 @@ class DepartmentObserver
     public function updated(Department $department): void
     {
         //
+        Department::create([
+            'title' => 'Department Updated',
+            'activity' => 'Department was updated.',
+            'table_name' => 'departments',
+            'record_id' => $department->id,
+        ]);
+    
     }
 
     /**
@@ -28,6 +41,12 @@ class DepartmentObserver
     public function deleted(Department $department): void
     {
         //
+        Department::create([
+            'title' => 'Department Deleted',
+            'activity' => 'Department was deleted.',
+            'table_name' => 'departments',
+            'record_id' => $department->id,
+        ]);
     }
 
     /**
@@ -36,6 +55,12 @@ class DepartmentObserver
     public function restored(Department $department): void
     {
         //
+        Department::create([
+            'title' => 'Department Restored',
+            'activity' => 'Department was restored.',
+            'table_name' => 'departments',
+            'record_id' => $department->id,
+        ]);
     }
 
     /**
@@ -44,5 +69,11 @@ class DepartmentObserver
     public function forceDeleted(Department $department): void
     {
         //
+        Department::create([
+            'title' => 'Department Force Delete',
+            'activity' => 'Department was force deleted.',
+            'table_name' => 'departments',
+            'record_id' => $department->id,
+        ]);
     }
 }
