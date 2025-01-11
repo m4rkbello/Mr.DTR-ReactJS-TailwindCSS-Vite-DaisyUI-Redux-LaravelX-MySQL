@@ -8,6 +8,14 @@ use App\Models\Employee;
 use App\Observers\EmployeeObserver;
 use App\Models\User;
 use App\Observers\UserObserver;
+use App\Models\AccessType;
+use App\Observers\AccessTypeObserver;
+use App\Models\Attendance;
+use App\Observers\AttendanceObserver;
+use App\Models\ActivityLogs;
+use App\Observers\ActivityLogsObserver;
+
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,5 +38,11 @@ class AppServiceProvider extends ServiceProvider
         // Register User/Employee Observer
         User::observe(UserObserver::class);
         Employee::observe(EmployeeObserver::class);
+        AccessType::observe(AccessTypeObserver::class);
+        ActivityLogs::observe(ActivityLogsObserver::class);
+        Attendance::observe(AttendanceObserver::class);
+        
+
+
     }
 }
