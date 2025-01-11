@@ -12,13 +12,13 @@ class AttendanceObserver
      */
     public function created(Attendance $attendance): void
     {
-                // 
-                ActivityLogs::create([
-                    'title' => 'Attendance Created',
-                    'activity' => 'A new attendance was created.',
-                    'table_name' => 'attendances',
-                    'record_id' => $attendance->id,
-                ]);
+        // 
+        ActivityLogs::create([
+            'title' => 'Attendance Created',
+            'activity' => 'A new attendance was created.',
+            'table_name' => 'attendances',
+            'record_id' => $attendance->id,
+        ]);
     }
 
     /**
