@@ -41,7 +41,7 @@ class AppServiceProvider extends ServiceProvider
         AccessType::observe(AccessTypeObserver::class);
         ActivityLogs::observe(ActivityLogsObserver::class);
         Attendance::observe(AttendanceObserver::class);
-        
+
 
 
     }

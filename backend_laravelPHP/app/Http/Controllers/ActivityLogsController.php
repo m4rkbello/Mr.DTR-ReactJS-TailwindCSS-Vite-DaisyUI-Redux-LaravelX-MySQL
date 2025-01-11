@@ -12,7 +12,7 @@ class ActivityLogsController extends Controller
      */
     public function index()
     {
-        $activityLogs = ActivityLogs::with(['createdByUser', 'createdByEmployee', 'updatedByUser', 'updatedByEmployee'])
+        $activityLogs = ActivityLogs::with(['created_user_id', 'created_by_employee_id', 'updated_by_user_id', 'updated_by_employee_id'])
             ->orderBy('created_at', 'desc')
             ->get(); // Use get() instead of paginate() for testing
     

@@ -40,6 +40,7 @@ Route::post('/qrcode/data',[AttendanceController::class, 'store']);
 Route::prefix('monitoring')->group(function () {
     Route::get('/activity-logs', [ActivityLogsController::class, 'index']);
 });
+
 //WRAPPED BY LARAVEL-SANCTUM FOR SECURITY AUTHENTICATION PURPOSES
 Route::middleware('auth:sanctum')->group(function() {
     //ATTENDANCES-ENDPOINTS
