@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use App\Observers\GeneralObserver;
 use App\Models\Employee;
 use App\Observers\EmployeeObserver;
 use App\Models\User;
@@ -41,8 +42,19 @@ class AppServiceProvider extends ServiceProvider
         AccessType::observe(AccessTypeObserver::class);
         ActivityLogs::observe(ActivityLogsObserver::class);
         Attendance::observe(AttendanceObserver::class);
+    }
 
-
-
+       /**
+     * Register the general observer for all models.
+     */
+    private function registerGeneralObserver(): void
+    {
+        // Automatically observe all models
+        foreach (array_merge(glob(app_path('Models/*.php')), glob(app_path('Models/**/*.php'))) as $modelPath) {
+            $modelClass = 'App\\Models\\' . basename($modelPath, '.php');
+            if (class_exists($modelClass)) {
+                $modelClass::observe(GeneralObserver::class);
+            }
+        }
     }
 }
