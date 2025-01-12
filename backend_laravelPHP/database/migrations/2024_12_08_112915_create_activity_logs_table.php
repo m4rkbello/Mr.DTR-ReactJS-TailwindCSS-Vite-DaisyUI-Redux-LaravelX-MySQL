@@ -17,6 +17,8 @@ return new class extends Migration
             $table->text('activity')->nullable();
             $table->string('table_name')->nullable();
             $table->unsignedBigInteger('record_id')->nullable();
+            $table->unsignedBigInteger('created_by_user_id')->nullable(); // Add user ID
+            $table->unsignedBigInteger('created_by_employee_id')->nullable(); // Add employee ID
             $table->timestamps();
         });
     }

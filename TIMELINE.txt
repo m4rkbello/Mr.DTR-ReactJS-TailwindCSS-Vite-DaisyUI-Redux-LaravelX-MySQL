@@ -130,6 +130,14 @@ ADD OBSERVER FOR ActivityLogs
 ->php artisan make:observer UserObserver --model=User
 ->php artisan make:observer EmployeeObserver --model=Employee
 
+41. ADD DEFAULT ACCESS TYPE AS SUPER-ADMIN AND EMPLOYEE | maggenerate ug data
+ ->php artisan make:seeder CivilStatusesSeeder
+ php artisan db:seed --class=AccessTypeSeeder
+
+
+42. CREATE A SEEDER FILE 
+->php artisan make:seeder CivilStatusesSeeder
+ php artisan db:seed --class=CivilStatusesSeeder
 
 
 
