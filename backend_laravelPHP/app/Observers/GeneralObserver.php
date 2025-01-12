@@ -2,13 +2,12 @@
 
 namespace App\Observers;
 
-use Illuminate\Support\Facades\Auth;
 use App\Models\ActivityLogs;
 
 class GeneralObserver
 {
     /**
-     * Handle any "created" event for models.
+     * Handle the "created" event for any model.
      */
     public function created($model): void
     {
@@ -16,7 +15,7 @@ class GeneralObserver
     }
 
     /**
-     * Handle any "updated" event for models.
+     * Handle the "updated" event for any model.
      */
     public function updated($model): void
     {
@@ -24,7 +23,7 @@ class GeneralObserver
     }
 
     /**
-     * Handle any "deleted" event for models.
+     * Handle the "deleted" event for any model.
      */
     public function deleted($model): void
     {
@@ -32,7 +31,7 @@ class GeneralObserver
     }
 
     /**
-     * Handle any "restored" event for models.
+     * Handle the "restored" event for any model.
      */
     public function restored($model): void
     {
@@ -40,31 +39,30 @@ class GeneralObserver
     }
 
     /**
-     * Handle any "force deleted" event for models.
+     * Handle the "force deleted" event for any model.
      */
     public function forceDeleted($model): void
     {
-        $this->logActivity($model, 'forceDeleted');
+        $this->logActivity($model, 'force deleted');
     }
 
     /**
-     * Log the activity to the ActivityLogs table.
-     *
-     * @param  mixed  $model
-     * @param  string  $event
+     * Log activity to the `activity_logs` table.
      */
     private function logActivity($model, string $event): void
     {
-        $user = Auth::user();  // Get the currently logged-in user
-        $employee_id = $user ? $user->employee_id : null;  // Assuming the user has an employee relation
+        // Get the table name dynamically
+        $tableName = $model->getTable();
 
+        // Get the primary key value dynamically
+        $recordId = $model->getKey();
+
+        // Create the log
         ActivityLogs::create([
-            'title' => ucfirst($model->getTable()) . ' ' . ucfirst($event),
-            'activity' => ucfirst($model->getTable()) . ' has been ' . $event,
-            'table_name' => $model->getTable(),
-            'record_id' => $model->id,
-            'created_by_user_id' => $user ? $user->id : null,
-            'created_by_employee_id' => $employee_id,
+            'title'      => ucfirst($tableName) . ' ' . ucfirst($event),
+            'activity'   => "A record in the '{$tableName}' table was {$event}.",
+            'table_name' => $tableName,
+            'record_id'  => $recordId,
         ]);
     }
 }

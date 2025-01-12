@@ -33,27 +33,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
         Schema::defaultStringLength(191);
-
-        // Register User/Employee Observer
-        User::observe(UserObserver::class);
-        Employee::observe(EmployeeObserver::class);
-        AccessType::observe(AccessTypeObserver::class);
-        ActivityLogs::observe(ActivityLogsObserver::class);
-        Attendance::observe(AttendanceObserver::class);
+    
+        // Register the general observer for all models
+        $this->registerGeneralObserver();
     }
-
-       /**
-     * Register the general observer for all models.
-     */
+    
     private function registerGeneralObserver(): void
     {
-        // Automatically observe all models
         foreach (array_merge(glob(app_path('Models/*.php')), glob(app_path('Models/**/*.php'))) as $modelPath) {
             $modelClass = 'App\\Models\\' . basename($modelPath, '.php');
-            if (class_exists($modelClass)) {
-                $modelClass::observe(GeneralObserver::class);
+            if (class_exists($modelClass) && method_exists($modelClass, 'observe')) {
+                $modelClass::observe(\App\Observers\GeneralObserver::class);
             }
         }
     }
