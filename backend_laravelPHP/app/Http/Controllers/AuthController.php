@@ -63,7 +63,7 @@ class AuthController extends Controller
                 'user_password' => 'required|string|min:8'
             ]);
 
-            $accessType = AccessType::find(1);  // Check if access_type_id 1 exists
+            $accessType = AccessType::find(1);
             $accessTypeId = $accessType ? $accessType->id : null;
             
             $user = User::create([
@@ -73,6 +73,7 @@ class AuthController extends Controller
                 'user_contact_no' => $data['user_contact_no'],
                 'user_password' => bcrypt($data['user_password']),
                 'access_type_id' => $accessTypeId,  // Use the retrieved id from AccessType table
+                'user_type_id' => $accessTypeId,  
             ]);
             // Generate an authentication token
             $token = $user->createToken('m4rkbello_to_be_fullstack')->plainTextToken;
@@ -294,6 +295,10 @@ class AuthController extends Controller
     public function registerEmployee(Request $request)
     {
         try {
+
+            $accessType = AccessType::find(2);
+            $accessTypeId = $accessType ? $accessType->id : null;
+
             // Validate incoming request data
             $data = $request->validate([
                 'employee_firstname' => 'required|string',
@@ -350,7 +355,7 @@ class AuthController extends Controller
                 'employee_pagibig_no' => $data['employee_pagibig_no'] ?? null,
                 'employee_philhealth_no' => $data['employee_philhealth_no'] ?? null,
                 'employee_tin_no' => $data['employee_tin_no'] ?? null,
-                'access_type_id' => 2,
+                'access_type_id' => $accessTypeId,
             ]);
 
             $employee_email_encrypted = $employee->employee_email;
