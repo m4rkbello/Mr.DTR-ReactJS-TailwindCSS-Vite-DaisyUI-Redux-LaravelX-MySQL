@@ -35,13 +35,6 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Schema::defaultStringLength(191);
-
-        // Register User/Employee Observer
-        User::observe(UserObserver::class);
-        Employee::observe(EmployeeObserver::class);
-        AccessType::observe(AccessTypeObserver::class);
-        ActivityLogs::observe(ActivityLogsObserver::class);
-        Attendance::observe(AttendanceObserver::class);
     }
 
        /**
