@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use App\Models\User;
+use App\Models\AccessType;
 use App\Models\OpenSourceIntelligence;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -62,16 +63,17 @@ class AuthController extends Controller
                 'user_password' => 'required|string|min:8'
             ]);
 
-            // Create a new user
+            $accessType = AccessType::find(1);  // Check if access_type_id 1 exists
+            $accessTypeId = $accessType ? $accessType->id : null;
+            
             $user = User::create([
                 'user_firstname' => $data['user_firstname'],
                 'user_lastname' => $data['user_lastname'],
                 'user_email' => $data['user_email'],
                 'user_contact_no' => $data['user_contact_no'],
                 'user_password' => bcrypt($data['user_password']),
-                'access_type_id' => 1, //ADMIN
+                'access_type_id' => $accessTypeId,  // Use the retrieved id from AccessType table
             ]);
-
             // Generate an authentication token
             $token = $user->createToken('m4rkbello_to_be_fullstack')->plainTextToken;
 

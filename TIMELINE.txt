@@ -145,6 +145,14 @@ ADD OBSERVER FOR ActivityLogs
 
 
 
+--------------------------------------------------------------------
+--------------------------------------------------------------------
+TO RUN THIS PROJECT 
+
+1. php artisan migrate 
+2. php artisan db:seed AccessTypeSeeder 
+3. php artisan db:seed CivilStatusesSeeder
+
 
 
 
