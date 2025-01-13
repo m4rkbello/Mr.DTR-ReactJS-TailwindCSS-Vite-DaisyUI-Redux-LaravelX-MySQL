@@ -56,13 +56,15 @@ const UserRegister = ({ registerUser }) => {
     };
 
     return (
-        <div>
+        <div className="flex items-center justify-center min-h-screen rounded-full drop-shadow-xl">
             <ToastContainer />
 
-            <div className="min-h-screen flex items-center justify-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 glass drop-shadow-xl">
                 <div className="artboard phone-2 flex flex-col items-center justify-center w-full mx-4">
                     <div className="card shrink-0 w-full max-w-sm shadow-md bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  border-t-4 border-b-4 border-black">
-                        <form className="card-body">
+                    <form className="p-6 space-y-6 bg-gradient-to-r from-emerald-500 via-sky-500 to-violet-700 border-t-8 border-b-8 border-white rounded-lg shadow-lg" >
+                        
+          <div className="grid grid-cols-1 md:grid-cols-1 gap-2 drop-shadow-xl">
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text text-xl text-black">Firstname</span>
@@ -109,6 +111,7 @@ const UserRegister = ({ registerUser }) => {
                             <center>
                                 <span id="loading-infinity" className={`loading loading-infinity loading-lg ${isLoading ? 'block' : 'hidden'} spinner-blue`}></span>
                             </center>
+                            </div>
                         </form>
                     </div>
                 </div>
