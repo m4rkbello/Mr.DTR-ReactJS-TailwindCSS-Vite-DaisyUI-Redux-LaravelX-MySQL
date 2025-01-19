@@ -62,55 +62,55 @@ const UserRegister = ({ registerUser }) => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 glass drop-shadow-xl">
                 <div className="artboard phone-2 flex flex-col items-center justify-center w-full mx-4">
                     <div className="card shrink-0 w-full max-w-sm shadow-md bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  border-t-4 border-b-4 border-black">
-                    <form className="p-6 space-y-6 bg-gradient-to-r from-emerald-500 via-sky-500 to-violet-700 border-t-8 border-b-8 border-white rounded-lg shadow-lg" >
-                        
-          <div className="grid grid-cols-1 md:grid-cols-1 gap-2 drop-shadow-xl">
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text text-xl text-black">Firstname</span>
-                                </label>
-                                <input type="text" value={localFirstName} onChange={(e) => setLocalFirstName(e.target.value)} placeholder="Enter Firstname" className="input input-bordered grow glass text-black placeholder-black" required />
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text text-xl text-black">Lastname</span>
-                                </label>
-                                <input type="text" value={localLastName} onChange={(e) => setLocalLastName(e.target.value)} placeholder="Enter Lastname" className="input input-bordered grow glass text-black placeholder-black" required />
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text text-xl text-black">Email</span>
-                                </label>
-                                <input type="email" value={localEmail} onChange={(e) => setLocalEmail(e.target.value)} placeholder="Enter Email" className="input input-bordered grow glass text-black placeholder-black" required />
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text text-xl text-black">Contact No.</span>
-                                </label>
-                                <input type="text" value={localContactNo} onChange={(e) => setLocalContactNo(e.target.value)} placeholder="Enter Contact No." className="input input-bordered grow glass text-black placeholder-black" required />
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text text-xl text-black">Password</span>
-                                </label>
-                                <input type="password" value={localPassword} onChange={(e) => setLocalPassword(e.target.value)} placeholder="Enter Password" className="input input-bordered grow glass text-black placeholder-black" required />
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text text-xl text-black">Confirm Password</span>
-                                </label>
-                                <input type="password" value={localConfirmPassword} onChange={(e) => setLocalConfirmPassword(e.target.value)} placeholder="Enter Confirm Password" className="input input-bordered grow glass text-black placeholder-black" required />
-                                {error && <p className="text-red-500 text-sm">{error}</p>} {/* Display error message */}
-                                <label className="label">
-                                    <Link to="/resetpassword" className="label-text text-xl text-black-alt link link-hover">Forgot password?</Link>
-                                </label>
-                            </div>
-                            <div className="form-control mt-6">
-                                <button onClick={handleRegisterUserRequestAndResponse} className="btn drop-shadow-2xl bg-gradient-to-r from-zinc-100 to-black-100 hover:from-black hover:to-zinc-400 text-black hover:text-black text-2xl">Register</button>
-                            </div>
-                            <center>
-                                <span id="loading-infinity" className={`loading loading-infinity loading-lg ${isLoading ? 'block' : 'hidden'} spinner-blue`}></span>
-                            </center>
+                        <form className="p-6 space-y-6 bg-gradient-to-r from-emerald-500 via-sky-500 to-violet-700 border-t-8 border-b-8 border-white rounded-lg shadow-lg" >
+
+                            <div className="grid grid-cols-1 md:grid-cols-1 gap-2 drop-shadow-xl">
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text text-xl text-black">Firstname</span>
+                                    </label>
+                                    <input type="text" value={localFirstName} onChange={(e) => setLocalFirstName(e.target.value)} placeholder="Enter Firstname" className="input input-bordered grow glass text-black placeholder-black" required />
+                                </div>
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text text-xl text-black">Lastname</span>
+                                    </label>
+                                    <input type="text" value={localLastName} onChange={(e) => setLocalLastName(e.target.value)} placeholder="Enter Lastname" className="input input-bordered grow glass text-black placeholder-black" required />
+                                </div>
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text text-xl text-black">Email</span>
+                                    </label>
+                                    <input type="email" value={localEmail} onChange={(e) => setLocalEmail(e.target.value)} placeholder="Enter Email" className="input input-bordered grow glass text-black placeholder-black" required />
+                                </div>
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text text-xl text-black">Contact No.</span>
+                                    </label>
+                                    <input type="text" value={localContactNo} onChange={(e) => setLocalContactNo(e.target.value)} placeholder="Enter Contact No." className="input input-bordered grow glass text-black placeholder-black" required />
+                                </div>
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text text-xl text-black">Password</span>
+                                    </label>
+                                    <input type="password" value={localPassword} onChange={(e) => setLocalPassword(e.target.value)} placeholder="Enter Password" className="input input-bordered grow glass text-black placeholder-black" required />
+                                </div>
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text text-xl text-black">Confirm Password</span>
+                                    </label>
+                                    <input type="password" value={localConfirmPassword} onChange={(e) => setLocalConfirmPassword(e.target.value)} placeholder="Enter Confirm Password" className="input input-bordered grow glass text-black placeholder-black" required />
+                                    {error && <p className="text-red-500 text-sm">{error}</p>} {/* Display error message */}
+                                    <label className="label">
+                                        <Link to="/resetpassword" className="label-text text-xl text-black-alt link link-hover">Forgot password?</Link>
+                                    </label>
+                                </div>
+                                <div className="form-control mt-6">
+                                    <button onClick={handleRegisterUserRequestAndResponse} className="btn drop-shadow-2xl bg-gradient-to-r from-zinc-100 to-black-100 hover:from-black hover:to-zinc-400 text-black hover:text-black text-2xl">Register</button>
+                                </div>
+                                <center>
+                                    <span id="loading-infinity" className={`loading loading-infinity loading-lg ${isLoading ? 'block' : 'hidden'} spinner-blue`}></span>
+                                </center>
                             </div>
                         </form>
                     </div>
