@@ -107,25 +107,10 @@ const UserDetails = (props) => {
 
   }, []);
 
-  // if (props.loading) {
-  //   return (
-  //     <div className="flex flex-col gap-4 w-52">
-  //       <div className="flex gap-4 items-center">
-  //         <div className="skeleton w-16 h-16 rounded-full shrink-0"></div>
-  //         <div className="flex flex-col gap-4">
-  //           <div className="skeleton h-4 w-20"></div>
-  //           <div className="skeleton h-4 w-28"></div>
-  //         </div>
-  //       </div>
-  //       <div className="skeleton h-32 w-full"></div>
-  //     </div>
-  //   );
-  // }
-
   return (
 
-    <div className='h-full max-h-full w-full max-w-full glass mx-auto m-0 shadow-slate-900/100 rounded-lg'>
-
+    <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-lg'>
+    <div className="flex flex-wrap">
 
       <ToastContainer />
       <dialog id="uploadUserUImage" className="modal">
@@ -164,21 +149,17 @@ const UserDetails = (props) => {
         </div>
       </div>
 
-
       <div className='bg-transparent shadow-slate-900/100'>
-        <div className="grid grid-cols-3 items-center mt-10 mb-5 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
+        <div className="grid grid-cols-2 items-center mt-10 mb-5 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
           <div>
-            <span className="inline-grid grid-cols-3 gap-4 py-5">
+            <span className="inline-grid grid-cols-2 gap-4 py-5">
               <div className="p-3 flex justify-start">
                 <span></span>
               </div>
-
             </span>
           </div>
           <div className="pb-0 pt-5 flex justify-center">
             <div className="avatar">
-
-
               <div className="avatar online">
                 <div className="ring-primary ring-offset-base-100 w-40 rounded-full">
                   {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
@@ -202,7 +183,8 @@ const UserDetails = (props) => {
           onClick={() => document.getElementById('uploadUserUImage').showModal()}
           style={{ backgroundColor: 'transparent', color: 'black', border: 'none', width: '35px', height: '35px' }}
         />
-        <div className="hero-content flex-col lg:flex-row">
+      
+        <div className="flex flex-col items-center ">
           <div className="flex-1 pr-10 pl-10">
             <div className="grid grid-cols-2 gap-10">
               <div className="form-control">
@@ -295,8 +277,11 @@ const UserDetails = (props) => {
             </button>
           </div>
         </div>
+      
+      </div>
       </div>
     </div>
+
   );
 };
 
