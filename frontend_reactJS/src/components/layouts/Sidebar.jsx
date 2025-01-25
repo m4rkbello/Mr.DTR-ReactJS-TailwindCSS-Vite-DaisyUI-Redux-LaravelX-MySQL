@@ -50,8 +50,6 @@ const SideBar = ({ isAuthenticatedUser, accessTypeEmployee: propAccessTypeEmploy
   }, []);
 
 
-
-
   return (
     <div className="drawer-side border-r-4 bg-black drop-shadow-lg">
       <div className="drawer lg:drawer-open">
@@ -148,7 +146,6 @@ const SideBar = ({ isAuthenticatedUser, accessTypeEmployee: propAccessTypeEmploy
                         </Link>
                       </li>
 
-
                       <li>
                         <Link to="/admin/payrolls" className='text-2xl glass hover:bg-violet-800'>
                           <FcCurrencyExchange
@@ -176,6 +173,7 @@ const SideBar = ({ isAuthenticatedUser, accessTypeEmployee: propAccessTypeEmploy
                           </span>
                         </Link>
                       </li>
+
                       <li>
                         <Link to="/admin/overtimes" className='text-2xl glass hover:bg-violet-800'>
                           <FcOvertime
@@ -189,6 +187,7 @@ const SideBar = ({ isAuthenticatedUser, accessTypeEmployee: propAccessTypeEmploy
                           </span>
                         </Link>
                       </li>
+                      
                       <li>
                         <Link to="/admin/deductions" className='text-2xl glass hover:bg-violet-800'>
                           <FcExpired

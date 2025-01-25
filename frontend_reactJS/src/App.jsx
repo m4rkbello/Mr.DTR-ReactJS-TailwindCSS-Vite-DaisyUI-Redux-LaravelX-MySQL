@@ -157,8 +157,10 @@ function App(props) {
           </>
         ) : (
           <>
+
+
             <div className="flex-1 my-0 mx-0">
-              <img src="https://i.ibb.co/7JHVynR/DTRMS-LOGO-removebg-preview.png"
+              <img  src="https://i.ibb.co/7JHVynR/DTRMS-LOGO-removebg-preview.png"
                 className="h-20 w-auto object-contain"
                 alt="DTRMS-LOGO-removebg-preview" border="0" />
               {/*** 
