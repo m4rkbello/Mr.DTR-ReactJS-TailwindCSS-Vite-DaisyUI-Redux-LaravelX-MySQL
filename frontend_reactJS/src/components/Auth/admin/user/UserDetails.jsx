@@ -124,7 +124,8 @@ const UserDetails = (props) => {
 
   return (
 
-    <div className="h-full max-h-full w-full max-w-full glass shadow-slate-900/100 rounded-lg">
+    <div className='h-full max-h-full w-full max-w-full glass mx-auto m-0 shadow-slate-900/100 rounded-lg'>
+
 
       <ToastContainer />
       <dialog id="uploadUserUImage" className="modal">

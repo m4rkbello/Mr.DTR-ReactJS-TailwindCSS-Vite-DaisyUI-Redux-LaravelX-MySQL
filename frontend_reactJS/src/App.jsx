@@ -176,7 +176,7 @@ function App(props) {
             <>
               <div className="dropdown dropdown-end">
 
-                <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-gradient-to-r from-emerald-500 via-sky-500 to-violet-700 rounded-box w-52">
+                <ul tabIndex={0} className="mt-0 z-[1] shadow menu menu-sm dropdown-content bg-gradient-to-r from-emerald-500 via-sky-500 to-violet-700 rounded-box w-96">
                   {/* Profile */}
                   <li>
                     <span className="justify-between text-black">

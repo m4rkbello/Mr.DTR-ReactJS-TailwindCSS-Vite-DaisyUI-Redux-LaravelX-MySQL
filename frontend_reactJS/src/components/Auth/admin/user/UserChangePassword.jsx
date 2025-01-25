@@ -128,8 +128,8 @@ const UserDetails = (props) => {
   };
 
   return (
-    <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg'>
-      <ToastContainer />
+    <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-lg'>
+    <ToastContainer />
       <div className="hero-content flex flex-col items-center">
         {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
           <img
