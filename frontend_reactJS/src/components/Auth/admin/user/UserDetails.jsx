@@ -109,9 +109,9 @@ const UserDetails = (props) => {
 
   return (
 
-    <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-lg'>
-    <div className="flex flex-wrap">
-
+    <div className="h-full max-h-full w-full max-w-full glass mx-auto p-0 shadow-slate-900/100 rounded-lg flex items-center justify-center">
+    <div className="flex flex-wrap justify-center items-center">
+  
       <ToastContainer />
       <dialog id="uploadUserUImage" className="modal">
         <div className="modal-box">
@@ -122,8 +122,8 @@ const UserDetails = (props) => {
           </form>
         </div>
       </dialog>
-
-      <div className="flex flex-col bg-transparent mb-10 shadow-slate-900/100" >
+  
+      <div className="flex flex-col bg-transparent mb-10 shadow-slate-900/100">
         <div className="flex items-center text-sm breadcrumbs">
           <ul className="flex space-x-4">
             <li>
@@ -134,8 +134,7 @@ const UserDetails = (props) => {
             </li>
             <li>
               <Link to="/admin/users" className='flex items-center hover:text-white'>
-                <FcFolder
-                  style={{ height: "2rem", width: "2rem" }} />
+                <FcFolder style={{ height: "2rem", width: "2rem" }} />
                 <span className="ml-2">Users</span>
               </Link>
             </li>
@@ -148,7 +147,7 @@ const UserDetails = (props) => {
           </ul>
         </div>
       </div>
-
+  
       <div className='bg-transparent shadow-slate-900/100'>
         <div className="grid grid-cols-2 items-center mt-10 mb-5 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
           <div>
@@ -158,33 +157,29 @@ const UserDetails = (props) => {
               </div>
             </span>
           </div>
-          <div className="pb-0 pt-5 flex justify-center">
-            <div className="avatar">
-              <div className="avatar online">
-                <div className="ring-primary ring-offset-base-100 w-40 rounded-full">
-                  {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
-                    <img key={index} 
-                    src={user.user_image}
-                    className='"input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color'
-                    />
-                  ))}
-                </div>
+        </div>
+      </div>
+  
+      <div className="hero-content flex flex-col items-center">
+        <div className="pb-0 pt-5 flex justify-center">
+          <div className="avatar">
+            <div className="avatar online">
+              <div className="ring-primary ring-offset-base-100 w-40 rounded-full">
+                {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
+                  <img key={index} 
+                  src={user.user_image}
+                  className='"input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color'
+                  />
+                ))}
               </div>
             </div>
           </div>
-          <div className="p-3 flex justify-end">
-            <span></span>
-          </div>
         </div>
-      </div>
-
-      <div className="hero-content flex flex-col items-center">
         <FaUpload
           onClick={() => document.getElementById('uploadUserUImage').showModal()}
           style={{ backgroundColor: 'transparent', color: 'black', border: 'none', width: '35px', height: '35px' }}
         />
-      
-        <div className="flex flex-col items-center ">
+        <div className="flex flex-col items-center">
           <div className="flex-1 pr-10 pl-10">
             <div className="grid grid-cols-2 gap-10">
               <div className="form-control">
@@ -277,10 +272,11 @@ const UserDetails = (props) => {
             </button>
           </div>
         </div>
-      
       </div>
-      </div>
+  
     </div>
+  </div>
+  
 
   );
 };
