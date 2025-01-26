@@ -170,7 +170,7 @@ function App(props) {
           </>
         )}
 
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center">
           {/* Show dropdown if authenticated */}
           {(cookiesData?.length ?? 0) > 0 ? (
             <>
