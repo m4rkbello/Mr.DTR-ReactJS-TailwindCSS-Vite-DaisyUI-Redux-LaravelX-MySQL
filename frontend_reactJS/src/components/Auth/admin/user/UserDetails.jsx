@@ -48,7 +48,7 @@ const UserDetails = (props) => {
     try {
       // Create a copy of the user data
       const updatedUserData = { ...userData };
-  
+
       // Check if each field has changes, if not, retain the original value
       if (!updatedUserData.user_firstname) {
         updatedUserData.user_firstname = isAuthenticatedUser[0].user_firstname;
@@ -62,14 +62,14 @@ const UserDetails = (props) => {
       if (!updatedUserData.user_contact_no) {
         updatedUserData.user_contact_no = isAuthenticatedUser[0].user_contact_no;
       }
-  
+
       // Check if there are any changes
       const hasChanges = Object.values(updatedUserData).some(value => value !== '');
-  
+
       if (hasChanges) {
         props.updateUser(localStorageHasUserIdData, updatedUserData); // Pass updated userData
         setIsEditing(!isEditing); // Toggle editing mode
-        
+
       } else {
         // No changes detected, toggle editing mode without updating user data
         setIsEditing(!isEditing);
@@ -78,7 +78,7 @@ const UserDetails = (props) => {
       console.error('Error updating user:', error);
     }
   };
-  
+
 
   //NAGBIRAG DATA GIKAN SA PROPS DRILLING
   const usersCollection = props?.users?.data;
@@ -129,175 +129,178 @@ const UserDetails = (props) => {
   return (
 
     <div className="h-full max-h-full w-full max-w-full glass mx-auto p-0 shadow-slate-900/100 rounded-lg flex items-center justify-center">
-    <div className="flex flex-wrap justify-center items-center">
-  
-      <ToastContainer />
-      <dialog id="uploadUserUImage" className="modal">
-        <div className="modal-box">
-          <form method="dialog justify-center">
-            <input type="file" onChange={handleImageChange} className="file-input bg-black w-full max-w-xs" />
-            <button onClick={handleImageUpload} className="btn ml-5">Upload</button>
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-          </form>
-        </div>
-      </dialog>
-  
-      <div className="flex flex-col bg-transparent mb-10 shadow-slate-900/100">
-        <div className="flex text-sm breadcrumbs">
-          <ul className="flex space-x-2">
-            <li>
-              <Link to="/" className='flex hover:text-white'>
-                <FcPrevious style={{ height: "2rem", width: "2rem" }} />
-                <span className="ml-2">Home</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/admin/users" className='flex hover:text-white'>
-                <FcFolder style={{ height: "2rem", width: "2rem" }} />
-                <span className="ml-2">Users</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="" className='flex hover:text-white'>
-                <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
-                <span className="ml-2">Data</span>
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </div>
-  
-      <div className='bg-transparent shadow-slate-900/100'>
-        <div className="grid grid-cols-2 items-center mt-10 mb-5 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
-          <div>
-            <span className="inline-grid grid-cols-2 gap-4 py-5">
-              <div className="p-3 flex justify-start">
-                <span></span>
-              </div>
-            </span>
+      <div className="flex flex-wrap justify-center items-center">
+
+        <ToastContainer />
+        <dialog id="uploadUserUImage" className="modal">
+          <div className="modal-box">
+            <form method="dialog justify-center">
+              <input type="file" onChange={handleImageChange} className="file-input bg-black w-full max-w-xs" />
+              <button onClick={handleImageUpload} className="btn ml-5">Upload</button>
+              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+          </div>
+        </dialog>
+
+        <div className="flex flex-col bg-transparent mb-10 shadow-slate-900/100">
+          <div className="flex text-sm breadcrumbs">
+            <ul className="flex space-x-2">
+              <li>
+                <Link to="/" className='flex hover:text-white'>
+                  <FcPrevious style={{ height: "2rem", width: "2rem" }} />
+                  <span className="ml-2">Home</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/admin/users" className='flex hover:text-white'>
+                  <FcFolder style={{ height: "2rem", width: "2rem" }} />
+                  <span className="ml-2">Users</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="" className='flex hover:text-white'>
+                  <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
+                  <span className="ml-2">Data</span>
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
-      </div>
-  
-      <div className="hero-content flex flex-col items-center">
-        <div className="pb-0 pt-5 flex justify-center">
-          <div className="avatar">
-            <div className="avatar online">
-              <div className="ring-primary ring-offset-base-100 w-40 rounded-full">
-                {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
-                  <img key={index} 
-                  src={user.user_image}
-                  className='"input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color'
-                  />
-                ))}
-              </div>
+
+        <div className='bg-transparent shadow-slate-900/100'>
+          <div className="grid grid-cols-2 items-center mt-10 mb-5 rounded-t-lg rounded-b-lg rounded-l-lg rounded-r-lg">
+            <div>
+              <span className="inline-grid grid-cols-2 gap-4 py-5">
+                <div className="p-3 flex justify-start">
+                  <span></span>
+                </div>
+              </span>
             </div>
           </div>
         </div>
 
-        <FaUpload
-          onClick={() => document.getElementById('uploadUserUImage').showModal()}
-          style={{ backgroundColor: 'transparent', color: 'black', border: 'none', width: '35px', height: '35px' }}
-        />
-        
-        <div className="flex flex-col items-center">
-          <div className="flex-1 pr-10 pl-10">
-            <div className="grid grid-cols-2 gap-10">
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text text-2xl">Firstname</span>
-                </label>
-                {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
-                  <input
-                    key={index}
-                    type="text"
-                    placeholder="text"
-                    name="user_firstname"
-                    className={`input input-bordered shadow-2xl text-2xl text-black ${isEditing ? '' : 'pointer-events-none'}`}
-                    defaultValue={user.user_firstname}
-                    onChange={handleUpdateInputChange}
-                    disabled={!isEditing} // Disable input when not editing
-                  />
-                ))}
+        <div className="hero-content flex flex-col items-center">
+          <div className="pb-0 pt-5 flex justify-center">
+            <div className="avatar">
+              <div className="avatar online">
+                <div className="ring-primary ring-offset-base-100 w-40 rounded-full">
+                  {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
+                    <img key={index}
+                      src={user.user_image}
+                      className='"input input-bordered shadow-2xl glass text-2xl text-black border-1 border-glass rounded-se-3xl shadow-slate-900/100 custom-placeholder-text-color'
+                    />
+                  ))}
+                </div>
               </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text text-2xl">Lastname</span>
-                </label>
-                {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
-                  <input
-                    key={index}
-                    type="text"
-                    placeholder="text"
-                    name="user_lastname"
-                    className={`input input-bordered shadow-2xl text-2xl text-black ${isEditing ? '' : 'pointer-events-none'}`}
-                    defaultValue={user.user_lastname}
-                    onChange={handleUpdateInputChange}
-                    disabled={!isEditing} // Disable input when not editing
-                  />
-                ))}
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text text-2xl">Email</span>
-                </label>
-                {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
-                  <input
-                    key={index}
-                    type="text"
-                    placeholder="text"
-                    name="user_email"
-                    className={`input input-bordered shadow-2xl text-2xl text-black ${isEditing ? '' : 'pointer-events-none'}`}
-                    defaultValue={user.user_email}
-                    onChange={handleUpdateInputChange}
-                    disabled={!isEditing} // Disable input when not editing
-                  />
-                ))}
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text text-2xl">Contact</span>
-                </label>
-                {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
-                  <input
-                    key={index}
-                    type="text"
-                    placeholder="email"
-                    name="user_contact_no"
-                    className={`input input-bordered shadow-2xl text-2xl text-black ${isEditing ? '' : 'pointer-events-none'}`}
-                    defaultValue={user.user_contact_no}
-                    onChange={handleUpdateInputChange}
-                    disabled={!isEditing} // Disable input when not editing
-                  />
-                ))}
-              </div>
-              {/* Other input fields */}
             </div>
-            <br />
-            <button onClick={handleUpdateUser} className="btn glass mr-3">
-              {isEditing ?
-                < FcUnlock
-                  style={{
-                    backgroundColor: 'transparent', color: 'white', border: 'none',
-                    width: '25px', height: '25px'
-                  }} /> :
-                <FcKey style={{ backgroundColor: 'transparent', color: 'black', border: 'none', width: '25px', height: '25px' }} />
-              }
-            </button>
-            <button className="btn glass">
-              <Link to="/admin/user/profile-details/change-password">
-                <FcSupport
-                  style={{ backgroundColor: 'transparent', color: 'black', border: 'none', width: '25px', height: '25px' }}
-                />
-              </Link>
-            </button>
+          </div>
+
+          <FaUpload
+            onClick={() => document.getElementById('uploadUserUImage').showModal()}
+            style={{ backgroundColor: 'transparent', color: 'black', border: 'none', width: '35px', height: '35px' }}
+          />
+
+          <div className="flex flex-col items-center">
+            <div className="flex-1 pr-10 pl-10">
+              <div className="grid grid-cols-2 gap-10">
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text text-2xl">Firstname</span>
+                  </label>
+                  {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
+                    <input
+                      key={index}
+                      type="text"
+                      placeholder="text"
+                      name="user_firstname"
+                      className={`input input-bordered shadow-2xl text-2xl text-black ${isEditing ? '' : 'pointer-events-none'}`}
+                      defaultValue={user.user_firstname}
+                      onChange={handleUpdateInputChange}
+                      disabled={!isEditing} // Disable input when not editing
+                    />
+                  ))}
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text text-2xl">Lastname</span>
+                  </label>
+                  {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
+                    <input
+                      key={index}
+                      type="text"
+                      placeholder="text"
+                      name="user_lastname"
+                      className={`input input-bordered shadow-2xl text-2xl text-black ${isEditing ? '' : 'pointer-events-none'}`}
+                      defaultValue={user.user_lastname}
+                      onChange={handleUpdateInputChange}
+                      disabled={!isEditing} // Disable input when not editing
+                    />
+                  ))}
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text text-2xl">Email</span>
+                  </label>
+                  {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
+                    <input
+                      key={index}
+                      type="text"
+                      placeholder="text"
+                      name="user_email"
+                      className={`input input-bordered shadow-2xl text-2xl text-black ${isEditing ? '' : 'pointer-events-none'}`}
+                      defaultValue={user.user_email}
+                      onChange={handleUpdateInputChange}
+                      disabled={!isEditing} // Disable input when not editing
+                    />
+                  ))}
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text text-2xl">Contact</span>
+                  </label>
+                  {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
+                    <input
+                      key={index}
+                      type="text"
+                      placeholder="email"
+                      name="user_contact_no"
+                      className={`input input-bordered shadow-2xl text-2xl text-black ${isEditing ? '' : 'pointer-events-none'}`}
+                      defaultValue={user.user_contact_no}
+                      onChange={handleUpdateInputChange}
+                      disabled={!isEditing} // Disable input when not editing
+                    />
+                  ))}
+                </div>
+                {/* Other input fields */}
+              </div>
+              <br />
+              <button onClick={handleUpdateUser} className="btn glass mr-3">
+                {isEditing ?
+                  < FcUnlock
+                    style={{
+                      backgroundColor: 'transparent', color: 'white', border: 'none',
+                      width: '25px', height: '25px'
+                    }} /> :
+                  <FcKey style={{ backgroundColor: 'transparent', color: 'black', border: 'none', width: '25px', height: '25px' }} />
+                }
+              </button>
+              <button className="btn glass">
+                {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
+                  <Link key={index} to={`/admin/user/profile-details/change-password/${user.id}`}>
+                    <FcSupport
+                      style={{ backgroundColor: 'transparent', color: 'black', border: 'none', width: '25px', height: '25px' }}
+                    />
+                  </Link>
+                ))}
+              </button>
+
+            </div>
           </div>
         </div>
+
       </div>
-  
     </div>
-  </div>
-  
+
 
   );
 };
