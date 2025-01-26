@@ -293,11 +293,9 @@ const UserDetails = (props) => {
                   </Link>
                 ))}
               </button>
-
             </div>
           </div>
         </div>
-
       </div>
     </div>
 
