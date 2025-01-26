@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { FaUserEdit, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
-import { FcFolder, FcOpenedFolder, FcPlus, FcAcceptDatabase, FcKey, FcUnlock, FcSalesPerformance, FcSearch, FcPrevious, FcViewDetails, FcEmptyTrash, FcNext } from "react-icons/fc";
+import { FcFolder, FcOpenedFolder, FcSupport, FcPlus, FcAcceptDatabase, FcKey, FcUnlock, FcSalesPerformance, FcSearch, FcPrevious, FcViewDetails, FcEmptyTrash, FcNext } from "react-icons/fc";
 import { MdEditSquare } from "react-icons/md";
 import { TbPasswordUser } from "react-icons/tb";
 //redux-actions
@@ -46,12 +46,30 @@ const UserDetails = (props) => {
 
   const handleUpdateUser = () => {
     try {
-      // Check if userData has any changes 
-      const hasChanges = Object.values(userData).some(value => value !== '');
-
+      // Create a copy of the user data
+      const updatedUserData = { ...userData };
+  
+      // Check if each field has changes, if not, retain the original value
+      if (!updatedUserData.user_firstname) {
+        updatedUserData.user_firstname = isAuthenticatedUser[0].user_firstname;
+      }
+      if (!updatedUserData.user_lastname) {
+        updatedUserData.user_lastname = isAuthenticatedUser[0].user_lastname;
+      }
+      if (!updatedUserData.user_email) {
+        updatedUserData.user_email = isAuthenticatedUser[0].user_email;
+      }
+      if (!updatedUserData.user_contact_no) {
+        updatedUserData.user_contact_no = isAuthenticatedUser[0].user_contact_no;
+      }
+  
+      // Check if there are any changes
+      const hasChanges = Object.values(updatedUserData).some(value => value !== '');
+  
       if (hasChanges) {
-        props.updateUser(localStorageHasUserIdData, userData); // Pass updated userData
+        props.updateUser(localStorageHasUserIdData, updatedUserData); // Pass updated userData
         setIsEditing(!isEditing); // Toggle editing mode
+        
       } else {
         // No changes detected, toggle editing mode without updating user data
         setIsEditing(!isEditing);
@@ -60,6 +78,7 @@ const UserDetails = (props) => {
       console.error('Error updating user:', error);
     }
   };
+  
 
   //NAGBIRAG DATA GIKAN SA PROPS DRILLING
   const usersCollection = props?.users?.data;
@@ -175,16 +194,18 @@ const UserDetails = (props) => {
             </div>
           </div>
         </div>
+
         <FaUpload
           onClick={() => document.getElementById('uploadUserUImage').showModal()}
           style={{ backgroundColor: 'transparent', color: 'black', border: 'none', width: '35px', height: '35px' }}
         />
+        
         <div className="flex flex-col items-center">
           <div className="flex-1 pr-10 pl-10">
             <div className="grid grid-cols-2 gap-10">
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text text-3xl">Firstname</span>
+                  <span className="label-text text-2xl">Firstname</span>
                 </label>
                 {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
                   <input
@@ -201,7 +222,7 @@ const UserDetails = (props) => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text text-3xl">Lastname</span>
+                  <span className="label-text text-2xl">Lastname</span>
                 </label>
                 {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
                   <input
@@ -218,7 +239,7 @@ const UserDetails = (props) => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text text-3xl">Email</span>
+                  <span className="label-text text-2xl">Email</span>
                 </label>
                 {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
                   <input
@@ -235,7 +256,7 @@ const UserDetails = (props) => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text text-3xl">Contact</span>
+                  <span className="label-text text-2xl">Contact</span>
                 </label>
                 {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
                   <input
@@ -260,13 +281,13 @@ const UserDetails = (props) => {
                     backgroundColor: 'transparent', color: 'white', border: 'none',
                     width: '25px', height: '25px'
                   }} /> :
-                <FcKey style={{ backgroundColor: 'transparent', color: '#A3E636', border: 'none', width: '25px', height: '25px' }} />
+                <FcKey style={{ backgroundColor: 'transparent', color: 'black', border: 'none', width: '25px', height: '25px' }} />
               }
             </button>
-            <button className="btn bg-black">
+            <button className="btn glass">
               <Link to="/admin/user/profile-details/change-password">
-                <TbPasswordUser
-                  style={{ backgroundColor: 'transparent', color: '#A3E636', border: 'none', width: '25px', height: '25px' }}
+                <FcSupport
+                  style={{ backgroundColor: 'transparent', color: 'black', border: 'none', width: '25px', height: '25px' }}
                 />
               </Link>
             </button>
