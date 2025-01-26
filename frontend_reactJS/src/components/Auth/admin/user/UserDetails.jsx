@@ -117,29 +117,29 @@ const UserDetails = (props) => {
         <div className="modal-box">
           <form method="dialog justify-center">
             <input type="file" onChange={handleImageChange} className="file-input bg-black w-full max-w-xs" />
-            <button onClick={handleImageUpload} className="btn btn-primary ml-5">Upload</button>
+            <button onClick={handleImageUpload} className="btn ml-5">Upload</button>
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
           </form>
         </div>
       </dialog>
   
       <div className="flex flex-col bg-transparent mb-10 shadow-slate-900/100">
-        <div className="flex items-center text-sm breadcrumbs">
-          <ul className="flex space-x-4">
+        <div className="flex text-sm breadcrumbs">
+          <ul className="flex space-x-2">
             <li>
-              <Link to="/" className='flex items-center hover:text-white'>
+              <Link to="/" className='flex hover:text-white'>
                 <FcPrevious style={{ height: "2rem", width: "2rem" }} />
                 <span className="ml-2">Home</span>
               </Link>
             </li>
             <li>
-              <Link to="/admin/users" className='flex items-center hover:text-white'>
+              <Link to="/admin/users" className='flex hover:text-white'>
                 <FcFolder style={{ height: "2rem", width: "2rem" }} />
                 <span className="ml-2">Users</span>
               </Link>
             </li>
             <li>
-              <Link to="" className='flex items-center hover:text-white'>
+              <Link to="" className='flex hover:text-white'>
                 <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
                 <span className="ml-2">Data</span>
               </Link>
