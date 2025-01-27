@@ -20,12 +20,12 @@ const EditDepartment = ({ fetchDepartments, updateDepartment,  departmentData, l
   const { departmentId } = useParams();
 
   const [formDataUpdateDepartment, setFormDataUpdateDepartment] = useState(null);
-
-  console.log("DATA SA departmentData ", departmentData)
+  
   useEffect(() => {
     fetchDepartments();
   }, [fetchDepartments]);
 
+  
   useEffect(() => {
     if (departmentData.dedepartment.data.details && !loading) {
       const departmentItem = departmentData.department.data.details.find(department => department.id === parseInt(departmentId, 10));
