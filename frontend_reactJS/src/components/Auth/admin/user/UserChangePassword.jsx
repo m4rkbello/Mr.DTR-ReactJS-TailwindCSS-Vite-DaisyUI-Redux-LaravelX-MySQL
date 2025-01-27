@@ -10,7 +10,8 @@ import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { FaUserEdit, FaSave, FaLongArrowAltLeft } from "react-icons/fa";
+import { FaUserEdit, FaSave, FaLongArrowAltLeft, } from "react-icons/fa";
+import { FcFolder, FcOpenedFolder, FcSupport, FcPlus, FcAcceptDatabase, FcKey, FcUnlock, FcSalesPerformance, FcSearch, FcPrevious, FcViewDetails, FcEmptyTrash, FcNext } from "react-icons/fc";
 import { MdEditSquare } from "react-icons/md";
 import { TbPasswordUser } from "react-icons/tb";
 
@@ -81,13 +82,16 @@ const UserDetails = (props) => {
   };
 
   const usersCollection = props?.users;
+  console.log("DATA SA usersCollection", usersCollection);
 
   function getUserAuthenticated(usersCollection) {
     let item = [];
-
+  
     if (usersCollection && usersCollection.length) {
       for (let ez = 0; ez < usersCollection.length; ez++) {
+   
         if (usersCollection[ez].id == sessionStorageHasUserIdData && usersCollection[ez].id == localStorageHasUserIdData) {
+          console.log("Match Found:", usersCollection[ez]); // Log the matched user
           item.push(usersCollection[ez]);
         }
       }
@@ -95,7 +99,11 @@ const UserDetails = (props) => {
     return item;
   }
 
+  console.log("Current User:"); // Log the current user
+  console.log("Session Storage ID:", sessionStorageHasUserIdData); // Log session storage ID
+  console.log("Local Storage ID:", localStorageHasUserIdData); // Log local storage ID
   const isAuthenticatedUser = getUserAuthenticated(usersCollection);
+  console.log("DATA SA isAuthenticatedUser", isAuthenticatedUser);
 
   useEffect(() => {
     //kuhaon ang data sa localStorage/Session Storage/Cookie
@@ -128,8 +136,35 @@ const UserDetails = (props) => {
   };
 
   return (
-    <div className='h-full max-h-full w-full max-w-full glass mx-auto p-4 shadow-slate-900/100 rounded-lg'>
+    <div className="h-full max-h-full w-full max-w-full glass mx-auto p-0 shadow-slate-900/100 rounded-lg flex items-center justify-center">
+    <div className="flex flex-wrap justify-center items-center">
     <ToastContainer />
+
+        <div className="flex flex-col bg-transparent mb-10 shadow-slate-900/100">
+          <div className="flex text-sm breadcrumbs">
+            <ul className="flex space-x-2">
+              <li>
+                <Link to="/" className='flex hover:text-white'>
+                  <FcPrevious style={{ height: "2rem", width: "2rem" }} />
+                  <span className="ml-2">Home</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/admin/users" className='flex hover:text-white'>
+                  <FcFolder style={{ height: "2rem", width: "2rem" }} />
+                  <span className="ml-2">Users</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="" className='flex hover:text-white'>
+                  <FcOpenedFolder style={{ height: "2rem", width: "2rem" }} />
+                  <span className="ml-2">Data</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+
       <div className="hero-content flex flex-col items-center">
         {isAuthenticatedUser && isAuthenticatedUser.map((user, index) => (
           <img
@@ -190,6 +225,7 @@ const UserDetails = (props) => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };
