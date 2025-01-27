@@ -79,7 +79,6 @@ const UserDetails = (props) => {
     }
   };
 
-
   //NAGBIRAG DATA GIKAN SA PROPS DRILLING
   const usersCollection = props?.users?.data;
 
