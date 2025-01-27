@@ -93,10 +93,8 @@ function App(props) {
     const sessionStorageHasTokenData = sessionStorage.getItem('DTRMS_BY_M4RKBELLO');
     const cookiesData = document.cookie;
     const cookiesAccessTypeEmployeeLayer = parseInt(getCookieAccessTypeEmployeeValue('DTRMS_BY_M4RKBELLO_EMPLOYEE_ACCESS_TYPE_ID'), 10);
-    console.log("DATA SA cookiesLayerAccessType",cookiesAccessTypeEmployeeLayer);
 
     const cookiesAccessTypeUserLayer = parseInt(getCookieAccessTypeUserValue('DTRMS_BY_M4RKBELLO_USER_ACCESS_TYPE_ID'), 10);
-    console.log("DATA SA cookiesLayerAccessType",cookiesAccessTypeUserLayer);
 
     setLocalStorageHasUserId(localStorageHasUserId);
     setSessionStorageHasUserId(sessionStorageHasUserId);
@@ -157,8 +155,6 @@ function App(props) {
           </>
         ) : (
           <>
-
-
             <div className="flex-1 my-0 mx-0">
               <img  src="https://i.ibb.co/7JHVynR/DTRMS-LOGO-removebg-preview.png"
                 className="h-20 w-auto object-contain"
@@ -269,7 +265,7 @@ function App(props) {
         <Route path="/admin/deductions" element={<Deduction />} />
         <Route path="/admin/deduction/edit/:deductionId" element={<EditDeduction />} />
         <Route path="/admin/departments" element={<Departments />} />
-        <Route path="/admin/department/edit/:departmentId" element={<EditDepartment />} />6
+        <Route path="/admin/department/edit/:departmentId" element={<EditDepartment />} />
         <Route path="/login" element={<EmployeeLogin />} />
         <Route path="/register" element={<EmployeeRegister />} />
         <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
