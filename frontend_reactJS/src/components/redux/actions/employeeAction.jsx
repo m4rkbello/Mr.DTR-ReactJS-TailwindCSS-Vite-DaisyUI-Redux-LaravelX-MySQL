@@ -36,7 +36,6 @@ export const fetchEmployees = () => async dispatch => {
 
         // Fetch employees data from the API
         const employees = await MarkBelloApi.get('/api/employees');
-        console.log("Fetched employees data:", employees);
 
         dispatch({
             type: FETCH_EMPLOYEES_SUCCESS,
@@ -81,9 +80,6 @@ export const updateEmployee = (employeeId, updateEmployeeData) => async (dispatc
 
         const updateEmployeeResponse = await MarkBelloApi.put(`/api/employee/${employeeId}`, updateEmployeeData);
 
-        //TANAWON NATO UGG NAA BAY RESPONSE
-        console.log(updateEmployeeResponse);
-
         if (!updateEmployeeResponse) {
             toast.error('Fill-up correctly! 🥺⚠️👽', {
                 position: 'top-right',
@@ -123,7 +119,7 @@ export const updateEmployee = (employeeId, updateEmployeeData) => async (dispatc
             return updateEmployeeResponse;
         }
     } catch (error) {
-        console.log("ERROR SA CATCH SA UPDATE EMPLOYEE", error);
+ 
         if (error.response && (error.response.status !== 200 || error.response.status !== 201)) {
             toast.error('Something went wrong! 😛😛😛', {
                 position: 'top-right',
@@ -154,7 +150,6 @@ export const deactivateEmployee = employeeId => async dispatch => {
         dispatch({ type: DELETE_EMPLOYEE_REQUEST });
 
         const deactivateEmployeeReqAndRes = await MarkBelloApi.put(`/api/employee/deactivated/${employeeId}`);
-        console.log("DATA", deactivateEmployeeReqAndRes);
 
         if (deactivateEmployeeReqAndRes.success != true) {
             // Handle the case where the response is empty
@@ -219,8 +214,6 @@ export const uploadAndUpdateImageEmployee = (formData, employeeId) => async (dis
             },
         });
 
-        console.log("DATA", uploadAndUpdateImageEmpReqRes);
-
         if (uploadAndUpdateImageEmpReqRes.data.success === false) {
             // Display error toast if the upload was unsuccessful
             toast.error(uploadAndUpdateImageEmpReqRes.data.message, '!🥺😱😣', {
@@ -276,7 +269,6 @@ export const registerEmployee = employeeData => async dispatch => {
     try {
         dispatch({ type: REGISTER_EMPLOYEE_REQUEST });
         const registeredUser = await MarkBelloApi.post('/api/authentication/employee/register', employeeData);
-        console.log("DATA SA userData", employeeData);
 
         toast.success('Registered successfully!🤭😇🤗', {
             position: 'top-right',
@@ -343,8 +335,6 @@ export const loginEmployee = employeeData => async dispatch => {
         const loggedInEmployeeId = response.data.employee.id;
         const loggedInEmployeeAccessTypId = response.data.employee.access_type_id;
 
-        console.log("DATA SA loginUser", response);
-
         localStorage.setItem('DTRMS_BY_M4RKBELLO', loggedInEmployee);
         sessionStorage.setItem('DTRMS_BY_M4RKBELLO', loggedInEmployee);
         document.cookie = `DTRMS_BY_M4RKBELLO=${loggedInEmployee}; expires=${new Date(Date.now() + 86400 * 1000).toUTCString()}; path=/`;
@@ -353,10 +343,6 @@ export const loginEmployee = employeeData => async dispatch => {
         sessionStorage.setItem('DTRMS_BY_M4RKBELLO_USER_ID', loggedInEmployeeId);
         document.cookie = `DTRMS_BY_M4RKBELLO_USER_ID=${loggedInEmployeeId}; expires=${new Date(Date.now() + 86400 * 1000).toUTCString()}; path=/`;
         document.cookie = `DTRMS_BY_M4RKBELLO_EMPLOYEE_ACCESS_TYPE_ID=${loggedInEmployeeAccessTypId}; expires=${new Date(Date.now() + 86400 * 1000).toUTCString()}; path=/`;
-
-
-        console.log("DATA RESPONSE SA LOGIN NAAY TOKEN", loggedInEmployee);
-        console.log("DATA RESPONSE SA LOGIN", loggedInEmployeeId)
 
         dispatch({
             type: LOGIN_EMPLOYEE_SUCCESS,
