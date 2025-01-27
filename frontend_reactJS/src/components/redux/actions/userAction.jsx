@@ -141,10 +141,8 @@ export const deleteUser = userId => async dispatch => {
 export const registerUser = userData => async dispatch => {
     try {
         dispatch({ type: REGISTER_USER_REQUEST });
-        const registeredUser = await MarkBelloApi.post('/api/register', userData);
-        console.log("DATA SA userData", userData);
-
-
+        const registeredUser = await MarkBelloApi.post('/api/authentication/admin/register', userData);
+     
         document.getElementById('loading-infinity').classList.add('loading', 'loading-infinity', 'loading-lg');
 
         toast.success('Registered successfully!🤭😇🤗', {
@@ -197,7 +195,7 @@ export const loginUser = userData => async dispatch => {
         dispatch({ type: LOGIN_USER_REQUEST });
 
         // API call to authenticate user
-        const response = await MarkBelloApi.post('/api/login', userData);
+        const response = await MarkBelloApi.post('/api/authentication/admin/login', userData);
         const loggedInUser = response.data.token;
         const loggedInUserId = response.data.user_id;
         const loggedInUserAccessTypId = response.data.user.access_type_id;
