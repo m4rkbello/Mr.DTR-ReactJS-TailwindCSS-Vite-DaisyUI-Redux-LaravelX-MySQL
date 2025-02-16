@@ -5,21 +5,15 @@
 import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
 import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import { FaUserEdit, FaSave, FaLongArrowAltLeft, } from "react-icons/fa";
 import { FcFolder, FcOpenedFolder, FcSupport, FcPlus, FcAcceptDatabase, FcKey, FcUnlock, FcSalesPerformance, FcSearch, FcPrevious, FcViewDetails, FcEmptyTrash, FcNext } from "react-icons/fc";
 import { MdEditSquare } from "react-icons/md";
-import { TbPasswordUser } from "react-icons/tb";
-
 //redux-actions
 import { fetchUsers, updateUser, uploadAndUpdateImageUser, userChangePassword } from '../../../redux/actions/userAction';
 import { fetchEmployees } from '../../../redux/actions/employeeAction';
-
-
 import { FaUpload } from "react-icons/fa6";
 import { fetchImages } from '../../../redux/actions/imageAction';
 //modal 
