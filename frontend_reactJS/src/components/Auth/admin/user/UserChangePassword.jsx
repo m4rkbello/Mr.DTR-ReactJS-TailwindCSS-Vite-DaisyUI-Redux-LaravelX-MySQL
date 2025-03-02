@@ -93,9 +93,6 @@ const UserDetails = (props) => {
     return item;
   }
 
-  console.log("Current User:"); // Log the current user
-  console.log("Session Storage ID:", sessionStorageHasUserIdData); // Log session storage ID
-  console.log("Local Storage ID:", localStorageHasUserIdData); // Log local storage ID
   const isAuthenticatedUser = getUserAuthenticated(usersCollection);
   console.log("DATA SA isAuthenticatedUser", isAuthenticatedUser);
 
